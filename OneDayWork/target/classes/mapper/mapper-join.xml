@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.mapper-join">
+
+<select id="checkSeekerOverlap" parameterType="com.lx.odw.model.LoginModel" resultType="Integer">
+	select
+		count(*)
+	from
+		seeker
+	where
+		seeker_id = #{userId}
+</select>
+
+<insert id="joinSeeker" parameterType="com.lx.odw.vo.SeekerVO">
+	insert 
+		into seeker
+			(seeker_id, seeker_pw, seeker_name, seeker_email, seeker_sex)
+		values
+			(#{seekerId},#{seekerPw},#{seekerName},#{seekerEmail},#{seekerSex})
+</insert>
+</mapper>

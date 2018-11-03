@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.mapper-login">
+
+<select id="seekerLogin" parameterType="com.lx.odw.model.LoginModel" resultType="com.lx.odw.vo.SeekerVO">
+	select
+		*
+	from
+		seeker
+	where
+		seeker_id = #{userId} and
+		seeker_pw = #{userPw}
+</select>
+<select id="offerLogin" parameterType="com.lx.odw.model.LoginModel" resultType="com.lx.odw.vo.OfferVO">
+select
+		*
+	from
+		offer
+	where
+		offer_id = #{userId} and
+		offer_pw = #{userPw}
+</select>
+</mapper>
