@@ -25,5 +25,4 @@ public class SeekerServiceImpl implements SeekerService{
 		return seekerDAO.requestProjectJobListByProjectNumber(projectVO);
 	}
 
-	
 }
