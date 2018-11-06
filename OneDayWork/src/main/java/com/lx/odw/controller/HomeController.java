@@ -35,7 +35,5 @@ public class HomeController {
 		
 		return "home";
 	}
-	
-	//커밋 테스트
-	
+		
 }
