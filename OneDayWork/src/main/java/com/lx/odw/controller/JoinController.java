@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lx.odw.model.LoginModel;
 import com.lx.odw.model.ResponseModel;
 import com.lx.odw.service.JoinService;
+import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.SeekerVO;
 
 @Controller
@@ -18,12 +19,22 @@ public class JoinController {
 	JoinService service;
 	
 	@RequestMapping(value="checkSeekerOverlap.do",method=RequestMethod.POST)
-	public @ResponseBody ResponseModel checkOverlap(LoginModel model) {
+	public @ResponseBody ResponseModel checkOverlap(LoginModel model) throws Exception {
 		return service.checkSeekerOverlap(model);
 	}
 	
 	@RequestMapping(value="joinSeeker.do",method=RequestMethod.POST)
-	public @ResponseBody ResponseModel joinSeeker(SeekerVO seekerVO) {
+	public @ResponseBody ResponseModel joinSeeker(SeekerVO seekerVO) throws Exception {
 		return service.joinSeeker(seekerVO);
+	}
+	
+	@RequestMapping(value="checkOfferOverlap.do",method=RequestMethod.POST)
+	public @ResponseBody ResponseModel checkOverlap1(LoginModel model) throws Exception {
+		return service.checkOfferOverlap(model);
+	}
+	
+	@RequestMapping(value="joinOffer.do", method=RequestMethod.POST)
+	public @ResponseBody ResponseModel joinOffer(OfferVO offerVO) throws Exception {
+		return service.joinOffer(offerVO);
 	}
 }
