@@ -23,4 +23,8 @@ public class SeekerDAO {
 		return session.selectList("requestProjectJobListByProjectNumber",projectVO);
 	}
 
+	public ProjectVO requestProjectDetail(ProjectVO projectVO) {
+		return session.selectOne("requestProjectDetail",projectVO);
+	}
+
 }

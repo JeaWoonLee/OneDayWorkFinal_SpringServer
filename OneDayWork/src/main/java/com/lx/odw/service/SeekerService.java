@@ -14,4 +14,6 @@ public interface SeekerService {
 
 	List<ProjectJobListVO> requestProjectJobListByProjectNumber(ProjectVO projectVO);
 
+	ProjectVO requestProjectDetail(ProjectVO projectVO);
+
 }

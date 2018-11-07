@@ -25,4 +25,9 @@ public class SeekerServiceImpl implements SeekerService{
 		return seekerDAO.requestProjectJobListByProjectNumber(projectVO);
 	}
 
+	@Override
+	public ProjectVO requestProjectDetail(ProjectVO projectVO) {
+		return seekerDAO.requestProjectDetail(projectVO);
+	}
+
 }
