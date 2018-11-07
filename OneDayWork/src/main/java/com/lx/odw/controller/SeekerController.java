@@ -28,4 +28,9 @@ public class SeekerController {
 		return service.requestProjectJobListByProjectNumber(projectVO);
 	}
 	
+	@RequestMapping(value="requestProjectDetail.do",method=RequestMethod.POST)
+	public @ResponseBody ProjectVO requestProjectDetail(ProjectVO projectVO) {
+		return service.requestProjectDetail(projectVO);
+	}
+	
 }

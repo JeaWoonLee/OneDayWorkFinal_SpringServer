@@ -38,4 +38,22 @@
 		project_number = #{projectNumber}
 		
 </select>
+
+<select id="requestProjectDetail" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
+	select 
+		project_number,
+		project_name,
+		offer_id,
+		project_start_date,
+		project_end_date,
+		ST_X(project_location) as project_lng,
+		ST_Y(project_location) as project_lat,
+		project_comment,
+		project_subject,
+		project_enroll_date
+	from
+		project
+	where
+		project_number = #{projectNumber}
+</select>
 </mapper>
