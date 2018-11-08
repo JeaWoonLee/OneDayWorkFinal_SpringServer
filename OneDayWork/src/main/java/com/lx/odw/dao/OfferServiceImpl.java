@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lx.odw.service.OfferService;
 import com.lx.odw.service.SeekerService;
-import com.lx.odw.vo.ProjectJobListVO;
+import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Repository
@@ -22,7 +22,7 @@ public class OfferServiceImpl implements OfferService{
 	}
 
 	@Override
-	public List<ProjectJobListVO> requestOffJobListByProjectNumber(ProjectVO projectVO) {
+	public List<JobVO> requestOffJobListByProjectNumber(ProjectVO projectVO) {
 		return offerDAO.requestOffJobListByProjectNumber(projectVO);
 	}
 
