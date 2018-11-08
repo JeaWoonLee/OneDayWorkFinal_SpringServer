@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lx.odw.service.SeekerService;
+import com.lx.odw.vo.ProjectCandidateQueueVO;
 import com.lx.odw.vo.ProjectJobListVO;
 import com.lx.odw.vo.ProjectVO;
 
@@ -33,4 +34,18 @@ public class SeekerController {
 		return service.requestProjectDetail(projectVO);
 	}
 	
+	@RequestMapping(value="requestJobDetail.do",method=RequestMethod.POST)
+	public @ResponseBody ProjectJobListVO requestJobDetail(ProjectJobListVO vo) {
+		return service.requestJobDetail(vo);
+	}
+	
+	@RequestMapping(value="requestTargetDateCount.do",method=RequestMethod.POST)
+	public @ResponseBody Integer requestTargetDateCount(ProjectCandidateQueueVO vo) {
+		return service.requestTargetDateCount(vo);
+	}
+	
+	@RequestMapping(value="candidateJob.do",method=RequestMethod.POST)
+	public @ResponseBody Integer candidateJob(ProjectCandidateQueueVO vo) {
+		return service.candidateJob(vo);
+	}
 }
