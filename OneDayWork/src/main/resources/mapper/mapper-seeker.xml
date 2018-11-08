@@ -124,7 +124,7 @@
 		into 
 			project_candidate_queue
 			(seeker_id,job_number,target_date,regist_confirm)
-		values
+		values	
 			(#{seekerId},#{jobNumber},#{targetDate},#{registConfirm})
 </insert>
 <!-- <select id="ManageJobList" resultType="com.lx.odw.vo.ProjectJobListVO"> -->
