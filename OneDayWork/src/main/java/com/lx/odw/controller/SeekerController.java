@@ -48,4 +48,11 @@ public class SeekerController {
 	public @ResponseBody Integer candidateJob(ProjectCandidateQueueVO vo) {
 		return service.candidateJob(vo);
 	}
+
+	// 180811 ¿±¡§πŒ ¡¯«‡¡ﬂ
+//	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
+//	public @ResponseBody List<ProjectJobListVO> manageJobList(ProjectVO projectVo) {
+//		return service.manageJobList(projectVo);
+//		
+//	}
 }

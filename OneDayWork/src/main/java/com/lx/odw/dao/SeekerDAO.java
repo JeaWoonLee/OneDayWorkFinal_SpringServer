@@ -51,5 +51,11 @@ public class SeekerDAO {
 	public int checkDuplicateAcceptCandidate(ProjectCandidateQueueVO vo) {
 		return session.selectOne("checkDuplicateAcceptCandidate",vo);
 	}
+	
+// ¿±¡§πŒ 181108 ¡¯«‡¡ﬂ
+//	public List<ProjectJobListVO> managejobList(ProjectVO projcetVo) {
+//		return session.selectList("", projectVo);
+//		
+//	}
 
 }

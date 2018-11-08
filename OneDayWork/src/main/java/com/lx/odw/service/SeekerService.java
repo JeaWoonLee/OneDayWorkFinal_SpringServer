@@ -23,4 +23,9 @@ public interface SeekerService {
 
 	Integer candidateJob(ProjectCandidateQueueVO vo);
 
+	// 181108 ¿±¡§πŒ ¡¯«‡¡ﬂ
+	//List<ProjectJobListVO> manageJobList(ProjectVO projectVo);
+
+	
+
 }

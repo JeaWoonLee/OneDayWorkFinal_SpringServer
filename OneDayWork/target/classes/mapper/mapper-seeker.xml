@@ -127,4 +127,9 @@
 		values
 			(#{seekerId},#{jobNumber},#{targetDate},#{registConfirm})
 </insert>
+<!-- <select id="ManageJobList" resultType="com.lx.odw.vo.ProjectJobListVO"> -->
+	<!-- select * --> 
+	<!-- from  project_job_list --> 
+	<!-- 윤정민 진행중.... join 해야함 -->
+<!-- </select>--> 
 </mapper>
