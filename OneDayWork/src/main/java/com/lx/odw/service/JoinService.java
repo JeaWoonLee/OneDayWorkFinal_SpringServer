@@ -12,7 +12,9 @@ public interface JoinService {
 
 	ResponseModel checkSeekerOverlap(LoginModel model) throws Exception;
 
-	ResponseModel joinSeeker(SeekerVO seekerVO)throws Exception;
+	ResponseModel joinSeeker(SeekerVO seekerVO);
+	
+//	ResponseModel joinOffer(OfferVO offerVO);
 
 	ResponseModel checkOfferOverlap(LoginModel model) throws Exception;
 
