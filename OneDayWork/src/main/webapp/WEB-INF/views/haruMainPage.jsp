@@ -63,6 +63,11 @@
   }
   .navbar a:hover { background: #03611c; }
   
+  #imgSlides {
+  	height: 400px;	
+  	width: 1000px;
+  }
+  
     </style>
     <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
     <script>
@@ -100,11 +105,11 @@
      </div>
         <br>
     </div>
-    <div class="jbMenu">
+   <div class="jbMenu">
       <nav class="navbar">
   <ul>
     <li><a href="haruMainPage.do">홈</a></li>
-    <li><a href="#">메뉴1</a></li>
+    <li><a href="registration.do">일감 등록</a></li>
     <li><a href="#">메뉴2</a></li>
     <li><a href="#">메뉴3</a></li>
     <li><a href="#">메뉴4</a></li>
@@ -132,15 +137,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="resources/img/seeker.PNG" alt="img1" style="width:100%;">
+        <img src="resources/img/seeker.PNG" alt="img1" style="width:100%;" id= "imgSlides">
       </div>
 
       <div class="item">
-        <img src="resources/img/seeker2.PNG" alt="img2" style="width:100%;">
+        <img src="resources/img/seeker2.PNG" alt="img2" style="width:100%;" id= "imgSlides">
       </div>
     
       <div class="item">
-        <img src="resources/img/seeker3.PNG" alt="img3" style="width:100%;">
+        <img src="resources/img/seeker3.PNG" alt="img3" style="width:100%;" id= "imgSlides">
       </div>
     </div>
 

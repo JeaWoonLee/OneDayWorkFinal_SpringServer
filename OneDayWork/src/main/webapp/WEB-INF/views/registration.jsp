@@ -9,6 +9,22 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  
+  <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/resources/image/icon/HalfLife.ico" rel="shortcuticon">
+        <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
+        <script src="//code.jquery.com/jquery.js"></script>
+        <!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
+        <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
+        <script src="/resources/bootstrap/js/respond.js"></script>    
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  
 <style>
 .navbar {
     display: inline-block;
@@ -63,18 +79,11 @@
   }
   .navbar a:hover { background: #03611c; }
   
-  #map {
-        width: 600px;
-        height: 400px;
-        background-color: grey;
-        text-align: center;
-      }
+
  </style>
 
     </style>
     <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgQnQTrVIG7rNPGo1L6nDQoVkEqCCzlQE&callback=initMap"
-    async defer></script>
     <script>
     
     //메뉴 상단 바 
@@ -89,15 +98,12 @@
           }
         });
       } );
+
     
+      $( function() {
+    	    $( "#datepicker" ).datepicker();
+    	  } );
     
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      }
       </script>
 
 </head>
@@ -125,7 +131,7 @@
       <nav class="navbar">
   <ul>
     <li><a href="haruMainPage.do">홈</a></li>
-    <li><a href="registration.do">메뉴1</a></li>
+    <li><a href="registration.do">일감 등록</a></li>
     <li><a href="#">메뉴2</a></li>
     <li><a href="#">메뉴3</a></li>
     <li><a href="#">메뉴4</a></li>
@@ -139,8 +145,61 @@
     <br>
     
     <div class="jbContent">
-		<div id="map"></div>
+    
+    
+    <p>Date: <input type="text" id="datepicker"></p>
+    
 
+	<div id="map" style="width:500px;height:400px; text"></div>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
+	<script>
+	
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+	// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+	var mapTypeControl = new daum.maps.MapTypeControl();
+	
+	// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+	// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+	map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+	
+	// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+	var zoomControl = new daum.maps.ZoomControl();
+	map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+	//지도를 클릭한 위치에 표출할 마커입니다
+	var marker = new daum.maps.Marker({ 
+	    // 지도 중심좌표에 마커를 생성합니다 
+	    position: map.getCenter() 
+	}); 
+	// 지도에 마커를 표시합니다
+	marker.setMap(map);
+	
+	// 지도에 클릭 이벤트를 등록합니다
+	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+	daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
+    
+    // 클릭한 위도, 경도 정보를 가져옵니다 
+    var latlng = mouseEvent.latLng; 
+    
+    // 마커 위치를 클릭한 위치로 옮깁니다
+    marker.setPosition(latlng);
+    
+    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+    message += '경도는 ' + latlng.getLng() + ' 입니다';
+    
+    var resultDiv = document.getElementById('clickLatlng'); 
+    //resultDiv.innerHTML = message;
+    
+});	
+		
+	</script>
 	    
     </div>
     
