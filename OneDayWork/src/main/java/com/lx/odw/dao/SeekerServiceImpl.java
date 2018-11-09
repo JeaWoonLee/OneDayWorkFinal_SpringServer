@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lx.odw.model.FilterModel;
 import com.lx.odw.service.SeekerService;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
@@ -17,8 +18,8 @@ public class SeekerServiceImpl implements SeekerService{
 	SeekerDAO seekerDAO;
 	
 	@Override
-	public List<ProjectVO> getProjectList() {
-		return seekerDAO.getProjectList();
+	public List<ProjectVO> getProjectList(FilterModel model) {
+		return seekerDAO.getProjectList(model);
 	}
 
 	@Override
