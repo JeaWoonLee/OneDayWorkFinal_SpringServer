@@ -16,6 +16,8 @@ public class ProjectVO {
     String projectComment;
     String projectSubject;
     String projectEnrollDate;
+    String workStartTime;
+    String workEndTime;
 
     public int getProjectNumber () {
         return projectNumber;
@@ -97,7 +99,24 @@ public class ProjectVO {
         this.projectEnrollDate = projectEnrollDate;
     }
 
-    @Override
+    
+    public String getWorkStartTime() {
+		return workStartTime;
+	}
+
+	public void setWorkStartTime(String workStartTime) {
+		this.workStartTime = workStartTime;
+	}
+
+	public String getWorkEndTime() {
+		return workEndTime;
+	}
+
+	public void setWorkEndTime(String workEndTime) {
+		this.workEndTime = workEndTime;
+	}
+
+	@Override
     public String toString () {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }

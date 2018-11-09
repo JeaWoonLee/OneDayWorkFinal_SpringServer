@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.lx.odw.vo.ProjectCandidateQueueVO;
-import com.lx.odw.vo.ProjectJobListVO;
+import com.lx.odw.vo.JobCandidateVO;
+import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Service
@@ -13,17 +13,17 @@ public interface SeekerService {
 
 	List<ProjectVO> getProjectList();
 
-	List<ProjectJobListVO> requestProjectJobListByProjectNumber(ProjectVO projectVO);
+	List<JobVO> requestProjectJobListByProjectNumber(ProjectVO projectVO);
 
 	ProjectVO requestProjectDetail(ProjectVO projectVO);
 
-	ProjectJobListVO requestJobDetail(ProjectJobListVO vo);
+	JobVO requestJobDetail(JobVO vo);
 
-	int requestTargetDateCount(ProjectCandidateQueueVO vo);
+	int requestTargetDateCount(JobCandidateVO vo);
 
-	Integer candidateJob(ProjectCandidateQueueVO vo);
+	Integer candidateJob(JobCandidateVO vo);
 
-	// 181108 À±Á¤¹Î ÁøÇàÁß
+	// 181108 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	//List<ProjectJobListVO> manageJobList(ProjectVO projectVo);
 
 	

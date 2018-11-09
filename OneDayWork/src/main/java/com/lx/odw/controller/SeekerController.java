@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lx.odw.service.SeekerService;
-import com.lx.odw.vo.ProjectCandidateQueueVO;
-import com.lx.odw.vo.ProjectJobListVO;
+import com.lx.odw.vo.JobCandidateVO;
+import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Controller
@@ -25,7 +25,7 @@ public class SeekerController {
 	}
 	
 	@RequestMapping(value="requestProjectJobListByProjectNumber.do", method=RequestMethod.POST)
-	public @ResponseBody List<ProjectJobListVO> requestProjectJobListByProjectNumber (ProjectVO projectVO) {
+	public @ResponseBody List<JobVO> requestProjectJobListByProjectNumber (ProjectVO projectVO) {
 		return service.requestProjectJobListByProjectNumber(projectVO);
 	}
 	
@@ -35,21 +35,21 @@ public class SeekerController {
 	}
 	
 	@RequestMapping(value="requestJobDetail.do",method=RequestMethod.POST)
-	public @ResponseBody ProjectJobListVO requestJobDetail(ProjectJobListVO vo) {
+	public @ResponseBody JobVO requestJobDetail(JobVO vo) {
 		return service.requestJobDetail(vo);
 	}
 	
 	@RequestMapping(value="requestTargetDateCount.do",method=RequestMethod.POST)
-	public @ResponseBody Integer requestTargetDateCount(ProjectCandidateQueueVO vo) {
+	public @ResponseBody Integer requestTargetDateCount(JobCandidateVO vo) {
 		return service.requestTargetDateCount(vo);
 	}
 	
 	@RequestMapping(value="candidateJob.do",method=RequestMethod.POST)
-	public @ResponseBody Integer candidateJob(ProjectCandidateQueueVO vo) {
+	public @ResponseBody Integer candidateJob(JobCandidateVO vo) {
 		return service.candidateJob(vo);
 	}
 
-	// 180811 À±Á¤¹Î ÁøÇàÁß
+	// 180811 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
 //	public @ResponseBody List<ProjectJobListVO> manageJobList(ProjectVO projectVo) {
 //		return service.manageJobList(projectVo);

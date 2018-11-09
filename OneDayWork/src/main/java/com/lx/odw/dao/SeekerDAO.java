@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.lx.odw.vo.ProjectCandidateQueueVO;
-import com.lx.odw.vo.ProjectJobListVO;
+import com.lx.odw.vo.JobCandidateVO;
+import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Repository
@@ -20,7 +20,7 @@ public class SeekerDAO {
 		return session.selectList("getProjectList");
 	}
 
-	public List<ProjectJobListVO> requestProjectJobListByProjectNumber(ProjectVO projectVO) {
+	public List<JobVO> requestProjectJobListByProjectNumber(ProjectVO projectVO) {
 		return session.selectList("requestProjectJobListByProjectNumber",projectVO);
 	}
 
@@ -28,31 +28,31 @@ public class SeekerDAO {
 		return session.selectOne("requestProjectDetail",projectVO);
 	}
 
-	public ProjectJobListVO requestJobDetail(ProjectJobListVO vo) {
+	public JobVO requestJobDetail(JobVO vo) {
 		return session.selectOne("requestJobDetail",vo);
 	}
 
-	public int requestTargetDateCount(ProjectCandidateQueueVO vo) {
+	public int requestTargetDateCount(JobCandidateVO vo) {
 		return session.selectOne("requestTargetDateCount",vo);
 	}
 
-	public Integer candidateJob(ProjectCandidateQueueVO vo) {
+	public Integer candidateJob(JobCandidateVO vo) {
 		return session.insert("candidateJob",vo);
 	}
 
-	public int checkAnotherAccepted(ProjectCandidateQueueVO vo) {
+	public int checkAnotherAccepted(JobCandidateVO vo) {
 		return session.selectOne("checkAnotherAccepted",vo);
 	}
 
-	public int checkDuplicateCandidate(ProjectCandidateQueueVO vo) {
+	public int checkDuplicateCandidate(JobCandidateVO vo) {
 		return session.selectOne("checkDuplicateCandidate",vo);
 	}
 
-	public int checkDuplicateAcceptCandidate(ProjectCandidateQueueVO vo) {
+	public int checkDuplicateAcceptCandidate(JobCandidateVO vo) {
 		return session.selectOne("checkDuplicateAcceptCandidate",vo);
 	}
 	
-// À±Á¤¹Î 181108 ÁøÇàÁß
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 181108 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //	public List<ProjectJobListVO> managejobList(ProjectVO projcetVo) {
 //		return session.selectList("", projectVo);
 //		
