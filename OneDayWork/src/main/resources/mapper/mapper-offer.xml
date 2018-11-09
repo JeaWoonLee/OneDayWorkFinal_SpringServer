@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.mapper-seeker">
+
+<select id="getOffList" resultType="com.lx.odw.vo.ProjectVO">
+	select 
+		project_number,
+		project_name,
+		project_start_date,
+		project_end_date,
+		ST_X(project_location) as project_lng,
+		ST_Y(project_location) as project_lat,
+		project_comment,
+		project_subject,
+		project_enroll_date,
+		work_start_time,
+		work_end_time
+	from
+		project
+		
+</select>
+
+<select id="requestOffJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.JobVO">
+	select
+		project_number,
+		job_pay,
+		job_start_date,
+		job_end_date,
+		job_requirement,
+		job_limit_count
+	from
+		job
+	where
+		project_number = #{projectNumber}
+		
+</select>
+</mapper>

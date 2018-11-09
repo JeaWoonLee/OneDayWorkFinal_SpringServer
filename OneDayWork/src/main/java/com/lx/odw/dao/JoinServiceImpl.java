@@ -16,7 +16,7 @@ public class JoinServiceImpl implements JoinService{
 	JoinDAO joinDAO;
 	
 	@Override
-	public ResponseModel checkSeekerOverlap(LoginModel model) {
+	public ResponseModel checkSeekerOverlap(LoginModel model) throws Exception {
 		int overlapResult = joinDAO.checkSeekerOverlap(model);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.setResponse(overlapResult);
@@ -24,7 +24,7 @@ public class JoinServiceImpl implements JoinService{
 	}
 
 	@Override
-	public ResponseModel joinSeeker(SeekerVO seekerVO) {
+	public ResponseModel joinSeeker(SeekerVO seekerVO) throws Exception {
 		int insertResult = joinDAO.joinSeeker(seekerVO);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.setResponse(insertResult);
@@ -38,5 +38,21 @@ public class JoinServiceImpl implements JoinService{
 //		responseModel.setResponse(insertResult);
 //		return responseModel;
 //	}
+
+	@Override
+	public ResponseModel checkOfferOverlap(LoginModel model) throws Exception {
+		int overlapResult = joinDAO.checkOfferOverlap(model);
+		ResponseModel responseModel = new ResponseModel();
+		responseModel.setResponse(overlapResult);
+		return responseModel;
+	}
+
+	@Override
+	public ResponseModel joinOffer(OfferVO offerVO) throws Exception {
+		int inserResult = joinDAO.joinOffer(offerVO);
+		ResponseModel responseModel = new ResponseModel();
+		responseModel.setResponse(inserResult);
+		return responseModel;
+	}
 
 }

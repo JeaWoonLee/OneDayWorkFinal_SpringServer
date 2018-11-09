@@ -19,4 +19,22 @@
 			(#{seekerId},#{seekerPw},#{seekerName},#{seekerEmail},#{seekerSex})
 </insert>
 
+<<<<<<< HEAD
+=======
+<select id="checkOfferOverlap" parameterType="com.lx.odw.model.LoginModel" resultType="Integer">
+	select count(*)
+	from 
+		offer
+	where
+		offer_id = #{userId}		
+</select>
+
+<insert id="joinOffer" parameterType="com.lx.odw.vo.OfferVO">
+	insert
+		into offer (offer_id, offer_pw, offer_name, offer_account, bank, offer_email, offer_cash, company_no, company_name)
+		values
+			(#{offerId}, #{offerPw}, #{offerName}, #{offerAccount}, #{bank}, #{offerEmail}, #{offerCash}, #{companyNo}, #{companyName})
+</insert>
+
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 </mapper>

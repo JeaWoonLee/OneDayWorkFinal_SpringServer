@@ -14,11 +14,11 @@ public class JoinDAO {
 	@Autowired
 	SqlSession session;
 
-	public int checkSeekerOverlap(LoginModel model) {
+	public int checkSeekerOverlap(LoginModel model) throws Exception {
 		return session.selectOne("checkSeekerOverlap",model);
 	}
 
-	public int joinSeeker(SeekerVO seekerVO) {
+	public int joinSeeker(SeekerVO seekerVO) throws Exception {
 		return session.insert("joinSeeker",seekerVO);
 	}
 //	
@@ -26,5 +26,12 @@ public class JoinDAO {
 //		return session.insert("joinOffer", offerVO);
 //	}
 	
+	public int checkOfferOverlap(LoginModel model) throws Exception {
+		return session.selectOne("checkOfferOverlap",model);
+	}
+	
+	public int joinOffer(OfferVO offerVO) throws Exception {
+		return session.insert("joinOffer",offerVO);
+	}
 	
 }
