@@ -12,25 +12,24 @@
 		ST_Y(project_location) as project_lat,
 		project_comment,
 		project_subject,
-		project_enroll_date
+		project_enroll_date,
+		work_start_time,
+		work_end_time
 	from
 		project
 		
 </select>
 
-<select id="requestOffJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectJobListVO">
+<select id="requestOffJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.JobVO">
 	select
 		project_number,
 		job_pay,
 		job_start_date,
 		job_end_date,
 		job_requirement,
-		work_start_time,
-		work_end_time,
-		job_limit_count,
-		job_current_count
+		job_limit_count
 	from
-		project_job_list
+		job
 	where
 		project_number = #{projectNumber}
 		
