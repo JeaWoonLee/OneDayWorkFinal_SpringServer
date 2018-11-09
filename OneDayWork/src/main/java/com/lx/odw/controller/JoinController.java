@@ -1,5 +1,7 @@
 package com.lx.odw.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lx.odw.model.LoginModel;
 import com.lx.odw.model.ResponseModel;
 import com.lx.odw.service.JoinService;
+import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.SeekerVO;
 
 @Controller
@@ -26,4 +29,11 @@ public class JoinController {
 	public @ResponseBody ResponseModel joinSeeker(SeekerVO seekerVO) {
 		return service.joinSeeker(seekerVO);
 	}
+	
+//	@RequestMapping("offerJoin.do")
+//	public String offerLogin() {
+//		System.out.println("offerJoin이 실행됨");
+//		return "offerJoin";
+//	}
+	
 }

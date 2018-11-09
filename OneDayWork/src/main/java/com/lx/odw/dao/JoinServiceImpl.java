@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.lx.odw.model.LoginModel;
 import com.lx.odw.model.ResponseModel;
 import com.lx.odw.service.JoinService;
+import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.SeekerVO;
 
 @Repository
@@ -29,5 +30,13 @@ public class JoinServiceImpl implements JoinService{
 		responseModel.setResponse(insertResult);
 		return responseModel;
 	}
+	
+//	@Override
+//	public ResponseModel joinOffer(OfferVO offerVO) {
+//		int insertResult = joinDAO.joinOffer(offerVO);
+//		ResponseModel responseModel = new ResponseModel();
+//		responseModel.setResponse(insertResult);
+//		return responseModel;
+//	}
 
 }

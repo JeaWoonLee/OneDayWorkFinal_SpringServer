@@ -38,4 +38,15 @@ public class HomeController {
 	
 	//커밋 테스트
 	
+	@RequestMapping("haruMainPage.do")
+	public String offerLogin() {
+		System.out.println("haruMainPage이 실행됨");
+		return "haruMainPage";
+	}
+	
+	@RequestMapping("registration.do")
+	public String registration() {
+		System.out.println("registration이 실행됨");
+		return "registration";
+	}
 }

@@ -18,4 +18,5 @@
 		values
 			(#{seekerId},#{seekerPw},#{seekerName},#{seekerEmail},#{seekerSex})
 </insert>
+
 </mapper>
