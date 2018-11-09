@@ -24,7 +24,7 @@ public class JoinServiceImpl implements JoinService{
 	}
 
 	@Override
-	public ResponseModel joinSeeker(SeekerVO seekerVO) throws Exception {
+	public ResponseModel joinSeeker(SeekerVO seekerVO) {
 		int insertResult = joinDAO.joinSeeker(seekerVO);
 		ResponseModel responseModel = new ResponseModel();
 		responseModel.setResponse(insertResult);

@@ -19,8 +19,7 @@
 			(#{seekerId},#{seekerPw},#{seekerName},#{seekerEmail},#{seekerSex})
 </insert>
 
-<<<<<<< HEAD
-=======
+
 <select id="checkOfferOverlap" parameterType="com.lx.odw.model.LoginModel" resultType="Integer">
 	select count(*)
 	from 
@@ -36,5 +35,4 @@
 			(#{offerId}, #{offerPw}, #{offerName}, #{offerAccount}, #{bank}, #{offerEmail}, #{offerCash}, #{companyNo}, #{companyName})
 </insert>
 
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 </mapper>

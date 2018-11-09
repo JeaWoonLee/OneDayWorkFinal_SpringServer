@@ -30,14 +30,12 @@ public class JoinController {
 		return service.joinSeeker(seekerVO);
 	}
 	
-<<<<<<< HEAD
 //	@RequestMapping("offerJoin.do")
 //	public String offerLogin() {
 //		System.out.println("offerJoin이 실행됨");
 //		return "offerJoin";
 //	}
 	
-=======
 	@RequestMapping(value="checkOfferOverlap.do",method=RequestMethod.POST)
 	public @ResponseBody ResponseModel checkOverlap1(LoginModel model) throws Exception {
 		return service.checkOfferOverlap(model);
@@ -47,5 +45,4 @@ public class JoinController {
 	public @ResponseBody ResponseModel joinOffer(OfferVO offerVO) throws Exception {
 		return service.joinOffer(offerVO);
 	}
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 }

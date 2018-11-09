@@ -18,7 +18,7 @@ public class JoinDAO {
 		return session.selectOne("checkSeekerOverlap",model);
 	}
 
-	public int joinSeeker(SeekerVO seekerVO) throws Exception {
+	public int joinSeeker(SeekerVO seekerVO){
 		return session.insert("joinSeeker",seekerVO);
 	}
 //	
