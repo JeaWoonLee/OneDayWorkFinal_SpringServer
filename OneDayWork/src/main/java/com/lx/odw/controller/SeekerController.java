@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lx.odw.model.FilterModel;
 import com.lx.odw.service.SeekerService;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
@@ -20,8 +21,8 @@ public class SeekerController {
 	SeekerService service;
 	
 	@RequestMapping(value="getProjectList.do", method=RequestMethod.POST)
-	public @ResponseBody List<ProjectVO> getProjectList () {
-		return service.getProjectList();
+	public @ResponseBody List<ProjectVO> getProjectList (FilterModel model) {
+		return service.getProjectList(model);
 	}
 	
 	@RequestMapping(value="requestProjectJobListByProjectNumber.do", method=RequestMethod.POST)

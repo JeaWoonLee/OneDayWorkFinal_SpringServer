@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.mapper-seeker">
 
-<select id="getProjectList" resultType="com.lx.odw.vo.ProjectVO">
+<select id="getProjectList" resultType="com.lx.odw.vo.ProjectVO" parameterType="com.lx.odw.model.FilterModel">
 	select 
 		project_number,
 		project_name,
@@ -18,7 +18,17 @@
 		work_end_time
 	from
 		project
+	where
+		1 = 1 
+	<if test="projectSubjectFilter!='없음'">
+	
+	and project_subject = #{projectSubjectFilter}
+	
+	</if>
+	
 		
+	<!-- TODO 필터 모델을 이용해서 필터링 하자 -->
+
 </select>
 
 <select id="requestProjectJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.JobVO">

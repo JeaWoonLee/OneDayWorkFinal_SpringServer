@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.lx.odw.model.FilterModel;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ProjectVO;
@@ -11,7 +12,7 @@ import com.lx.odw.vo.ProjectVO;
 @Service
 public interface SeekerService {
 
-	List<ProjectVO> getProjectList();
+	List<ProjectVO> getProjectList(FilterModel model);
 
 	List<JobVO> requestProjectJobListByProjectNumber(ProjectVO projectVO);
 
