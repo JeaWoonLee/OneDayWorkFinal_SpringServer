@@ -18,9 +18,7 @@ public class SeekerDAO {
 	SqlSession session;
 	
 	public List<ProjectVO> getProjectList(FilterModel model) {
-		List<ProjectVO> list = session.selectList("getProjectList",model);
-		System.out.println(session.getConfiguration().getMappedStatement("getProjectList").getSqlSource().getBoundSql(model).getSql());
-		return list;
+		return session.selectList("getProjectList",model);
 	}
 
 	public List<JobVO> requestProjectJobListByProjectNumber(ProjectVO projectVO) {
