@@ -1,6 +1,6 @@
 package com.lx.odw.controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,16 +30,13 @@ public class JoinController {
 		return service.joinSeeker(seekerVO);
 	}
 	
-<<<<<<< HEAD
 	//구인자 회원가입 중복체크
-=======
 //	@RequestMapping("offerJoin.do")
 //	public String offerLogin() {
 //		System.out.println("offerJoin이 실행됨");
 //		return "offerJoin";
 //	}
 	
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	@RequestMapping(value="checkOfferOverlap.do",method=RequestMethod.POST)
 	public @ResponseBody ResponseModel checkOverlap1(LoginModel model) throws Exception {
 		return service.checkOfferOverlap(model);
@@ -56,24 +53,6 @@ public class JoinController {
 		System.out.println("joinOffer.do를 통해 웹페이지가 요청됨");
 		return "joinOffer"; //여기에 jsp파일 이름을 적음
 	}
-	
-	
-	
-	@RequestMapping(value="/joinOffer.do", method=RequestMethod.POST)
-	public @ResponseBody List<EmpVO> searchEmpListByDeptId_ajax(EmpVO empVO) {
-		logger.info("searchEmpListByDeptId_ajax");
-		logger.info("deptId : " + empVO);
-		List<EmpVO> list = empDAO.searchEmpListByDeptId(empVO);
-		if(list == null) {
-			logger.info("list가 null 입니다");
-		}else {
-			for(EmpVO item : list) logger.info(item.toString());
-		}
-		
-		return list;
-	}
-	
-
 	
 //	//웹페이지를 요청하는 소스 
 //	@RequestMapping(value="/joinOffer.do")

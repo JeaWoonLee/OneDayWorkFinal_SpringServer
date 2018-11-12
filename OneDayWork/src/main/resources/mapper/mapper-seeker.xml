@@ -20,25 +20,25 @@
 		project p, job j
 	where
 		1=1
-	and p.project_number = j.project_number
+		and j.job_pay between ${minJobPay} and ${maxJobPay}
+		and p.project_number = j.project_number
+		and ST_Distance(ST_GeomFromText('POINT(${myLng} ${myLat})'), p.project_location) <![CDATA[ < ]]> ${maxDistance}
 	<if test="projectSubjectFilter!='없음'">
-	and p.project_subject = #{projectSubjectFilter}
+		and p.project_subject = #{projectSubjectFilter}
 	</if>
 	<if test="jobNameFilter!='없음'">
-	and j.job_name = #{jobNameFilter}
+		and j.job_name = #{jobNameFilter}
 	</if>
-	<if test="jobPayFilter!='없음'">
-		
-	</if>
-	<if test="maxDistanceFilter!='없음'">
-	
+	<if test="targetDateFilter!='없음'">
+		and #{targetDateFilter} <![CDATA[ > ]]> j.job_start_date and #{targetDateFilter} <![CDATA[ < ]]> j.job_end_date
 	</if>
 	<if test="targetDateFilter!='없음'">
 	
 	</if>	
 	<!-- TODO 필터 모델을 이용해서 필터링 하자 -->
 </select>
-
+<!--  -arg0 : {"projectSubjectFilter":"건설현장","jobNameFilter":"보통인부","jobPayFilter":"100,000 미만","jobRequirementFilter":"건설안전교육이수증","maxDistanceFilter":"10000","targetDateFilter":"2018-11-12"}
+INFO : com.lx.odw.aop.ServiceLogger - before -->
 <select id="requestProjectJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.JobVO">
 	select
 		job_number,
@@ -143,6 +143,23 @@
 		values	
 			(#{seekerId},#{jobNumber},#{targetDate},#{candidateStatus})
 </insert>
+<select id="requestDisableDaysByJobNumber" parameterType="int" resultType="com.lx.odw.vo.JobCandidateVO">
+	select 
+		x.target_date 
+	from
+		job b, (
+			select
+				job_number, target_date, count(*) cnt
+			from
+				job_candidate
+			group by
+				job_number, target_date
+		) x
+	where
+		 x.job_number = b.job_number
+		 and b.job_number = #{jobNumber}
+		 and x.cnt = b.job_limit_count
+</select>
 <!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
 	<!-- select * --> 
 	<!-- from  job --> 

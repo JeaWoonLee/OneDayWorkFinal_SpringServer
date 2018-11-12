@@ -24,6 +24,8 @@ public interface SeekerService {
 
 	Integer candidateJob(JobCandidateVO vo);
 
+	List<JobCandidateVO> requestDisableDaysByJobNumber(int jobNumber);
+
 	// 181108 ������ ������
 	//List<ProjectJobListVO> manageJobList(ProjectVO projectVo);
 

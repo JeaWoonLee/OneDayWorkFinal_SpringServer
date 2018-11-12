@@ -52,6 +52,10 @@ public class SeekerDAO {
 	public int checkDuplicateAcceptCandidate(JobCandidateVO vo) {
 		return session.selectOne("checkDuplicateAcceptCandidate",vo);
 	}
+
+	public List<JobCandidateVO> requestDisableDaysByJobNumber(int jobNumber) {
+		return session.selectList("requestDisableDaysByJobNumber",jobNumber);
+	}
 	
 // ������ 181108 ������
 //	public List<ProjectJobListVO> managejobList(ProjectVO projcetVo) {
