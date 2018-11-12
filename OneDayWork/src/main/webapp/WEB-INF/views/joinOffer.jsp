@@ -2,18 +2,18 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-    <title>하루일감: 사업자 회원가입</title>
-  </head>
-  <body>
+<title>Insert title here</title>
+</head>
+<body>
+
     <div class="container">
-      <form method="post" action="./home">
+      <form method="post" action="home.do">
         <table>
           <thead>
             <tr>
@@ -68,7 +68,7 @@
               
             </tr>
             <tr>
-              <td><button type="button" class="btn btn-warning">회원가입</button></td>
+              <td><input type="submit" value="회원가입" class="btn btn-warning"></td>
             </tr>
           </tbody>
         </table>
@@ -76,5 +76,6 @@
       </form>
     </div>
   
-  </body>
+
+</body>
 </html>

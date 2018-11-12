@@ -31,6 +31,7 @@ public class JoinServiceImpl implements JoinService{
 		return responseModel;
 	}
 
+
 	@Override
 	public ResponseModel checkOfferOverlap(LoginModel model) throws Exception {
 		int overlapResult = joinDAO.checkOfferOverlap(model);

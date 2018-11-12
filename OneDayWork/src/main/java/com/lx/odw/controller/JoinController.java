@@ -28,13 +28,66 @@ public class JoinController {
 		return service.joinSeeker(seekerVO);
 	}
 	
+	//구인자 회원가입 중복체크
 	@RequestMapping(value="checkOfferOverlap.do",method=RequestMethod.POST)
 	public @ResponseBody ResponseModel checkOverlap1(LoginModel model) throws Exception {
 		return service.checkOfferOverlap(model);
 	}
 	
+	//구인자 회원가입
 	@RequestMapping(value="joinOffer.do", method=RequestMethod.POST)
 	public @ResponseBody ResponseModel joinOffer(OfferVO offerVO) throws Exception {
 		return service.joinOffer(offerVO);
 	}
+	
+	@RequestMapping(value="/joinOffer.do")
+	public String joinOffer() {
+		System.out.println("joinOffer.do를 통해 웹페이지가 요청됨");
+		return "joinOffer"; //여기에 jsp파일 이름을 적음
+	}
+	
+	
+	
+	@RequestMapping(value="/joinOffer.do", method=RequestMethod.POST)
+	public @ResponseBody List<EmpVO> searchEmpListByDeptId_ajax(EmpVO empVO) {
+		logger.info("searchEmpListByDeptId_ajax");
+		logger.info("deptId : " + empVO);
+		List<EmpVO> list = empDAO.searchEmpListByDeptId(empVO);
+		if(list == null) {
+			logger.info("list가 null 입니다");
+		}else {
+			for(EmpVO item : list) logger.info(item.toString());
+		}
+		
+		return list;
+	}
+	
+
+	
+//	//웹페이지를 요청하는 소스 
+//	@RequestMapping(value="/joinOffer.do")
+//	public String joinOffer() {
+//		System.out.println("joinOffer.do를 통해 웹페이지가 요청됨");
+//		return "joinOffer"; //여기에 jsp파일 이름을 적음
+//	}
+//	
+//	//만약에 jsp파일에서 submit으로 버튼을 생성했으면 그 버튼을 눌렀을 때 form 태그에 있던 action이 실행되면서 일로 넘어옴 .
+//	@RequestMapping(value="/joinOffer.do", method=RequestMethod.POST)
+//	public String searchEmpListByDeptId(EmpVO empVO, HttpServletRequest request) {
+//		logger.info("searchEmpListByDeptId");
+//		logger.info("deptId : " + empVO);
+//		List<EmpVO> list = empDAO.searchEmpListByDeptId(empVO);
+//		if(list == null) {
+//			logger.info("list가 null 입니다");
+//		}else {
+//			for(EmpVO item : list) logger.info(item.toString());
+//		}
+//		
+//		request.setAttribute("empList", list);
+//		
+//		return "home";
+//	}
+//	
+	
+	
 }

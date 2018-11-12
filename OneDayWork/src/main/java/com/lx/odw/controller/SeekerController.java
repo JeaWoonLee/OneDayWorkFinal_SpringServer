@@ -28,7 +28,7 @@ public class SeekerController {
 	public @ResponseBody List<ProjectJobListVO> requestProjectJobListByProjectNumber (ProjectVO projectVO) {
 		return service.requestProjectJobListByProjectNumber(projectVO);
 	}
-	
+	//TODO asdasd
 	@RequestMapping(value="requestProjectDetail.do",method=RequestMethod.POST)
 	public @ResponseBody ProjectVO requestProjectDetail(ProjectVO projectVO) {
 		return service.requestProjectDetail(projectVO);

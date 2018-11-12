@@ -1,5 +1,7 @@
 package com.lx.odw.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,4 +32,5 @@ public class JoinDAO {
 		return session.insert("joinOffer",offerVO);
 	}
 	
+
 }
