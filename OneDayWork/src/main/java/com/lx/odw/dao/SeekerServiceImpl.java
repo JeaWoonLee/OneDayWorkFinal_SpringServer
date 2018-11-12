@@ -73,7 +73,7 @@ public class SeekerServiceImpl implements SeekerService{
 	}
 
 	@Override
-	public List<ProjectVO> manageJobList(JobCandidateVO vo) {
+	public List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
 		return seekerDAO.managejobList(vo);
 	}
 

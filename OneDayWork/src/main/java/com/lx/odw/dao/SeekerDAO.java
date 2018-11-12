@@ -1,6 +1,7 @@
 package com.lx.odw.dao;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +55,9 @@ public class SeekerDAO {
 	}
 	
 
-	public List<ProjectVO> managejobList(JobCandidateVO vo) {
+	public List<JobCandidateVO> managejobList(JobCandidateVO vo) {
 	return session.selectList("ManageJobList", vo);
-		
+	
 	}
 
 }

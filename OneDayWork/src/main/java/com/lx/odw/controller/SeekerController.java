@@ -52,7 +52,7 @@ public class SeekerController {
 
 
 	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
-	public @ResponseBody List<ProjectVO> manageJobList(JobCandidateVO vo) {
+	public @ResponseBody List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
 		return service.manageJobList(vo);
 		
 	}
