@@ -24,9 +24,6 @@ public interface SeekerService {
 
 	Integer candidateJob(JobCandidateVO vo);
 
-	// 181108 ������ ������
-	//List<ProjectJobListVO> manageJobList(ProjectVO projectVo);
-
-	
+	List<ProjectVO> manageJobList(JobCandidateVO vo);
 
 }

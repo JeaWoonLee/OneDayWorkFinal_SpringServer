@@ -53,10 +53,10 @@ public class SeekerDAO {
 		return session.selectOne("checkDuplicateAcceptCandidate",vo);
 	}
 	
-// ������ 181108 ������
-//	public List<ProjectJobListVO> managejobList(ProjectVO projcetVo) {
-//		return session.selectList("", projectVo);
-//		
-//	}
+
+	public List<ProjectVO> managejobList(JobCandidateVO vo) {
+	return session.selectList("ManageJobList", vo);
+		
+	}
 
 }

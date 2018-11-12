@@ -50,10 +50,10 @@ public class SeekerController {
 		return service.candidateJob(vo);
 	}
 
-	// 180811 ������ ������
-//	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
-//	public @ResponseBody List<ProjectJobListVO> manageJobList(ProjectVO projectVo) {
-//		return service.manageJobList(projectVo);
-//		
-//	}
+
+	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
+	public @ResponseBody List<ProjectVO> manageJobList(JobCandidateVO vo) {
+		return service.manageJobList(vo);
+		
+	}
 }
