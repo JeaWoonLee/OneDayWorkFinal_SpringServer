@@ -2,23 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.mapper-seeker">
 
-<select id="getProjectList" resultType="com.lx.odw.vo.ProjectVO" parameterType="com.lx.odw.model.FilterModel">
-	select 
+	<select id="getProjectList" resultType="com.lx.odw.vo.ProjectVO"
+		parameterType="com.lx.odw.model.FilterModel">
+		select
 		p.project_number,
 		p.project_name,
 		p.offer_id,
 		p.project_start_date,
 		p.project_end_date,
-		ST_X(p.project_location) as project_lng,
-		ST_Y(p.project_location) as project_lat,
+		ST_X(p.project_location) as
+		project_lng,
+		ST_Y(p.project_location) as
+		project_lat,
 		p.project_comment,
 		p.project_subject,
 		p.project_enroll_date,
 		p.work_start_time,
 		p.work_end_time
-	from
+		from
 		project p, job j
-	where
+		where
 		1=1
 		and j.job_pay between ${minJobPay} and ${maxJobPay}
 		and p.project_number = j.project_number
@@ -53,18 +56,19 @@ INFO : com.lx.odw.aop.ServiceLogger - before -->
 		job
 	where
 		project_number = #{projectNumber}
-		
-</select>
+	</select>
 
 <select id="requestProjectDetail" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
-	select 
+	select
 		project_number,
 		project_name,
 		offer_id,
 		project_start_date,
 		project_end_date,
-		ST_X(project_location) as project_lng,
-		ST_Y(project_location) as project_lat,
+		ST_X(project_location) as
+		project_lng,
+		ST_Y(project_location) as
+		project_lat,
 		project_comment,
 		project_subject,
 		project_enroll_date,
@@ -97,9 +101,10 @@ INFO : com.lx.odw.aop.ServiceLogger - before -->
 	from
 		job_candidate
 	where
-		candidate_status = 1 and
-		job_number = #{jobNumber} and
-		target_date = Date(#{targetDate})
+		candidate_status = 1 
+		and	job_number = #{jobNumber} and
+		target_date =
+		Date(#{targetDate})
 </select>
 
 <select id="checkAnotherAccepted" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="int">
@@ -123,7 +128,6 @@ INFO : com.lx.odw.aop.ServiceLogger - before -->
 		job_number = #{jobNumber} and
 		target_date = Date(#{targetDate})
 </select>
-
 <select id="checkDuplicateAcceptCandidate" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="int">
 	select
 		count(*)
@@ -165,4 +169,24 @@ INFO : com.lx.odw.aop.ServiceLogger - before -->
 	<!-- from  job --> 
 	<!-- 윤정민 진행중.... join 해야함 -->
 <!-- </select>--> 
+<insert id="candidateJob" parameterType="com.lx.odw.vo.JobCandidateVO">
+	insert
+		into job_candidate
+			(seeker_id,job_number,target_date,candidate_status)
+		values
+			(#{seekerId},#{jobNumber},#{targetDate},#{candidateStatus})
+</insert>
+<select id="ManageJobList" resultType="com.lx.odw.vo.ProjectVO">
+	<!-- select 절에 내가 뽑을 데이터값 추가 윤정민 병신 -->
+	select distinct job.job_name, job.job_pay, job.job_start_date,
+			job.job_end_date, job.job_requirement,
+			job.work_start_time, job.work_end_time,
+			job_candidate.seeker_id
+	from job_candidate
+			inner join job on job.job_number = job_candidate.job_number
+			inner join project on project.project_number = job.project_number	
+	where 
+			job_candidate.candidate_status = "0"
+			and job_candidate.seeker_id = #{seekerId};
+</select>
 </mapper>

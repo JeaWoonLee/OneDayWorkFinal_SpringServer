@@ -97,5 +97,10 @@ public class SeekerServiceImpl implements SeekerService{
 	public List<JobCandidateVO> requestDisableDaysByJobNumber(int jobNumber) {
 		return seekerDAO.requestDisableDaysByJobNumber(jobNumber);
 	}
+	
+	@Override
+	public List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
+		return seekerDAO.managejobList(vo);
+	}
 
 }
