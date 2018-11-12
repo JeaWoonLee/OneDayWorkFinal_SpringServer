@@ -2,24 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.mapper-seeker">
 
-<select id="getProjectList" resultType="com.lx.odw.vo.ProjectVO">
+<select id="getProjectList" resultType="com.lx.odw.vo.ProjectVO" parameterType="com.lx.odw.model.FilterModel">
 	select 
-		project_number,
-		project_name,
-		offer_id,
-		project_start_date,
-		project_end_date,
-		ST_X(project_location) as project_lng,
-		ST_Y(project_location) as project_lat,
-		project_comment,
-		project_subject,
-		project_enroll_date
+		p.project_number,
+		p.project_name,
+		p.offer_id,
+		p.project_start_date,
+		p.project_end_date,
+		ST_X(p.project_location) as project_lng,
+		ST_Y(p.project_location) as project_lat,
+		p.project_comment,
+		p.project_subject,
+		p.project_enroll_date,
+		p.work_start_time,
+		p.work_end_time
 	from
-		project
+		project p, job j
+	where
+		1=1
+	and p.project_number = j.project_number
+	<if test="projectSubjectFilter!='없음'">
+	and p.project_subject = #{projectSubjectFilter}
+	</if>
+	<if test="jobNameFilter!='없음'">
+	and j.job_name = #{jobNameFilter}
+	</if>
+	<if test="jobPayFilter!='없음'">
 		
+	</if>
+	<if test="maxDistanceFilter!='없음'">
+	
+	</if>
+	<if test="targetDateFilter!='없음'">
+	
+	</if>	
+	<!-- TODO 필터 모델을 이용해서 필터링 하자 -->
 </select>
 
-<select id="requestProjectJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectJobListVO">
+<select id="requestProjectJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.JobVO">
 	select
 		job_number,
 		project_number,
@@ -28,12 +48,9 @@
 		job_start_date,
 		job_end_date,
 		job_requirement,
-		work_start_time,
-		work_end_time,
-		job_limit_count,
-		job_current_count
+		job_limit_count
 	from
-		project_job_list
+		job
 	where
 		project_number = #{projectNumber}
 		
@@ -50,14 +67,16 @@
 		ST_Y(project_location) as project_lat,
 		project_comment,
 		project_subject,
-		project_enroll_date
+		project_enroll_date,
+		work_start_time,
+		work_end_time
 	from
 		project
 	where
 		project_number = #{projectNumber}
 </select>
 
-<select id="requestJobDetail" parameterType="com.lx.odw.vo.ProjectJobListVO" resultType="com.lx.odw.vo.ProjectJobListVO">
+<select id="requestJobDetail" parameterType="com.lx.odw.vo.JobVO" resultType="com.lx.odw.vo.JobVO">
 	select
 		job_number,
 		project_number,
@@ -66,65 +85,67 @@
 		job_start_date,
 		job_end_date,
 		job_requirement,
-		work_start_time,
-		work_end_time,
-		job_limit_count,
-		job_current_count
+		job_limit_count
 	from
-		project_job_list
+		job
 	where
 		job_number = #{jobNumber}
 </select>
-<select id="requestTargetDateCount" parameterType="com.lx.odw.vo.ProjectCandidateQueueVO" resultType="int">
+<select id="requestTargetDateCount" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="int">
 	select
 		count(*)
 	from
-		project_candidate_queue
+		job_candidate
 	where
-		regist_confirm = 1 and
+		candidate_status = 1 and
 		job_number = #{jobNumber} and
 		target_date = Date(#{targetDate})
 </select>
 
-<select id="checkAnotherAccepted" parameterType="com.lx.odw.vo.ProjectCandidateQueueVO" resultType="int">
+<select id="checkAnotherAccepted" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="int">
 	select
 		count(*)
 	from
-		project_candidate_queue
+		job_candidate
 	where
-		regist_confirm = 1 and
+		candidate_status = 1 and
 		seeker_id = #{seekerId} and
 		target_date = Date(#{targetDate})
 </select>
 
-<select id="checkDuplicateCandidate" parameterType="com.lx.odw.vo.ProjectCandidateQueueVO" resultType="int">
+<select id="checkDuplicateCandidate" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="int">
 	select
 		count(*)
 	from
-		project_candidate_queue
+		job_candidate
 	where
 		seeker_id = #{seekerId} and
 		job_number = #{jobNumber} and
 		target_date = Date(#{targetDate})
 </select>
 
-<select id="checkDuplicateAcceptCandidate" parameterType="com.lx.odw.vo.ProjectCandidateQueueVO" resultType="int">
+<select id="checkDuplicateAcceptCandidate" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="int">
 	select
 		count(*)
 	from
-		project_candidate_queue
+		job_candidate
 	where
 		seeker_id = #{seekerId} and
 		job_number = #{jobNumber} and
-		regist_confirm = 1 and
+		candidate_status = 1 and
 		target_date = Date(#{targetDate})
 </select>
-<insert id="candidateJob" parameterType="com.lx.odw.vo.ProjectCandidateQueueVO">
+<insert id="candidateJob" parameterType="com.lx.odw.vo.JobCandidateVO">
 	insert
 		into 
-			project_candidate_queue
-			(seeker_id,job_number,target_date,regist_confirm)
-		values
-			(#{seekerId},#{jobNumber},#{targetDate},#{registConfirm})
+			job_candidate
+			(seeker_id,job_number,target_date,candidate_status)
+		values	
+			(#{seekerId},#{jobNumber},#{targetDate},#{candidateStatus})
 </insert>
+<!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
+	<!-- select * --> 
+	<!-- from  job --> 
+	<!-- 윤정민 진행중.... join 해야함 -->
+<!-- </select>--> 
 </mapper>

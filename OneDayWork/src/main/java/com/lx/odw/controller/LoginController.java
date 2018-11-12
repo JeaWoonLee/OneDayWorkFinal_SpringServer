@@ -21,8 +21,9 @@ public class LoginController {
 	public @ResponseBody SeekerVO seekerLogin(LoginModel model) {
 		return service.seekerLogin(model);
 	}
+	//
 	
-	@RequestMapping(value="offerLogin.do", method=RequestMethod.POST)
+	@RequestMapping(value="offerMobileLogin.do", method=RequestMethod.POST)
 	public @ResponseBody OfferVO offerLogin(LoginModel model) {
 		return service.offerLogin(model);
 	}

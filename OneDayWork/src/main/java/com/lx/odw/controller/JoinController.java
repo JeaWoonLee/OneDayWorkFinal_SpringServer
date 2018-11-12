@@ -1,5 +1,7 @@
 package com.lx.odw.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +30,16 @@ public class JoinController {
 		return service.joinSeeker(seekerVO);
 	}
 	
+<<<<<<< HEAD
 	//구인자 회원가입 중복체크
+=======
+//	@RequestMapping("offerJoin.do")
+//	public String offerLogin() {
+//		System.out.println("offerJoin이 실행됨");
+//		return "offerJoin";
+//	}
+	
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	@RequestMapping(value="checkOfferOverlap.do",method=RequestMethod.POST)
 	public @ResponseBody ResponseModel checkOverlap1(LoginModel model) throws Exception {
 		return service.checkOfferOverlap(model);

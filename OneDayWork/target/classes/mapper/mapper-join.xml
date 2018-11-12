@@ -19,6 +19,7 @@
 			(#{seekerId},#{seekerPw},#{seekerName},#{seekerEmail},#{seekerSex})
 </insert>
 
+
 <select id="checkOfferOverlap" parameterType="com.lx.odw.model.LoginModel" resultType="Integer">
 	select count(*)
 	from 

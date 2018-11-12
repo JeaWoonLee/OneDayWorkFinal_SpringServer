@@ -4,23 +4,29 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.lx.odw.vo.ProjectCandidateQueueVO;
-import com.lx.odw.vo.ProjectJobListVO;
+import com.lx.odw.model.FilterModel;
+import com.lx.odw.vo.JobCandidateVO;
+import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Service
 public interface SeekerService {
 
-	List<ProjectVO> getProjectList();
+	List<ProjectVO> getProjectList(FilterModel model);
 
-	List<ProjectJobListVO> requestProjectJobListByProjectNumber(ProjectVO projectVO);
+	List<JobVO> requestProjectJobListByProjectNumber(ProjectVO projectVO);
 
 	ProjectVO requestProjectDetail(ProjectVO projectVO);
 
-	ProjectJobListVO requestJobDetail(ProjectJobListVO vo);
+	JobVO requestJobDetail(JobVO vo);
 
-	int requestTargetDateCount(ProjectCandidateQueueVO vo);
+	int requestTargetDateCount(JobCandidateVO vo);
 
-	Integer candidateJob(ProjectCandidateQueueVO vo);
+	Integer candidateJob(JobCandidateVO vo);
+
+	// 181108 ������ ������
+	//List<ProjectJobListVO> manageJobList(ProjectVO projectVo);
+
+	
 
 }
