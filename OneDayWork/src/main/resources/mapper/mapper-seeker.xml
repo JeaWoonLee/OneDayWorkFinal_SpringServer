@@ -177,11 +177,9 @@ INFO : com.lx.odw.aop.ServiceLogger - before -->
 			(#{seekerId},#{jobNumber},#{targetDate},#{candidateStatus})
 </insert>
 <select id="ManageJobList" resultType="com.lx.odw.vo.ProjectVO">
-	<!-- select 절에 내가 뽑을 데이터값 추가 윤정민 병신 -->
-	select distinct job.job_name, job.job_pay, job.job_start_date,
-			job.job_end_date, job.job_requirement,
-			job.work_start_time, job.work_end_time,
-			job_candidate.seeker_id
+	select distinct project.projectName, project.projectSubject, 
+		project.projectDate, project.projectEnrollDate, 
+		project.projectNumber
 	from job_candidate
 			inner join job on job.job_number = job_candidate.job_number
 			inner join project on project.project_number = job.project_number	
