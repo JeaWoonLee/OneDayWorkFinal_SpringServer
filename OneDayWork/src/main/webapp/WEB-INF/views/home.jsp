@@ -9,6 +9,10 @@
 	Hello world!  
 </h1>
 
+<form method="post" action="offerjoin.do">
+	<input type="button" id="offerjoin" value="회원가입" />
+	</form>
+
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>

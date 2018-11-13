@@ -1,5 +1,6 @@
 package com.lx.odw.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class SeekerController {
 	public @ResponseBody List<JobVO> requestProjectJobListByProjectNumber (ProjectVO projectVO) {
 		return service.requestProjectJobListByProjectNumber(projectVO);
 	}
-	
+	//TODO asdasd
 	@RequestMapping(value="requestProjectDetail.do",method=RequestMethod.POST)
 	public @ResponseBody ProjectVO requestProjectDetail(ProjectVO projectVO) {
 		return service.requestProjectDetail(projectVO);
@@ -50,10 +51,20 @@ public class SeekerController {
 		return service.candidateJob(vo);
 	}
 
+	@RequestMapping(value="requestDisableDaysByJobNumber.do",method=RequestMethod.POST)
+	public @ResponseBody List<JobCandidateVO> requestDisableDaysByJobNumber(int jobNumber) {
+		return service.requestDisableDaysByJobNumber(jobNumber);
+	}
 	// 180811 ������ ������
 //	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
 //	public @ResponseBody List<ProjectJobListVO> manageJobList(ProjectVO projectVo) {
 //		return service.manageJobList(projectVo);
 //		
 //	}
+
+	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
+	public @ResponseBody List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
+		return service.manageJobList(vo);
+		
+	}
 }

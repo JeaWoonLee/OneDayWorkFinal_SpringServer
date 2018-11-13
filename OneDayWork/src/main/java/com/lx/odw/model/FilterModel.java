@@ -8,10 +8,45 @@ public class FilterModel {
 	String projectSubjectFilter;
 	String jobNameFilter;
 	String jobPayFilter;
+	int minJobPay;
+	int maxJobPay;
 	String jobRequirementFilter;
 	String maxDistanceFilter;
 	String targetDateFilter;
+	double myLat;
+	double myLng;
+	double maxDistance;
 	
+	public double getMaxDistance() {
+		return maxDistance;
+	}
+	public void setMaxDistance(double maxDistance) {
+		this.maxDistance = maxDistance;
+	}
+	public double getMyLat() {
+		return myLat;
+	}
+	public void setMyLat(double myLat) {
+		this.myLat = myLat;
+	}
+	public double getMyLng() {
+		return myLng;
+	}
+	public void setMyLng(double myLng) {
+		this.myLng = myLng;
+	}
+	public int getMinJobPay() {
+		return minJobPay;
+	}
+	public void setMinJobPay(int minJobPay) {
+		this.minJobPay = minJobPay;
+	}
+	public int getMaxJobPay() {
+		return maxJobPay;
+	}
+	public void setMaxJobPay(int maxJobPay) {
+		this.maxJobPay = maxJobPay;
+	}
 	public String getProjectSubjectFilter() {
 		return projectSubjectFilter;
 	}
