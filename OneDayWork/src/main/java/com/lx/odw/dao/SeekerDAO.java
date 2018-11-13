@@ -1,6 +1,7 @@
 package com.lx.odw.dao;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,11 +53,15 @@ public class SeekerDAO {
 	public int checkDuplicateAcceptCandidate(JobCandidateVO vo) {
 		return session.selectOne("checkDuplicateAcceptCandidate",vo);
 	}
+
+	public List<JobCandidateVO> requestDisableDaysByJobNumber(int jobNumber) {
+		return session.selectList("requestDisableDaysByJobNumber",jobNumber);
+	}
 	
-// ������ 181108 ������
-//	public List<ProjectJobListVO> managejobList(ProjectVO projcetVo) {
-//		return session.selectList("", projectVo);
-//		
-//	}
+
+	public List<JobCandidateVO> managejobList(JobCandidateVO vo) {
+	return session.selectList("ManageJobList", vo);
+	
+	}
 
 }

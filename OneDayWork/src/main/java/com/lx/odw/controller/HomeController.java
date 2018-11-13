@@ -49,5 +49,8 @@ public class HomeController {
 		System.out.println("registration이 실행됨");
 		return "registration";
 	}
+
+	
+
 		
 }

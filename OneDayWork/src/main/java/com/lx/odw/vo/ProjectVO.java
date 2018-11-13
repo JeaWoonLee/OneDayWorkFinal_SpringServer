@@ -18,8 +18,17 @@ public class ProjectVO {
     String projectEnrollDate;
     String workStartTime;
     String workEndTime;
+    String seekerId;
 
-    public int getProjectNumber () {
+    public String getSeekerId() {
+		return seekerId;
+	}
+
+	public void setSeekerId(String seekerId) {
+		this.seekerId = seekerId;
+	}
+
+	public int getProjectNumber () {
         return projectNumber;
     }
 
