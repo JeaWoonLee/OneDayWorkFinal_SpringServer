@@ -67,4 +67,8 @@ public class SeekerController {
 		return service.manageJobList(vo);
 		
 	}
+	
+	//181113 윤정민 recycler view 를 이용하여 날짜 정렬 구현중
+//	@RequestMapping(value="orderbyDateRecyclerView", method=RequestMethod.POST)
+//	public @ResponseBody 
 }

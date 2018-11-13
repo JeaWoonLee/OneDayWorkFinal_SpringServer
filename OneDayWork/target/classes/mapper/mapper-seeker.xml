@@ -154,26 +154,16 @@
 		 and b.job_number = #{jobNumber}
 		 and x.cnt = b.job_limit_count
 </select>
-<!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
-	<!-- select * --> 
-	<!-- from  job --> 
-	<!-- 윤정민 진행중.... join 해야함 -->
-<!-- </select>--> 
-<insert id="candidateJob" parameterType="com.lx.odw.vo.JobCandidateVO">
-	insert
-		into job_candidate
-			(seeker_id,job_number,target_date,candidate_status)
-		values
-</insert>
 <select id="ManageJobList" resultType="com.lx.odw.vo.ProjectVO">
-	select distinct project.projectName, project.projectSubject, 
-		project.projectDate, project.projectEnrollDate, 
-		project.projectNumber
+	select distinct project.project_name, project.project_subject, 
+		project.project_start_date, project.project_end_date, project.project_enroll_date, 
+		project.project_number
 	from job_candidate
 			inner join job on job.job_number = job_candidate.job_number
 			inner join project on project.project_number = job.project_number	
 	where 
 			job_candidate.candidate_status = "0"
-			and job_candidate.seeker_id = #{seekerId};
+			and job_candidate.seeker_id = #{seekerId}
+			order by project.project_enroll_date asc;
 </select>
 </mapper>
