@@ -40,8 +40,6 @@
 	</if>	
 	<!-- TODO 필터 모델을 이용해서 필터링 하자 -->
 </select>
-<!--  -arg0 : {"projectSubjectFilter":"건설현장","jobNameFilter":"보통인부","jobPayFilter":"100,000 미만","jobRequirementFilter":"건설안전교육이수증","maxDistanceFilter":"10000","targetDateFilter":"2018-11-12"}
-INFO : com.lx.odw.aop.ServiceLogger - before -->
 <select id="requestProjectJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.JobVO">
 	select
 		job_number,
@@ -139,14 +137,6 @@ INFO : com.lx.odw.aop.ServiceLogger - before -->
 		candidate_status = 1 and
 		target_date = Date(#{targetDate})
 </select>
-<insert id="candidateJob" parameterType="com.lx.odw.vo.JobCandidateVO">
-	insert
-		into 
-			job_candidate
-			(seeker_id,job_number,target_date,candidate_status)
-		values	
-			(#{seekerId},#{jobNumber},#{targetDate},#{candidateStatus})
-</insert>
 <select id="requestDisableDaysByJobNumber" parameterType="int" resultType="com.lx.odw.vo.JobCandidateVO">
 	select 
 		x.target_date 
@@ -174,7 +164,6 @@ INFO : com.lx.odw.aop.ServiceLogger - before -->
 		into job_candidate
 			(seeker_id,job_number,target_date,candidate_status)
 		values
-			(#{seekerId},#{jobNumber},#{targetDate},#{candidateStatus})
 </insert>
 <select id="ManageJobList" resultType="com.lx.odw.vo.ProjectVO">
 	select distinct project.projectName, project.projectSubject, 
