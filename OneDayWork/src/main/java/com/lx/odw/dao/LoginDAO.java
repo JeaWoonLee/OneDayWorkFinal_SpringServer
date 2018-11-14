@@ -18,7 +18,7 @@ public class LoginDAO {
 		return session.selectOne("seekerLogin",model);
 	}
 
-	public OfferVO offerLogin(LoginModel model) {
+	public OfferVO offerMobileLogin(LoginModel model) {
 		return session.selectOne("offerLogin",model);
 	}
 

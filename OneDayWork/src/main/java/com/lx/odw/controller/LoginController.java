@@ -1,6 +1,10 @@
 package com.lx.odw.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +27,19 @@ public class LoginController {
 	}
 	//
 	
+	@RequestMapping(value="offerLogin.do",method=RequestMethod.GET)
+	public String showOfferLoginPage() {
+		return "offerLogin";
+	}
+	
+	@RequestMapping(value="offerLogin.do",method=RequestMethod.POST)
+	public String offerLogin(LoginModel model,HttpSession session,HttpServletRequest request) {
+		return service.offerLogin(model,session,request);
+	}
+	
+	
 	@RequestMapping(value="offerMobileLogin.do", method=RequestMethod.POST)
-	public @ResponseBody OfferVO offerLogin(LoginModel model) {
-		return service.offerLogin(model);
+	public @ResponseBody OfferVO offerMobileLogin(LoginModel model) {
+		return service.offerMobileLogin(model);
 	}
 }

@@ -22,5 +22,12 @@ public class OfferDAO {
 	public List<JobVO> requestOffJobListByProjectNumber(ProjectVO projectVO) {
 		return session.selectList("requestOffJobListByProjectNumber",projectVO);
 	}
+	
+	//웹 일감 목록
+	public List<ProjectVO> projectList(ProjectVO projectVO) {
+		return session.selectList("projectList",projectVO);
+	}
+	
+	
 
 }
