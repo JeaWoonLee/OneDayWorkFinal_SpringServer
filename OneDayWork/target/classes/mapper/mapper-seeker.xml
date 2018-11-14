@@ -40,8 +40,6 @@
 	</if>	
 	<!-- TODO 필터 모델을 이용해서 필터링 하자 -->
 </select>
-<!--  -arg0 : {"projectSubjectFilter":"건설현장","jobNameFilter":"보통인부","jobPayFilter":"100,000 미만","jobRequirementFilter":"건설안전교육이수증","maxDistanceFilter":"10000","targetDateFilter":"2018-11-12"}
-INFO : com.lx.odw.aop.ServiceLogger - before -->
 <select id="requestProjectJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.JobVO">
 	select
 		job_number,
@@ -139,14 +137,6 @@ INFO : com.lx.odw.aop.ServiceLogger - before -->
 		candidate_status = 1 and
 		target_date = Date(#{targetDate})
 </select>
-<insert id="candidateJob" parameterType="com.lx.odw.vo.JobCandidateVO">
-	insert
-		into 
-			job_candidate
-			(seeker_id,job_number,target_date,candidate_status)
-		values	
-			(#{seekerId},#{jobNumber},#{targetDate},#{candidateStatus})
-</insert>
 <select id="requestDisableDaysByJobNumber" parameterType="int" resultType="com.lx.odw.vo.JobCandidateVO">
 	select 
 		x.target_date 
@@ -164,29 +154,16 @@ INFO : com.lx.odw.aop.ServiceLogger - before -->
 		 and b.job_number = #{jobNumber}
 		 and x.cnt = b.job_limit_count
 </select>
-<!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
-	<!-- select * --> 
-	<!-- from  job --> 
-	<!-- 윤정민 진행중.... join 해야함 -->
-<!-- </select>--> 
-<insert id="candidateJob" parameterType="com.lx.odw.vo.JobCandidateVO">
-	insert
-		into job_candidate
-			(seeker_id,job_number,target_date,candidate_status)
-		values
-			(#{seekerId},#{jobNumber},#{targetDate},#{candidateStatus})
-</insert>
 <select id="ManageJobList" resultType="com.lx.odw.vo.ProjectVO">
-	<!-- select 절에 내가 뽑을 데이터값 추가 윤정민 병신 -->
-	select distinct job.job_name, job.job_pay, job.job_start_date,
-			job.job_end_date, job.job_requirement,
-			job.work_start_time, job.work_end_time,
-			job_candidate.seeker_id
+	select distinct project.project_name, project.project_subject, 
+		project.project_start_date, project.project_end_date, project.project_enroll_date, 
+		project.project_number
 	from job_candidate
 			inner join job on job.job_number = job_candidate.job_number
 			inner join project on project.project_number = job.project_number	
 	where 
 			job_candidate.candidate_status = "0"
-			and job_candidate.seeker_id = #{seekerId};
+			and job_candidate.seeker_id = #{seekerId}
+			order by project.project_enroll_date asc;
 </select>
 </mapper>
