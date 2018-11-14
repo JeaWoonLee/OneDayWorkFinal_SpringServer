@@ -34,4 +34,17 @@
 		project_number = #{projectNumber}
 		
 </select>
+
+<!-- web 일감 목록 -->
+<select id="projectList" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
+	select
+		*
+	from
+		project
+	where
+		offer_id = #{offerId}	
+
+</select>
+
+
 </mapper>
