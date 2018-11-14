@@ -110,7 +110,7 @@
     <li><a href="#">메뉴4</a></li>
   </ul>
   <div><a href="#">☰</a></div>
-  <div><a href="offerJoin.do">회원가입</a></div>
+  <div><a href="joinOffer.do">회원가입</a></div>
 <div><a href="offerLogin.do">로그인</a></div>
   
 </nav>

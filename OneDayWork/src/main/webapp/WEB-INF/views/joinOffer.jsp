@@ -16,8 +16,74 @@
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 
-<title>Insert title here</title>
+<title>하루일감: 회원가입</title>
 <script type="text/javascript">
+	var isOverlapCheck = false;
+
+	$(function() {
+		$('#offerJoinButton').on("click", function() {
+			var offerIdHidden = $('#offerIdHidden').val();
+			var offerPw = $('#offerPw').val();
+			var pwReInput = $('#pwReInput').val();
+			var offerName = $('#offerName').val();
+			var offerEmail = $('#offerEmail').val();
+			var companyName = $('#companyName').val();
+			var companyNo = $('#companyNo').val();
+			var offerAccount = $('#offerAccount').val();
+
+			if (offerPw != pwReInput) {
+				alert('패스워드를 다르게 입력하셨습니다');
+				return;
+			}
+
+			$.ajax({
+				method : 'POST',
+				url : 'joinOffer.do',
+				data : {
+					offerId : offerIdHidden,
+					offerPw : offerPw,
+					offerName : offerName,
+					offerEmail : offerEmail,
+					companyName : companyName,
+					companyNo : companyNo,
+					offerAccount : offerAccount
+				},
+				success : function(data) {
+					if (data.response == 1) {
+						alert('회원가입 성공');
+						document.location.href = "haruMainPage.do";
+					} else {
+						alert('회원가입 실패');
+					}
+				}
+			});
+		});
+		$('#checkOverlapButton').on("click", checkOverlap);
+	});
+
+	function checkOverlap() {
+		var offerId = $('#offerId').val();
+
+		$.ajax({
+			method : 'POST',
+			url : 'checkOfferOverlap.do',
+			data : {
+				userId : offerId
+			},
+			success : function(data) {
+				if (data.response == 1) {
+					alert('이미 해당 아이디가 존재합니다');
+				} else {
+					alert('해당 아이디는 사용 가능합니다');
+					isOverlapCheck = true;
+					$('#offerId').attr("disabled", true);
+					$('#checkOverlapButton').attr("disabled", true);
+					$('#offerIdHidden').attr('value', offerId);
+					$('#offerJoinButton').attr('disabled', false);
+				}
+			}
+		});
+	}
 </script>
 </head>
 <body>
