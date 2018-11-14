@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form action="">
-	<input type="button" id="enrollProjectButton" value="회원가입">
+	<input type="button" id="enrollProjectButton" value="등록">
 	
 	</form>
 </body>
