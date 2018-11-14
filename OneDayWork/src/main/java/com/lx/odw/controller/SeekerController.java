@@ -13,6 +13,7 @@ import com.lx.odw.model.FilterModel;
 import com.lx.odw.service.SeekerService;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
+import com.lx.odw.vo.ManageVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Controller
@@ -63,12 +64,26 @@ public class SeekerController {
 //	}
 
 	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
-	public @ResponseBody List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
+	public @ResponseBody List<ManageVO> manageJobList(ManageVO vo) {
 		return service.manageJobList(vo);
 		
 	}
 	
+	@RequestMapping(value="cancelProject.do", method=RequestMethod.POST)
+	public @ResponseBody int cancelProject(ManageVO vo) {
+		return service.cancelProject(vo);
+	}
+	
+	@RequestMapping(value="requestManageProjectDetail.do", method=RequestMethod.POST)
+	public @ResponseBody List<ManageVO> requestManageProjectDetail(ManageVO vo) {
+		return service.requestManageProjectDetail(vo);
+	}
 	//181113 윤정민 recycler view 를 이용하여 날짜 정렬 구현중
 //	@RequestMapping(value="orderbyDateRecyclerView", method=RequestMethod.POST)
 //	public @ResponseBody 
+	
+	@RequestMapping(value="requestProjectJobListCanNum.do", method=RequestMethod.POST)
+	public @ResponseBody List<ManageVO> requestProjectJobListCanNum (ManageVO vo){
+		return service.requestProjectJobListCanNum(vo);
+	}
 }

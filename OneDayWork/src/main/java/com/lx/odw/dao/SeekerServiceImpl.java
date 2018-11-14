@@ -9,6 +9,7 @@ import com.lx.odw.model.FilterModel;
 import com.lx.odw.service.SeekerService;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
+import com.lx.odw.vo.ManageVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Repository
@@ -99,8 +100,24 @@ public class SeekerServiceImpl implements SeekerService{
 	}
 	
 	@Override
-	public List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
+	public List<ManageVO> manageJobList(ManageVO vo) {
 		return seekerDAO.managejobList(vo);
 	}
+	
+	@Override
+	public int cancelProject(ManageVO vo) {
+		return seekerDAO.cancelProject(vo);
+	}
 
+	@Override
+	public List<ManageVO> requestManageProjectDetail(ManageVO vo) {
+		return seekerDAO.requestManageProjectDetail(vo);
+		
+	}
+
+	@Override
+	public List<ManageVO> requestProjectJobListCanNum(ManageVO vo) {
+		
+		return seekerDAO.requestProjectJobListCanNum(vo);
+	}
 }

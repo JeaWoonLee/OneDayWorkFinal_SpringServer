@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.lx.odw.model.FilterModel;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
+import com.lx.odw.vo.ManageVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Service
@@ -29,6 +30,12 @@ public interface SeekerService {
 	// 181108 ������ ������
 	//List<ProjectJobListVO> manageJobList(ProjectVO projectVo);
 
-	List<JobCandidateVO> manageJobList(JobCandidateVO vo);
+	List<ManageVO> manageJobList(ManageVO vo);
+
+	int cancelProject(ManageVO vo);
+
+	List<ManageVO> requestManageProjectDetail(ManageVO vo);
+
+	List<ManageVO> requestProjectJobListCanNum(ManageVO vo);
 
 }

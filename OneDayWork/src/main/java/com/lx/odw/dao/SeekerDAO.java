@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.lx.odw.model.FilterModel;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
+import com.lx.odw.vo.ManageVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Repository
@@ -59,9 +60,22 @@ public class SeekerDAO {
 	}
 	
 
-	public List<JobCandidateVO> managejobList(JobCandidateVO vo) {
-	return session.selectList("ManageJobList", vo);
+	public List<ManageVO> managejobList(ManageVO vo) {
+	return session.selectList("managejobList", vo);
 	
+	}
+	
+	public int cancelProject(ManageVO vo) {
+		return session.update("cancelProject", vo);
+	}
+
+	public List<ManageVO> requestManageProjectDetail(ManageVO vo) {
+		
+		return session.selectOne("requestManageProjectDetail", vo);
+	}
+
+	public List<ManageVO> requestProjectJobListCanNum(ManageVO vo) {
+		return session.selectList("requestProjectJobListCanNum", vo);
 	}
 
 }
