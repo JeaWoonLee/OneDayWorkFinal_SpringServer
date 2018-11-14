@@ -36,14 +36,14 @@ public class OfferController {
 		
 	}
 	
-	//web 일감 목록 
+	//웹 일감 목록 
 	@RequestMapping(value="projectList.do")
 	public String projectList() {
 		System.out.println("projectList.do를 통해 웹페이지가 요청됨");
 		return "projectList";
 	}
 	
-	//web 사용자가 등록한 일감 목록
+	//웹 사용자가 등록한 일감 목록
 	@RequestMapping(value="offerProjectList.do", method=RequestMethod.POST)
 	public String searchEmpListByDeptId(ProjectVO projectVO, HttpServletRequest request) {
 		//로그인에서 받아오는 부분
