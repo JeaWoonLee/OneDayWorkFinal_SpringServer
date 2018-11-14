@@ -10,119 +10,57 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-.navbar {
-    display: inline-block;
-    width: 100%;
-    height: 40px;
-    background: #f7b417;
-  }
-      html,body {
+
+    html,body {
             width: 100%;
             height: 100%;
             margin: 0px;
             padding: 0px;
-      }
-      .jbTitle {
-        text-align: center;
-      }
-      .jbMenu {
-        text-align: center;
-        background-color: #f7b417;
-        width: 100%;
-        height: 40px;
+    }
+    .navbarDiv{
+    	margin-top: 50px;
+    }
+	.mainTable{
+            width: fit-content; height:fit-content; margin: 0 auto; margin-top: 30px;
+        }
+  
+  	#imgSlides {
+  			height: 400px;	
+  			width: 1000px;
+  	}
+  	
+  
+ </style>
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
 
-      }
-      .jbContent {
-        height: 2000px;
-      }
-      .jbFixed {
-        position: fixed;
-        top: 0px;
-      }
-          body { margin: 0; }
-  
-  .navbar>div { float: right; }
-  .navbar>ul {
-    float: left;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .navbar>ul>li {
-    display: inline-block;
-    padding: 0;
-  }
-  .navbar>after {
-  height: 0px;
-  }
-  .navbar a {
-    display: block;
-    text-decoration: none;
-    padding: 15px 20px;
-    color: white;
-  }
-  .navbar a:hover { background: #03611c; }
-  
-  #imgSlides {
-  	height: 400px;	
-  	width: 1000px;
-  }
-  
-    </style>
-    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script>
-      $( document ).ready( function() {
-        var jbOffset = $( '.jbMenu' ).offset();
-        $( window ).scroll( function() {
-          if ( $( document ).scrollTop() > jbOffset.top ) {
-            $( '.jbMenu' ).addClass( 'jbFixed' );
-          }
-          else {
-            $( '.jbMenu' ).removeClass( 'jbFixed' );
-          }
-        });
-      } );
-      
-    </script>
 </head>
 
 <body>
       <br>
       <br>
-    <div class="jbTitle">
-        <div>
-            <center>
-        <table>
-            <tr>
-                <td> <img src="resources/img/haru.png" width= "80px" height="80px"></td>
-                <td><h1>하루일감</h1></td>
-            </tr>
-        </table>
-        <div style= "float: right; margin-right: 18px;"> <p id="welcomeSign"><%=session.getAttribute("offerId")%>님 환영합니다!</p></div>
-        <br>
-        <br>
-                </center>
-     </div>
-        <br>
-    </div>
-   <div class="jbMenu">
-      <nav class="navbar">
-  <ul>
-    <li><a href="haruMainPage.do">홈</a></li>
-    <li><a href="registration.do">일감 등록</a></li>
-    <li><a href="#">메뉴2</a></li>
-    <li><a href="#">메뉴3</a></li>
-    <li><a href="#">메뉴4</a></li>
-  </ul>
-  <div><a href="#">☰</a></div>
-  <div><a href="offerJoin.do">회원가입</a></div>
-<div><a href="offerLogin.do">로그인</a></div>
-  
+    <div>
+           <table class="mainTable">
+                <tr>
+                    <td> <img src="resources/img/haru.png" width= "80px" height="80px"></td>
+                    <td><h1>하루일감</h1></td>
+                </tr>
+            </table> 
+        </div>
+        <div class="navbarDiv">
+            <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">하루일감</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="haruMainPage">홈</a></li>
+              <li><a href="registration.do">일감 등록</a></li>
+              <li><a href="#">일감 보기</a></li>
+              <li><a href="#">전자근로계약서</a></li>
+            </ul>
+          </div>
 </nav>
-    </div>
-    <br>
-    
-    <div class="jbContent">
+        </div>
    		
    		<div class="container">
   <h2>test1</h2>  
