@@ -19,9 +19,18 @@ public class ProjectVO {
     String workStartTime;
     String workEndTime;
     int requestPicture;
-    
+    String seekerId;
 
-    public int getProjectNumber () {
+
+    public String getSeekerId() {
+		return seekerId;
+	}
+
+	public void setSeekerId(String seekerId) {
+		this.seekerId = seekerId;
+	}
+
+	public int getProjectNumber () {
         return projectNumber;
     }
 

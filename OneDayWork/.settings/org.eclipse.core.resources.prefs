@@ -2,6 +2,8 @@
 <<<<<<<=HEAD
 >>>>>>>=branch 'master' of https\://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 eclipse.preferences.version=1
+encoding//src/main/java/com/lx/odw/controller/JoinController.java=UTF-8
 encoding//src/main/java/com/lx/odw/controller/LoginController.java=UTF-8
+encoding//src/main/java/com/lx/odw/dao/SeekerServiceImpl.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/haruMainPage.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8

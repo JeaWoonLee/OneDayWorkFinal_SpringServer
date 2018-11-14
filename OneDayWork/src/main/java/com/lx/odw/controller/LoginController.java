@@ -25,6 +25,7 @@ public class LoginController {
 	public @ResponseBody SeekerVO seekerLogin(LoginModel model) {
 		return service.seekerLogin(model);
 	}
+	//
 	
 	@RequestMapping(value="offerLogin.do",method=RequestMethod.GET)
 	public String showOfferLoginPage() {

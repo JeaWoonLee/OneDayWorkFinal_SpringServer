@@ -1,5 +1,7 @@
 package com.lx.odw.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,10 +23,6 @@ public class JoinDAO {
 	public int joinSeeker(SeekerVO seekerVO){
 		return session.insert("joinSeeker",seekerVO);
 	}
-//	
-//	public int joinOffer(OfferVO offerVO) {
-//		return session.insert("joinOffer", offerVO);
-//	}
 	
 	public int checkOfferOverlap(LoginModel model) throws Exception {
 		return session.selectOne("checkOfferOverlap",model);
@@ -34,4 +32,5 @@ public class JoinDAO {
 		return session.insert("joinOffer",offerVO);
 	}
 	
+
 }

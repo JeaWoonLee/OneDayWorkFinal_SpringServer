@@ -2,25 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.mapper-seeker">
 
-<select id="getProjectList" resultType="com.lx.odw.vo.ProjectVO">
-	select 
-		project_number,
-		project_name,
-		offer_id,
-		project_start_date,
-		project_end_date,
-		ST_X(project_location) as project_lng,
-		ST_Y(project_location) as project_lat,
-		project_comment,
-		project_subject,
-		project_enroll_date,
-		work_start_time,
-		work_end_time
-	from
-		project
-		
+	<select id="getProjectList" resultType="com.lx.odw.vo.ProjectVO"
+		parameterType="com.lx.odw.model.FilterModel">
+		select
+		p.project_number,
+		p.project_name,
+		p.offer_id,
+		p.project_start_date,
+		p.project_end_date,
+		ST_X(p.project_location) as
+		project_lng,
+		ST_Y(p.project_location) as
+		project_lat,
+		p.project_comment,
+		p.project_subject,
+		p.project_enroll_date,
+		p.work_start_time,
+		p.work_end_time
+		from
+		project p, job j
+		where
+		1=1
+		and j.job_pay between ${minJobPay} and ${maxJobPay}
+		and p.project_number = j.project_number
+		and ST_Distance(ST_GeomFromText('POINT(${myLng} ${myLat})'), p.project_location) <![CDATA[ < ]]> ${maxDistance}
+	<if test="projectSubjectFilter!='없음'">
+		and p.project_subject = #{projectSubjectFilter}
+	</if>
+	<if test="jobNameFilter!='없음'">
+		and j.job_name = #{jobNameFilter}
+	</if>
+	<if test="targetDateFilter!='없음'">
+		and #{targetDateFilter} <![CDATA[ > ]]> j.job_start_date and #{targetDateFilter} <![CDATA[ < ]]> j.job_end_date
+	</if>
+	<if test="targetDateFilter!='없음'">
+	
+	</if>	
+	<!-- TODO 필터 모델을 이용해서 필터링 하자 -->
 </select>
-
 <select id="requestProjectJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.JobVO">
 	select
 		job_number,
@@ -35,18 +54,19 @@
 		job
 	where
 		project_number = #{projectNumber}
-		
-</select>
+	</select>
 
 <select id="requestProjectDetail" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
-	select 
+	select
 		project_number,
 		project_name,
 		offer_id,
 		project_start_date,
 		project_end_date,
-		ST_X(project_location) as project_lng,
-		ST_Y(project_location) as project_lat,
+		ST_X(project_location) as
+		project_lng,
+		ST_Y(project_location) as
+		project_lat,
 		project_comment,
 		project_subject,
 		project_enroll_date,
@@ -79,9 +99,10 @@
 	from
 		job_candidate
 	where
-		candidate_status = 1 and
-		job_number = #{jobNumber} and
-		target_date = Date(#{targetDate})
+		candidate_status = 1 
+		and	job_number = #{jobNumber} and
+		target_date =
+		Date(#{targetDate})
 </select>
 
 <select id="checkAnotherAccepted" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="int">
@@ -105,7 +126,6 @@
 		job_number = #{jobNumber} and
 		target_date = Date(#{targetDate})
 </select>
-
 <select id="checkDuplicateAcceptCandidate" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="int">
 	select
 		count(*)
@@ -117,17 +137,33 @@
 		candidate_status = 1 and
 		target_date = Date(#{targetDate})
 </select>
-<insert id="candidateJob" parameterType="com.lx.odw.vo.JobCandidateVO">
-	insert
-		into 
-			job_candidate
-			(seeker_id,job_number,target_date,candidate_status)
-		values	
-			(#{seekerId},#{jobNumber},#{targetDate},#{candidateStatus})
-</insert>
-<!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
-	<!-- select * --> 
-	<!-- from  job --> 
-	<!-- 윤정민 진행중.... join 해야함 -->
-<!-- </select>--> 
+<select id="requestDisableDaysByJobNumber" parameterType="int" resultType="com.lx.odw.vo.JobCandidateVO">
+	select 
+		x.target_date 
+	from
+		job b, (
+			select
+				job_number, target_date, count(*) cnt
+			from
+				job_candidate
+			group by
+				job_number, target_date
+		) x
+	where
+		 x.job_number = b.job_number
+		 and b.job_number = #{jobNumber}
+		 and x.cnt = b.job_limit_count
+</select>
+<select id="ManageJobList" resultType="com.lx.odw.vo.ProjectVO">
+	select distinct project.project_name, project.project_subject, 
+		project.project_start_date, project.project_end_date, project.project_enroll_date, 
+		project.project_number
+	from job_candidate
+			inner join job on job.job_number = job_candidate.job_number
+			inner join project on project.project_number = job.project_number	
+	where 
+			job_candidate.candidate_status = "0"
+			and job_candidate.seeker_id = #{seekerId}
+			order by project.project_enroll_date asc;
+</select>
 </mapper>

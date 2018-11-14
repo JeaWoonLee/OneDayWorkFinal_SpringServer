@@ -1,11 +1,13 @@
 package com.lx.odw.dao;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lx.odw.model.FilterModel;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ProjectVO;
@@ -16,8 +18,8 @@ public class SeekerDAO {
 	@Autowired
 	SqlSession session;
 	
-	public List<ProjectVO> getProjectList() {
-		return session.selectList("getProjectList");
+	public List<ProjectVO> getProjectList(FilterModel model) {
+		return session.selectList("getProjectList",model);
 	}
 
 	public List<JobVO> requestProjectJobListByProjectNumber(ProjectVO projectVO) {
@@ -51,11 +53,15 @@ public class SeekerDAO {
 	public int checkDuplicateAcceptCandidate(JobCandidateVO vo) {
 		return session.selectOne("checkDuplicateAcceptCandidate",vo);
 	}
+
+	public List<JobCandidateVO> requestDisableDaysByJobNumber(int jobNumber) {
+		return session.selectList("requestDisableDaysByJobNumber",jobNumber);
+	}
 	
-// ������ 181108 ������
-//	public List<ProjectJobListVO> managejobList(ProjectVO projcetVo) {
-//		return session.selectList("", projectVo);
-//		
-//	}
+
+	public List<JobCandidateVO> managejobList(JobCandidateVO vo) {
+	return session.selectList("ManageJobList", vo);
+	
+	}
 
 }

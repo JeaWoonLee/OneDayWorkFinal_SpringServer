@@ -1,5 +1,6 @@
 package com.lx.odw.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lx.odw.model.FilterModel;
 import com.lx.odw.service.SeekerService;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
@@ -20,15 +22,15 @@ public class SeekerController {
 	SeekerService service;
 	
 	@RequestMapping(value="getProjectList.do", method=RequestMethod.POST)
-	public @ResponseBody List<ProjectVO> getProjectList () {
-		return service.getProjectList();
+	public @ResponseBody List<ProjectVO> getProjectList (FilterModel model) {
+		return service.getProjectList(model);
 	}
 	
 	@RequestMapping(value="requestProjectJobListByProjectNumber.do", method=RequestMethod.POST)
 	public @ResponseBody List<JobVO> requestProjectJobListByProjectNumber (ProjectVO projectVO) {
 		return service.requestProjectJobListByProjectNumber(projectVO);
 	}
-	
+	//TODO asdasd
 	@RequestMapping(value="requestProjectDetail.do",method=RequestMethod.POST)
 	public @ResponseBody ProjectVO requestProjectDetail(ProjectVO projectVO) {
 		return service.requestProjectDetail(projectVO);
@@ -49,10 +51,24 @@ public class SeekerController {
 		return service.candidateJob(vo);
 	}
 
+	@RequestMapping(value="requestDisableDaysByJobNumber.do",method=RequestMethod.POST)
+	public @ResponseBody List<JobCandidateVO> requestDisableDaysByJobNumber(int jobNumber) {
+		return service.requestDisableDaysByJobNumber(jobNumber);
+	}
 	// 180811 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
 //	public @ResponseBody List<ProjectJobListVO> manageJobList(ProjectVO projectVo) {
 //		return service.manageJobList(projectVo);
 //		
 //	}
+
+	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
+	public @ResponseBody List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
+		return service.manageJobList(vo);
+		
+	}
+	
+	//181113 À±Á¤¹Î recycler view ¸¦ ÀÌ¿ëÇÏ¿© ³¯Â¥ Á¤·Ä ±¸ÇöÁß
+//	@RequestMapping(value="orderbyDateRecyclerView", method=RequestMethod.POST)
+//	public @ResponseBody 
 }
