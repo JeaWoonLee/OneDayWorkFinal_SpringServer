@@ -53,10 +53,14 @@
               <a class="navbar-brand" href="#">하루일감</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="haruMainPage">홈</a></li>
+              <li><a href="haruMainPage">홈</a></li>
               <li><a href="registration.do">일감 등록</a></li>
               <li><a href="#">일감 보기</a></li>
               <li><a href="#">전자근로계약서</a></li>
+            </ul>
+            <ul class="nav navbar-nav" style="float:right">
+              <li><a href="offerLogin.do">로그인</a></li>
+              <li><a href="joinOffer.do">회원가입</a></li>
             </ul>
           </div>
 </nav>

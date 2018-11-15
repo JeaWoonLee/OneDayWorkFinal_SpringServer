@@ -7,11 +7,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lx.odw.controller.CertificateVO;
 import com.lx.odw.model.FilterModel;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ManageVO;
 import com.lx.odw.vo.ProjectVO;
+import com.lx.odw.vo.SeekerVO;
+import com.lx.odw.vo.WorkVO;
 
 @Repository
 public class SeekerDAO {
@@ -74,5 +77,25 @@ public class SeekerDAO {
 		return session.selectOne("requestManageProjectDetail", vo);
 	}
 
+
+	public SeekerVO requestSeekerDetail(SeekerVO seekerVO) {
+		return session.selectOne("requestSeekerDetail",seekerVO);
+	}
+
+	public List<CertificateVO> requestSeekerCertificationDetail(SeekerVO seekerVO) {
+		return session.selectList("requestSeekerCertificationDetail",seekerVO);
+	}
+
+	public int updateSeeker(SeekerVO seekerVO) {
+		return session.update("updateSeeker",seekerVO);
+	}
+
+	public WorkVO requestTodayWorkDetail(String seekerId) {
+		return session.selectOne("requestTodayWorkDetail",seekerId);
+	}
+
+	public int requestCommute(SeekerVO vo) {
+		return session.update("requestCommute",vo);
+	}
 
 }

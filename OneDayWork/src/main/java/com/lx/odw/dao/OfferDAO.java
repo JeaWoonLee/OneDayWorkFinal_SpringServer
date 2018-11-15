@@ -23,10 +23,19 @@ public class OfferDAO {
 		return session.selectList("requestOffJobListByProjectNumber",projectVO);
 	}
 	
-	//�� �ϰ� ���
-	public List<ProjectVO> projectList(ProjectVO projectVO) {
-		return session.selectList("projectList",projectVO);
+	//웹 구인자 일김목록
+	public List<ProjectVO> projectList(String offerId) {
+		return session.selectList("projectList", offerId);
 	}
+
+	//웹 구인자 상세정보
+	public ProjectVO showPrjDetail(ProjectVO vo) {
+		return session.selectOne("showPrjDetail",vo);
+	}
+	
+//	public List<ProjectVO> getFaqList() {
+//		return session.selectList("faqList");
+//	}
 	
 	
 
