@@ -137,7 +137,10 @@
 		project_subject,
 		project_enroll_date,
 		work_start_time,
-		work_end_time
+		work_end_time,
+		request_picture,
+		const_certificate,
+		morning,launch,evening,commute,off_work
 	from
 		project
 	where

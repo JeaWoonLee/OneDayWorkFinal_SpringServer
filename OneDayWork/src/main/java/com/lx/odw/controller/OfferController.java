@@ -64,11 +64,27 @@ public class OfferController {
 		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
 		if(offerVO != null) {
 			ProjectVO item = offerDAO.showPrjDetail(vo);
-			session.setAttribute("projectVO", item);
-			System.out.println("값 확인 : " + item);
+			request.setAttribute("prjDetail", item);
 			return "projectDetail";
 		} else {
 			return "offerLogin";
 		}
+	}
+	
+	//커밋 테스트
+	@RequestMapping("haruMainPage.do")
+	public String offerLogin() {
+		System.out.println("haruMainPage이 실행됨");
+		return "haruMainPage";
+	}
+	
+	@RequestMapping(value="registration.do",method=RequestMethod.GET)
+	public String registration(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		OfferVO offerVO = (OfferVO)session.getAttribute("loginInfo");
+		if(offerVO == null) {
+			return "offerLogin";
+		}
+		return "registration";
 	}
 }

@@ -5,21 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- JQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.js"
-	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-	crossorigin="anonymous"></script>
+<!-- 제이쿼리 -->
+<script src="resources/js/jquery-3.3.1.min.js"></script>
+<!--부트스트랩 코드-->
+<script src="resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<!-- 카카오 맵 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
 <style>
 .container {
 	width: fit-content;
@@ -32,7 +25,7 @@
 
 </head>
 <body>
-	<%ProjectVO item = (ProjectVO) session.getAttribute("projectVO");%>
+	<%ProjectVO item = (ProjectVO) request.getAttribute("prjDetail");%>
 	<div class="container">
 		<h1>상세정보</h1>
 		<table class="table table-hover">
@@ -45,11 +38,11 @@
 				<td><%=item.getProjectSubject()%></td>
 			</tr>
 			<tr>
-				<td>시작 일 ~ 마감 일</td>
+				<td>기간</td>
 				<td><%=item.getProjectStartDate()%> ~ <%=item.getProjectEndDate()%></td>
 			</tr>
 			<tr>
-				<td>시작 시간 ~ 마감 시간</td>
+				<td>근무시간</td>
 				<td><%=item.getWorkStartTime()%> ~ <%=item.getWorkEndTime()%></td>
 			</tr>
 			<tr>
@@ -59,9 +52,7 @@
 			<tr>
 				<td>근무 장소</td>
 				<td><label for="locationLabel">근무 장소</label>
-					<div id="map" style="width: 450px; height: 350px;"></div> <script
-						type="text/javascript"
-						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
+					<div id="map" style="width: 450px; height: 350px;"></div>
 					<script>
 
                         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -89,35 +80,19 @@
                         }); 
                         // 지도에 마커를 표시합니다
                         marker.setMap(map);
-
-                        // 지도에 클릭 이벤트를 등록합니다
-                        // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-                        daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
-
-                        // 클릭한 위도, 경도 정보를 가져옵니다 
-                        var latlng = mouseEvent.latLng; 
-
-                        // 마커 위치를 클릭한 위치로 옮깁니다
-                        marker.setPosition(latlng);
-
-                        var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-                        message += '경도는 ' + latlng.getLng() + ' 입니다';
-						$('#lat').attr("value",latlng.getLat());
-						$('#lng').attr("value",latlng.getLng());
-                        var resultDiv = document.getElementById('clickLatlng'); 
-                        resultDiv.innerHTML = message;
-
-                    });	
-
-                        </script> <input type="hidden" id="projectLat"
+                        </script> 
+                        <input type="hidden" id="projectLat"
 					name="projectLat"> <input type="hidden" id="projectLng"
 					name="projectLng"></td>
 			</tr>
 			<tr>
-				<td><input type="button" class="btn btn-primary" type="button" value="신청관리"></td>
+				<td>
+					<input type="button" class="btn btn-primary" type="button" value="신청관리">
+					<input type="button" class="btn btn-primary" type="button" value="출결관리">
+				</td>
 			</tr>
-
 		</table>
 	</div>
+	<script type="text/javascript"></script>
 </body>
 </html>
