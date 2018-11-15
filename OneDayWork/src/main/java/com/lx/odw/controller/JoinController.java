@@ -29,30 +29,24 @@ public class JoinController {
 	public @ResponseBody ResponseModel joinSeeker(SeekerVO seekerVO) throws Exception {
 		return service.joinSeeker(seekerVO);
 	}
-	
-	//구인자 회원가입 중복체크
-//	@RequestMapping("offerJoin.do")
-//	public String offerLogin() {
-//		System.out.println("offerJoin이 실행됨");
-//		return "offerJoin";
-//	}
-	
+		
 	@RequestMapping(value="checkOfferOverlap.do",method=RequestMethod.POST)
 	public @ResponseBody ResponseModel checkOverlap1(LoginModel model) throws Exception {
 		return service.checkOfferOverlap(model);
 	}
 	
-	//구인자 회원가입
 	@RequestMapping(value="joinOffer.do", method=RequestMethod.POST)
 	public @ResponseBody ResponseModel joinOffer(OfferVO offerVO) throws Exception {
 		return service.joinOffer(offerVO);
 	}
 	
-	@RequestMapping(value="/joinOffer.do")
+	@RequestMapping(value="joinOffer.do", method=RequestMethod.GET)
 	public String joinOffer() {
 		System.out.println("joinOffer.do를 통해 웹페이지가 요청됨");
-		return "joinOffer"; //여기에 jsp파일 이름을 적음
+		return "joinOffer";
 	}
+	
+	
 	
 //	//웹페이지를 요청하는 소스 
 //	@RequestMapping(value="/joinOffer.do")
