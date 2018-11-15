@@ -184,7 +184,7 @@
 		c.candidate_status = 0 and
 		c.seeker_id = #{seekerId}
 	order by 
-		c.target_date asc
+		c.target_date asc;
 </select>
 <update id="cancelProject" parameterType="com.lx.odw.vo.ManageVO">
 
