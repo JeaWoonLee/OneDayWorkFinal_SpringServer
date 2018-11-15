@@ -31,6 +31,7 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public String offerLogin(LoginModel model,HttpSession session, HttpServletRequest request) {
 		OfferVO loginResult = loginDAO.offerMobileLogin(model);
+		System.out.println(loginResult);
 		if(loginResult != null) {
 			session.setAttribute("loginInfo", loginResult);
 			return "haruMainPage";

@@ -51,6 +51,11 @@ public class OfferController {
 		}
 		return "projectList";
 	}
+	
+	@RequestMapping(value="insertProject.do",method=RequestMethod.POST)
+	public @ResponseBody String insertProject (ProjectVO vo, String jobs,HttpSession seesion){
+		return service.insertProject(vo,jobs,seesion);
+	}
 		
 	//웹 구인자 상세정보
 	@RequestMapping(value="showPrjDetail.do",method=RequestMethod.GET)

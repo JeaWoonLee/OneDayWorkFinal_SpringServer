@@ -4,12 +4,17 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.lx.odw.vo.OfferVO;
 
 /**
  * Handles requests for the application home page.
@@ -44,9 +49,13 @@ public class HomeController {
 		return "haruMainPage";
 	}
 	
-	@RequestMapping("registration.do")
-	public String registration() {
-		System.out.println("registration이 실행됨");
+	@RequestMapping(value="registration.do",method=RequestMethod.GET)
+	public String registration(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		OfferVO offerVO = (OfferVO)session.getAttribute("loginInfo");
+		if(offerVO == null) {
+			return "offerLogin";
+		}
 		return "registration";
 	}
 
