@@ -154,7 +154,6 @@
 		 and b.job_number = #{jobNumber}
 		 and x.cnt = b.job_limit_count
 </select>
-<<<<<<< HEAD
 <!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
 	<!-- select * --> 
 	<!-- from  job --> 
@@ -167,19 +166,18 @@
 		values
 			(#{seekerId}, #{jobNumber}, #{targetDate}, #{candidateStatus})
 </insert>
-=======
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 <select id="ManageJobList" resultType="com.lx.odw.vo.ProjectVO">
-	select distinct project.project_name, project.project_subject, 
-		project.project_start_date, project.project_end_date, project.project_enroll_date, 
-		project.project_number
+	<!-- select 절에 내가 뽑을 데이터값 추가 윤정민 병신 -->
+	select distinct job.job_name, job.job_pay, job.job_start_date,
+			job.job_end_date, job.job_requirement,
+			job.work_start_time, job.work_end_time,
+			job_candidate.seeker_id
 	from job_candidate
 			inner join job on job.job_number = job_candidate.job_number
 			inner join project on project.project_number = job.project_number	
 	where 
 			job_candidate.candidate_status = "0"
-			and job_candidate.seeker_id = #{seekerId}
-			order by project.project_enroll_date asc;
+			and job_candidate.seeker_id = #{seekerId};
 </select>
 <select id="requestSeekerDetail" parameterType="com.lx.odw.vo.SeekerVO" resultType="com.lx.odw.vo.SeekerVO">
 	select
