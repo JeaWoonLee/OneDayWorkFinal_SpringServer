@@ -18,7 +18,9 @@ public class ProjectVO {
     String projectEnrollDate;
     String workStartTime;
     String workEndTime;
+    int requestPicture;
     String seekerId;
+
 
     public String getSeekerId() {
 		return seekerId;
@@ -123,6 +125,14 @@ public class ProjectVO {
 
 	public void setWorkEndTime(String workEndTime) {
 		this.workEndTime = workEndTime;
+	}
+
+	public int getRequestPicture() {
+		return requestPicture;
+	}
+
+	public void setRequestPicture(int requestPicture) {
+		this.requestPicture = requestPicture;
 	}
 
 	@Override

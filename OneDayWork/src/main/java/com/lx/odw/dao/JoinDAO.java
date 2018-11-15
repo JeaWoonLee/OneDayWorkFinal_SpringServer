@@ -23,10 +23,6 @@ public class JoinDAO {
 	public int joinSeeker(SeekerVO seekerVO){
 		return session.insert("joinSeeker",seekerVO);
 	}
-//	
-//	public int joinOffer(OfferVO offerVO) {
-//		return session.insert("joinOffer", offerVO);
-//	}
 	
 	public int checkOfferOverlap(LoginModel model) throws Exception {
 		return session.selectOne("checkOfferOverlap",model);

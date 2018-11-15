@@ -26,4 +26,10 @@ public class OfferServiceImpl implements OfferService{
 		return offerDAO.requestOffJobListByProjectNumber(projectVO);
 	}
 
+	//web 일감 목록
+	@Override
+	public List<ProjectVO> projectList(ProjectVO projectVO) {
+		return offerDAO.projectList(projectVO);
+	}
+
 }

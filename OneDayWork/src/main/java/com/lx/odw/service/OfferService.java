@@ -13,5 +13,8 @@ public interface OfferService {
 	List<ProjectVO> getOffList();
 
 	List<JobVO> requestOffJobListByProjectNumber(ProjectVO projectVO);
+	
+	//web 일감 목록
+	List<ProjectVO> projectList(ProjectVO projectVO);
 
 }
