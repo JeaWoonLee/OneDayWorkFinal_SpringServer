@@ -56,14 +56,13 @@
 				<td>상세내용</td>
 				<td><%=item.getProjectComment()%></td>
 			</tr>
-
-			<td>근무 장소</td>
-			<td><label for="locationLabel">근무 장소</label>
-				<div id="map" style="width: 450px; height: 350px;"></div>
-				
-				<script type="text/javascript"
-					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
-				<script>
+			<tr>
+				<td>근무 장소</td>
+				<td><label for="locationLabel">근무 장소</label>
+					<div id="map" style="width: 450px; height: 350px;"></div> <script
+						type="text/javascript"
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
+					<script>
 
                         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                         mapOption = { 
@@ -111,9 +110,11 @@
                     });	
 
                         </script> <input type="hidden" id="projectLat"
-				name="projectLat"> <input type="hidden" id="projectLng"
-				name="projectLng"></td>
-
+					name="projectLat"> <input type="hidden" id="projectLng"
+					name="projectLng"></td>
+			</tr>
+			<tr>
+				<td><input type="button" class="btn btn-primary" type="button" value="상세정보"></td>
 			</tr>
 
 		</table>
