@@ -21,7 +21,6 @@ public class ProjectVO {
     int requestPicture;
     String seekerId;
 
-
     public String getSeekerId() {
 		return seekerId;
 	}

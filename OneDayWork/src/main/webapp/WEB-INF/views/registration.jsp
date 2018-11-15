@@ -110,6 +110,10 @@ $(function(){
               <li><a href="#">일감 보기</a></li>
               <li><a href="#">전자근로계약서</a></li>
             </ul>
+            <ul class="nav navbar-nav" style="float:right">
+              <li><a href="offerLogin.do">로그인</a></li>
+              <li><a href="joinOffer.do">회원가입</a></li>
+            </ul>
           </div>
 </nav>
         </div>
@@ -226,6 +230,9 @@ $(function(){
                         </select>
                     </td>
                 </tr>
+                <script>
+					document.getElementById('projectEnrollDate').valueAsDate = new Date();
+				</script>
                 <tr>
                     <td>
                         <label for="enrollDateLabel">사업 등록일</label>

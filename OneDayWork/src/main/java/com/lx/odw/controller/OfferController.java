@@ -22,8 +22,9 @@ public class OfferController {
 
 	@Autowired
 	OfferService service;
-	OfferDAO offerDAO;
 	
+	@Autowired
+	OfferDAO offerDAO;
 	
 	@RequestMapping(value="getOffList.do", method=RequestMethod.POST)
 	public @ResponseBody List<ProjectVO> getOffList(){
@@ -36,24 +37,33 @@ public class OfferController {
 		
 	}
 	
-	//À¥ ÀÏ°¨ ¸ñ·Ï 
-	@RequestMapping(value="projectList.do")
-	public String projectList() {
-		System.out.println("projectList.do¸¦ ÅëÇØ À¥ÆäÀÌÁö°¡ ¿äÃ»µÊ");
-		return "projectList";
-	}
-	
-	//À¥ »ç¿ëÀÚ°¡ µî·ÏÇÑ ÀÏ°¨ ¸ñ·Ï
-	@RequestMapping(value="offerProjectList.do", method=RequestMethod.POST)
-	public String searchEmpListByDeptId(ProjectVO projectVO, HttpServletRequest request) {
-		//·Î±×ÀÎ¿¡¼­ ¹Ş¾Æ¿À´Â ºÎºĞ
-		HttpSession session = request.getSession();//»óÅÂÁ¤º¸ ·Î±×ÀÎ¿¡¼­ ÇÑ 
+	//ì›¹ êµ¬ì¸ì ì¼ê°ëª©ë¡
+	@RequestMapping(value="projectList.do", method=RequestMethod.GET)
+	public String projectList(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
 		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
-		List<ProjectVO> list = offerDAO.projectList(projectVO);
-				
-		request.setAttribute("projectList", list);
-		
+		if(offerVO != null) {
+			List<ProjectVO> list = service.projectList(offerVO.getOfferId());
+			request.setAttribute("projectList", list);
+		} else {
+			return "offerLogin";
+		}
 		return "projectList";
 	}
 		
+	//ì›¹ êµ¬ì¸ì ìƒì„¸ì •ë³´
+	@RequestMapping(value="showPrjDetail.do",method=RequestMethod.GET)
+	public String showPrjDetail (ProjectVO vo,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
+		if(offerVO != null) {
+			ProjectVO item = offerDAO.showPrjDetail(vo);
+			session.setAttribute("projectVO", item);
+			System.out.println("ê°’ í™•ì¸ : " + item);
+			return "projectDetail";
+		} else {
+			return "offerLogin";
+		}
+	}
 }
