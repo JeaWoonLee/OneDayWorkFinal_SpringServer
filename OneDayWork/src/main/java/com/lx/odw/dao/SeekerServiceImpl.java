@@ -110,14 +110,9 @@ public class SeekerServiceImpl implements SeekerService{
 	}
 
 	@Override
-	public List<ManageVO> requestManageProjectDetail(ManageVO vo) {
+	public ManageVO requestManageProjectDetail(ManageVO vo) {
 		return seekerDAO.requestManageProjectDetail(vo);
 		
 	}
 
-	@Override
-	public List<ManageVO> requestProjectJobListCanNum(ManageVO vo) {
-		
-		return seekerDAO.requestProjectJobListCanNum(vo);
-	}
 }

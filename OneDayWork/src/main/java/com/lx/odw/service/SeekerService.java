@@ -34,8 +34,8 @@ public interface SeekerService {
 
 	int cancelProject(ManageVO vo);
 
-	List<ManageVO> requestManageProjectDetail(ManageVO vo);
+	ManageVO requestManageProjectDetail(ManageVO vo);
 
-	List<ManageVO> requestProjectJobListCanNum(ManageVO vo);
+	
 
 }

@@ -69,13 +69,10 @@ public class SeekerDAO {
 		return session.update("cancelProject", vo);
 	}
 
-	public List<ManageVO> requestManageProjectDetail(ManageVO vo) {
+	public ManageVO requestManageProjectDetail(ManageVO vo) {
 		
 		return session.selectOne("requestManageProjectDetail", vo);
 	}
 
-	public List<ManageVO> requestProjectJobListCanNum(ManageVO vo) {
-		return session.selectList("requestProjectJobListCanNum", vo);
-	}
 
 }

@@ -75,15 +75,9 @@ public class SeekerController {
 	}
 	
 	@RequestMapping(value="requestManageProjectDetail.do", method=RequestMethod.POST)
-	public @ResponseBody List<ManageVO> requestManageProjectDetail(ManageVO vo) {
+	public @ResponseBody ManageVO requestManageProjectDetail(ManageVO vo) {
 		return service.requestManageProjectDetail(vo);
 	}
-	//181113 윤정민 recycler view 를 이용하여 날짜 정렬 구현중
-//	@RequestMapping(value="orderbyDateRecyclerView", method=RequestMethod.POST)
-//	public @ResponseBody 
 	
-	@RequestMapping(value="requestProjectJobListCanNum.do", method=RequestMethod.POST)
-	public @ResponseBody List<ManageVO> requestProjectJobListCanNum (ManageVO vo){
-		return service.requestProjectJobListCanNum(vo);
-	}
+
 }

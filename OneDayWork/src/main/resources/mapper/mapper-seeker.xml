@@ -170,6 +170,7 @@
 		j.job_number,
 		j.job_pay,
 		j.job_limit_count,
+		j.job_name,
 		c.target_date,
 		c.candidate_number,
 		c.candidate_status
@@ -196,42 +197,22 @@ where
 </update>
 <select id="requestManageProjectDetail" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
 	select
-		project.project_number,
-		project.project_name,
-		project.offer_id,
-		project.project_start_date,
-		project.project_end_date,
-		ST_X(project.project_location) as
-		project_lng,
-		ST_Y(project.project_location) as
-		project_lat,
-		project.project_comment,
-		project.project_subject,
-		project.project_enroll_date,
-		project.work_start_time,
-		project.work_end_time,
-		job_candidate.candidate_number
-from job_candidate 
-			inner join job on job.job_number = job_candidate.job_number
-			inner join project on project.project_number = job.project_number	
-	where
-		project.project_number = #{projectNumber};
+		j.job_number,
+		p.project_number,
+		j.job_pay,
+		j.job_name,
+		j.job_start_date,
+		j.job_end_date,
+		j.job_requirement,
+		j.job_limit_count
+	from 
+		project p,
+		job j,
+		job_candidate c
+	where 
+		p.project_number = j.project_number and
+		j.job_number = c.job_number and
+		candidate_number = #{candidateNumber}
 </select>
-<select id="requestProjectJobListCanNum" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
-select
-		job.job_number,
-		project.project_number,
-		job.job_pay,
-		job.job_name,
-		job.job_start_date,
-		job.job_end_date,
-		job.job_requirement,
-		job.job_limit_count
-	from job_candidate 
-			inner join job on job.job_number = job_candidate.job_number
-			inner join project on project.project_number = job.project_number	
-	where
-		job_candidate.candidate_number = #{candidateNumber};
 
-</select>
 </mapper>
