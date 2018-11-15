@@ -1,7 +1,8 @@
 package com.lx.odw.controller;
 
-import java.util.Calendar;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import com.lx.odw.service.SeekerService;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ProjectVO;
+import com.lx.odw.vo.SeekerVO;
+import com.lx.odw.vo.WorkVO;
 
 @Controller
 public class SeekerController {
@@ -65,7 +68,31 @@ public class SeekerController {
 	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
 	public @ResponseBody List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
 		return service.manageJobList(vo);
-		
+	}
+	
+	@RequestMapping(value="requestSeekerDetail.do", method=RequestMethod.POST)
+	public @ResponseBody SeekerVO requestSeekerDetail(SeekerVO seekerVO) {
+		return service.requestSeekerDetail(seekerVO);
+	}
+	
+	@RequestMapping(value="requestSeekerCertificationDetail.do", method=RequestMethod.POST)
+	public @ResponseBody List<CertificateVO> requestSeekerCertificationDetail(SeekerVO seekerVO) {
+		return service.requestSeekerCertificationDetail(seekerVO);
+	}
+	
+	@RequestMapping(value="updateSeeker.do",method=RequestMethod.POST)
+	public @ResponseBody int updateSeeker(String seekerVO, String seekerPicture,HttpServletRequest request) {
+		return service.updateSeeker(seekerVO,seekerPicture,request);
+	}
+	
+	@RequestMapping(value="requestTodayWorkDetail.do",method=RequestMethod.POST)
+	public @ResponseBody WorkVO requestTodayWorkDetail(String seekerId) {
+		return service.requestTodayWorkDetail(seekerId);
+	}
+	
+	@RequestMapping(value="requestCommute.do",method=RequestMethod.POST)
+	public @ResponseBody int requestCommute(SeekerVO vo) {
+		return service.requestCommute(vo);
 	}
 	
 	//181113 윤정민 recycler view 를 이용하여 날짜 정렬 구현중

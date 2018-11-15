@@ -114,7 +114,7 @@
 					name="projectLng"></td>
 			</tr>
 			<tr>
-				<td><input type="button" class="btn btn-primary" type="button" value="상세정보"></td>
+				<td><input type="button" class="btn btn-primary" type="button" value="신청관리"></td>
 			</tr>
 
 		</table>
