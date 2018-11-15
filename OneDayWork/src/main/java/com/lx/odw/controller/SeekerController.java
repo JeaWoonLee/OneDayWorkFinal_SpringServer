@@ -62,6 +62,8 @@ public class SeekerController {
 //		
 //	}
 
+	
+	
 	@RequestMapping(value="manageJobList.do", method=RequestMethod.POST) 
 	public @ResponseBody List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
 		return service.manageJobList(vo);
