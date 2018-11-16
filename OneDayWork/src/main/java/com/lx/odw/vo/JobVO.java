@@ -13,14 +13,20 @@ public class JobVO {
     String jobEndDate;
     String jobRequirement;
     int jobLimitCount;
-
-
-
-    public int getJobNumber() {
-		return jobNumber;
+    int pay;
+    
+    
+    public int getPay() {
+		return pay;
 	}
 
+	public void setPay(int pay) {
+		this.pay = pay;
+	}
 
+	public int getJobNumber() {
+		return jobNumber;
+	}
 
 	public void setJobNumber(int jobNumber) {
 		this.jobNumber = jobNumber;

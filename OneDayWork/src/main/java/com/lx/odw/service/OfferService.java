@@ -1,7 +1,7 @@
 package com.lx.odw.service;
 
 import java.util.List;
-
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
@@ -21,5 +21,7 @@ public interface OfferService {
 
 	//웹 구인자 상세정보
 	String showPrjDetail(ProjectVO vo, HttpServletRequest request);
+
+	String insertProject(ProjectVO vo, String jobs, HttpSession seesion);
 
 }
