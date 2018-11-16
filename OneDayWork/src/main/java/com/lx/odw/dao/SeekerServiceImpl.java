@@ -157,4 +157,9 @@ public class SeekerServiceImpl implements SeekerService{
 		return seekerDAO.requestCommute(vo);
 	}
 
+	@Override
+	public List<JobCandidateVO> requestCandidateDateList(JobCandidateVO vo) {
+		return seekerDAO.requestCandidateDateList(vo);
+	}
+
 }

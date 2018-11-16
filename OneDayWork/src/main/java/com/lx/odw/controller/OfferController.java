@@ -52,9 +52,23 @@ public class OfferController {
 		return "projectList";
 	}
 	
+<<<<<<< HEAD
+	//À¥ »ç¿ëÀÚ°¡ µî·ÏÇÑ ÀÏ°¨ ¸ñ·Ï
+	@RequestMapping(value="offerProjectList.do", method=RequestMethod.POST)
+	public String searchEmpListByDeptId(ProjectVO projectVO, HttpServletRequest request) {
+		//·Î±×ÀÎ¿¡¼­ ¹Ş¾Æ¿À´Â ºÎºĞ
+		HttpSession session = request.getSession();//session=»óÅÂÁ¤º¸; ·Î±×ÀÎÇÑ »ç¿ëÀÚ ¸ñ·Ï¸¸ º¼¼ö ÀÖÀ½ 
+		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
+		List<ProjectVO> list = offerDAO.projectList(projectVO);
+				
+		request.setAttribute("projectList", list);
+		
+		return "projectList";
+=======
 	@RequestMapping(value="insertProject.do",method=RequestMethod.POST)
 	public @ResponseBody String insertProject (ProjectVO vo, String jobs,HttpSession seesion){
 		return service.insertProject(vo,jobs,seesion);
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	}
 		
 	//ì›¹ êµ¬ì¸ì ìƒì„¸ì •ë³´
