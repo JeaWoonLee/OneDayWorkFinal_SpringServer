@@ -154,6 +154,38 @@
 		 and b.job_number = #{jobNumber}
 		 and x.cnt = b.job_limit_count
 </select>
+<select id="managejobList" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
+	select 
+		p.project_number,
+		ST_X(p.project_location) as project_lng,
+		ST_Y(p.project_location) as project_lat,
+		p.project_name,
+		p.project_start_date,
+		p.project_end_date,
+		p.project_comment,
+		p.project_subject,
+		p.project_enroll_date,
+		p.work_start_time,
+		p.work_end_time,
+		j.job_number,
+		j.job_pay,
+		j.job_limit_count,
+		j.job_name,
+		c.target_date,
+		c.candidate_number,
+		c.candidate_status
+	from 
+		project p,
+		job j,
+		job_candidate c
+	where 
+		p.project_number = j.project_number and
+		j.job_number = c.job_number and
+		c.candidate_status = 0 and
+		c.seeker_id = #{seekerId}
+	order by 
+		c.target_date asc;
+</select>
 <!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
 	<!-- select * --> 
 	<!-- from  job --> 
@@ -175,10 +207,44 @@
 	from job_candidate
 			inner join job on job.job_number = job_candidate.job_number
 			inner join project on project.project_number = job.project_number	
-	where 
+
 			job_candidate.candidate_status = "0"
 			and job_candidate.seeker_id = #{seekerId};
 </select>
+<update id="cancelProject" parameterType="com.lx.odw.vo.ManageVO">
+
+<!-- update job 할때 candidate로 하면 요청이 0으로 와서 신청 취소가 안됨 .... join을 걸어서 프로젝트 id도 같이 받아야하나?
+아니면 보낼때 candidate number 자체를 보낼 방법 -->
+update job_candidate
+set candidate_status = 7
+where 
+	candidate_number = #{candidateNumber}; 
+</update>
+<select id="requestManageProjectDetail" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
+	select
+		j.job_number,
+		p.project_number,
+		j.job_pay,
+		j.job_name,
+		j.job_start_date,
+		j.job_end_date,
+		j.job_requirement,
+		ST_X(p.project_location) as project_lng,
+		ST_Y(p.project_location) as project_lat,
+		p.project_name,
+		c.target_date,
+		p.project_comment,
+		p.project_subject
+	from 
+		project p,
+		job j,
+		job_candidate c
+	where 
+		p.project_number = j.project_number and
+		j.job_number = c.job_number and
+		candidate_number = #{candidateNumber}
+</select>
+
 <select id="requestSeekerDetail" parameterType="com.lx.odw.vo.SeekerVO" resultType="com.lx.odw.vo.SeekerVO">
 	select
 		seeker_id,

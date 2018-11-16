@@ -35,8 +35,9 @@
 		
 </select>
 
-<!-- web 일감 목록 -->
-<select id="projectList" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
+<!-- 웹 일감 목록 쿼리문 -->
+<!-- parameterType DAO에서 넣어준 value에 타입을 맞춰서 써주면 된다 String-->
+<select id="projectList" parameterType="String" resultType="com.lx.odw.vo.ProjectVO">
 	select
 		*
 	from
@@ -46,5 +47,103 @@
 
 </select>
 
+<!--@Transactional-->
+<insert id="insertProject" parameterType="com.lx.odw.vo.ProjectVO">
+	insert into
+		project (
+			project_name,
+			project_subject,
+			project_start_date,
+			project_end_date,
+			work_start_time,
+			work_end_time,
+			const_certificate,
+			project_comment,
+			request_picture,
+			morning,
+			launch,
+			evening,
+			commute,
+			off_work,
+			project_location,
+			offer_id)
+		values (
+			#{projectName},
+			#{projectSubject},
+			#{projectStartDate},
+			#{projectEndDate},
+			#{workStartTime},
+			#{workEndTime},
+			#{constCertificate},
+			#{projectComment},
+			#{requestPicture},
+			#{morning},
+			#{launch},
+			#{evening},
+			#{commute},
+			#{offWork},
+			ST_GeomFromText('POINT(${projectLng} ${projectLat})'),
+			#{offerId})
+</insert>
+<insert id="insertJobs" parameterType="java.util.List">
+	insert into
+		job (
+			project_number,
+			job_name,
+			job_pay,
+			job_start_date,
+			job_end_date,
+			job_requirement,
+			job_limit_count)
+		values
+		<foreach collection="list" item="item" separator=" , ">
+			(
+			LAST_INSERT_ID(),
+			 #{item.jobName},
+			 #{item.jobPay},
+			 #{item.jobStartDate},
+			 #{item.jobEndDate},
+			 #{item.jobRequirement},
+			 #{item.jobLimitCount})
+		</foreach>
+</insert>
+<update id="subOfferCash" parameterType="com.lx.odw.vo.OfferVO">
+	update
+		offer
+	set
+		offer_cash = offer_cash - #{offerCash}
+	where
+		offer_id = #{offerId}
+</update>
+<!--//end @Transactional-->
+<select id="projectDetailInfo" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
+	select
+		*
+	from
+		project
+	where
+		offer_id = #{offerId}
+</select>
 
+<select id="showPrjDetail" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
+	select
+		project_number,
+		project_name,
+		project_start_date,
+		project_end_date,
+		ST_X(project_location) as project_lng,
+		ST_Y(project_location) as project_lat,
+		project_comment,
+		project_subject,
+		project_enroll_date,
+		work_start_time,
+		work_end_time,
+		request_picture,
+		const_certificate,
+		morning,launch,evening,commute,off_work
+	from
+		project
+	where
+		project_number = #{projectNumber}
+</select>
 </mapper>

@@ -20,6 +20,7 @@ import com.lx.odw.service.SeekerService;
 import com.lx.odw.util.Util;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
+import com.lx.odw.vo.ManageVO;
 import com.lx.odw.vo.ProjectVO;
 import com.lx.odw.vo.SeekerVO;
 import com.lx.odw.vo.WorkVO;
@@ -112,8 +113,19 @@ public class SeekerServiceImpl implements SeekerService{
 	}
 	
 	@Override
-	public List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
+	public List<ManageVO> manageJobList(ManageVO vo) {
 		return seekerDAO.managejobList(vo);
+	}
+	
+	@Override
+	public int cancelProject(ManageVO vo) {
+		return seekerDAO.cancelProject(vo);
+	}
+
+	@Override
+	public ManageVO requestManageProjectDetail(ManageVO vo) {
+		return seekerDAO.requestManageProjectDetail(vo);
+		
 	}
 
 	@Override
