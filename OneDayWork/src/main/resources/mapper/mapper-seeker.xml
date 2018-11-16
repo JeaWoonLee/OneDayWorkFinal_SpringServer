@@ -182,9 +182,8 @@
 		p.project_number = j.project_number and
 		j.job_number = c.job_number and
 		c.candidate_status = 0 and
-		c.seeker_id = #{seekerId}
-	order by 
-		c.target_date asc;
+		c.seeker_id = #{seekerId} and
+		c.target_date = #{targetDate}
 </select>
 <!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
 	<!-- select * --> 
@@ -198,23 +197,7 @@
 		values
 			(#{seekerId}, #{jobNumber}, #{targetDate}, #{candidateStatus})
 </insert>
-<<<<<<< HEAD
 
-=======
-<select id="ManageJobList" resultType="com.lx.odw.vo.ProjectVO">
-	<!-- select 절에 내가 뽑을 데이터값 추가 윤정민 병신 -->
-	select distinct job.job_name, job.job_pay, job.job_start_date,
-			job.job_end_date, job.job_requirement,
-			job.work_start_time, job.work_end_time,
-			job_candidate.seeker_id
-	from job_candidate
-			inner join job on job.job_number = job_candidate.job_number
-			inner join project on project.project_number = job.project_number	
-
-			job_candidate.candidate_status = "0"
-			and job_candidate.seeker_id = #{seekerId};
-</select>
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 <update id="cancelProject" parameterType="com.lx.odw.vo.ManageVO">
 
 <!-- update job 할때 candidate로 하면 요청이 0으로 와서 신청 취소가 안됨 .... join을 걸어서 프로젝트 id도 같이 받아야하나?
@@ -325,4 +308,15 @@ where
 		target_date = curdate() and
 		candidate_status = 1
 </update>
+<select id="requestCandidateDateList" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.vo.JobCandidateVO">
+	select distinct
+		target_date
+	from
+		job_candidate
+	where
+		candidate_status = 0 and
+		seeker_id = #{seekerId}
+	order by
+		target_date asc
+</select>
 </mapper>
