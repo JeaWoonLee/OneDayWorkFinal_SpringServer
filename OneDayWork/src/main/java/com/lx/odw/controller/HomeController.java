@@ -1,7 +1,5 @@
 package com.lx.odw.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -23,34 +21,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "show_map";
-	}
-	
-	//커밋 테스트
-	
-	@RequestMapping("haruMainPage.do")
-	public String offerLogin() {
-		System.out.println("haruMainPage이 실행됨");
 		return "haruMainPage";
 	}
-	
-	@RequestMapping("registration.do")
-	public String registration() {
-		System.out.println("registration이 실행됨");
-		return "registration";
-	}
-
-	
-
 		
 }

@@ -1,15 +1,29 @@
 package com.lx.odw.dao;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.google.gson.Gson;
+import com.lx.odw.controller.CertificateVO;
 import com.lx.odw.model.FilterModel;
 import com.lx.odw.service.SeekerService;
+import com.lx.odw.util.Util;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
+import com.lx.odw.vo.ManageVO;
 import com.lx.odw.vo.ProjectVO;
+import com.lx.odw.vo.SeekerVO;
+import com.lx.odw.vo.WorkVO;
 
 @Repository
 public class SeekerServiceImpl implements SeekerService{
@@ -99,8 +113,48 @@ public class SeekerServiceImpl implements SeekerService{
 	}
 	
 	@Override
-	public List<JobCandidateVO> manageJobList(JobCandidateVO vo) {
+	public List<ManageVO> manageJobList(ManageVO vo) {
 		return seekerDAO.managejobList(vo);
+	}
+	
+	@Override
+	public int cancelProject(ManageVO vo) {
+		return seekerDAO.cancelProject(vo);
+	}
+
+	@Override
+	public ManageVO requestManageProjectDetail(ManageVO vo) {
+		return seekerDAO.requestManageProjectDetail(vo);
+		
+	}
+
+	@Override
+	public SeekerVO requestSeekerDetail(SeekerVO seekerVO) {
+		return seekerDAO.requestSeekerDetail(seekerVO);
+	}
+
+	@Override
+	public List<CertificateVO> requestSeekerCertificationDetail(SeekerVO seekerVO) {
+		return seekerDAO.requestSeekerCertificationDetail(seekerVO);
+	}
+
+	@Override
+	public int updateSeeker(String seekerVO,String seekerPicture, HttpServletRequest request) {
+		Gson gson = new Gson();
+		SeekerVO item = gson.fromJson(seekerVO, SeekerVO.class);
+		String imgPath = Util.getUplodaPath(seekerPicture,request,item.getSeekerId());
+		item.setSeekerPicture(imgPath);
+		return seekerDAO.updateSeeker(item);
+	}
+
+	@Override
+	public WorkVO requestTodayWorkDetail(String seekerId) {
+		return seekerDAO.requestTodayWorkDetail(seekerId);
+	}
+
+	@Override
+	public int requestCommute(SeekerVO vo) {
+		return seekerDAO.requestCommute(vo);
 	}
 
 }

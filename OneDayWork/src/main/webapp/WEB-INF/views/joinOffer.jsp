@@ -84,6 +84,7 @@
 		});
 	}
 </script>
+<<<<<<< HEAD
 
 		<!-- 가운데로 오게함 -->
 <style>
@@ -92,17 +93,20 @@
 	}
 </style>
 <title>하루일감: 회원가입</title>
+=======
+<style>
+	.container{
+	    width: fit-content; height:fit-content; margin: 0 auto; margin-top:150px;
+	}
+</style>
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 </head>
 <body>
 	
 	<div class="container">
+		<h1>회원가입</h1>
 		<form method="get" action="joinOffer.do">
 			<table>
-				<thead>
-					<tr>
-						<th><h1>회원가입</h1></th>
-					</tr>
-				</thead>
 				<tbody>
 					<tr>
 						<td>아이디</td>

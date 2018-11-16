@@ -20,7 +20,16 @@ public class SeekerVO {
 	String seekerWeight;
 	double seekerLatitude;
 	double seekerLongitude;
+	String seekerPicture;
 	
+	public String getSeekerPicture() {
+		return seekerPicture;
+	}
+
+	public void setSeekerPicture(String seekerPicture) {
+		this.seekerPicture = seekerPicture;
+	}
+
 	public String getSeekerSex() {
 		return seekerSex;
 	}
