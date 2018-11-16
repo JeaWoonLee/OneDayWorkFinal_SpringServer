@@ -34,7 +34,7 @@ function showProjectDetail (projectNumber){
 </script>
 </head>
 <body>
-	<%List<ProjectVO> list = (List<ProjectVO>) request.getAttribute("projectList"); %><!-- 요청해서 받은 empList를 list에 담는다. -->
+<%List<ProjectVO> list = (List<ProjectVO>) request.getAttribute("projectList"); %>
 	<div class="container">
 		<h1>일감목록</h1>
 		<form method="post" action="joinOffer.do">
@@ -77,6 +77,7 @@ function showProjectDetail (projectNumber){
 			</table>
 
 		</form>
+
 	</div>
 
 	<!-- 일감 상세정보 모달창

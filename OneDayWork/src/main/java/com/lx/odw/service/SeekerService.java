@@ -53,4 +53,6 @@ public interface SeekerService {
 
 	int requestCommute(SeekerVO vo);
 
+	List<JobCandidateVO> requestCandidateDateList(JobCandidateVO vo);
+
 }
