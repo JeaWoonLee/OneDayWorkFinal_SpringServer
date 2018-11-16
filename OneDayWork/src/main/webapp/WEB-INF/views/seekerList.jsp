@@ -24,14 +24,14 @@
 	}
 </style>
 
-<title>하루일감: 일감목록</title>
+<title>하루일감: 신청자목록</title>
 </head>
 <body>
 <%List<ProjectVO> list = (List<ProjectVO>) request.getAttribute("projectList"); %>
 	
 	<div class="container">
 				<tr>
-					<th><h1>회원가입</h1></th>
+					<th><h1>신청자 목록</h1></th>
 				</tr>
 		<form action="projectList.do" method="post"><!-- 검색 버튼을 누를 경우 searchEmpListByDeptId.do로 보내준다. -->
 			<input class="form-control" type="text" value="" placeholder="번호를 입력하세요" id="offerId" name="offerId">

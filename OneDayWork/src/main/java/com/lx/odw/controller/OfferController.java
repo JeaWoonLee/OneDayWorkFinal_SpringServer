@@ -47,7 +47,7 @@ public class OfferController {
 	@RequestMapping(value="offerProjectList.do", method=RequestMethod.POST)
 	public String searchEmpListByDeptId(ProjectVO projectVO, HttpServletRequest request) {
 		//로그인에서 받아오는 부분
-		HttpSession session = request.getSession();//상태정보 로그인에서 한 
+		HttpSession session = request.getSession();//session=상태정보; 로그인한 사용자 목록만 볼수 있음 
 		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
 		List<ProjectVO> list = offerDAO.projectList(projectVO);
 				

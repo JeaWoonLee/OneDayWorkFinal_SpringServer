@@ -16,7 +16,6 @@
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 
-<title>하루일감: 회원가입</title>
 <script type="text/javascript">
 	var isOverlapCheck = false;
 
@@ -85,6 +84,14 @@
 		});
 	}
 </script>
+
+		<!-- 가운데로 오게함 -->
+<style>
+	.container{
+	    width: fit-content; height:fit-content; margin: 0 auto; margin-top:150px;
+	}
+</style>
+<title>하루일감: 회원가입</title>
 </head>
 <body>
 	
