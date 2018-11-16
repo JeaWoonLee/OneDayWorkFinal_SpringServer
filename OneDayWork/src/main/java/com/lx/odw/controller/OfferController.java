@@ -15,6 +15,7 @@ import com.lx.odw.dao.OfferDAO;
 import com.lx.odw.service.OfferService;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.OfferVO;
+import com.lx.odw.vo.OfferWorkVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Controller
@@ -86,5 +87,15 @@ public class OfferController {
 			return "offerLogin";
 		}
 		return "registration";
+	}
+	
+	@RequestMapping(value="requestOfferProjectList.do",method=RequestMethod.POST)
+	public @ResponseBody List<OfferWorkVO> requestOfferProjectList(String offerId) {
+		return service.requestOfferProjectList(offerId);
+	}
+	
+	@RequestMapping(value="getProjectCommuteInfo.do",method=RequestMethod.POST)
+	public @ResponseBody OfferWorkVO getProjectCommuteInfo(String projectNumber) {
+		return service.getProjectCommuteInfo(projectNumber);
 	}
 }

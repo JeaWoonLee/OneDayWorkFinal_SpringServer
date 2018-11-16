@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.lx.odw.service.OfferService;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.OfferVO;
+import com.lx.odw.vo.OfferWorkVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Repository
@@ -82,5 +83,15 @@ public class OfferServiceImpl implements OfferService{
 			}
 		}
 		return "프로젝트 등록에 실패하였습니다";
+	}
+
+	@Override
+	public List<OfferWorkVO> requestOfferProjectList(String offerId) {
+		return offerDAO.requestOfferProjectList(offerId);
+	}
+
+	@Override
+	public OfferWorkVO getProjectCommuteInfo(String projectNumber) {
+		return offerDAO.getProjectCommuteInfo(projectNumber);
 	}
 }

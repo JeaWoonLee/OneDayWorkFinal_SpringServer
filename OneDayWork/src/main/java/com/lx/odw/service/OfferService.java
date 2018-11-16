@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import com.lx.odw.vo.JobVO;
+import com.lx.odw.vo.OfferWorkVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Service
@@ -23,5 +24,9 @@ public interface OfferService {
 	String showPrjDetail(ProjectVO vo, HttpServletRequest request);
 
 	String insertProject(ProjectVO vo, String jobs, HttpSession seesion);
+
+	List<OfferWorkVO> requestOfferProjectList(String offerId);
+
+	OfferWorkVO getProjectCommuteInfo(String projectNumber);
 
 }

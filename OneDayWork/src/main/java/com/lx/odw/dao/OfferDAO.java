@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.OfferVO;
+import com.lx.odw.vo.OfferWorkVO;
 import com.lx.odw.vo.ProjectVO;
 
 @Repository
@@ -47,6 +48,14 @@ public class OfferDAO {
 	//웹 구인자 상세정보
 	public ProjectVO showPrjDetail(ProjectVO vo) {
 		return session.selectOne("showPrjDetail",vo);
+	}
+
+	public List<OfferWorkVO> requestOfferProjectList(String offerId) {
+		return session.selectList("requestOfferProjectList",offerId);
+	}
+
+	public OfferWorkVO getProjectCommuteInfo(String projectNumber) {
+		return session.selectOne("getProjectCommuteInfo",projectNumber);
 	}
 	
 //	public List<ProjectVO> getFaqList() {

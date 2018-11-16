@@ -4,7 +4,7 @@
 
 	<select id="getProjectList" resultType="com.lx.odw.vo.ProjectVO"
 		parameterType="com.lx.odw.model.FilterModel">
-		select
+		select distinct
 		p.project_number,
 		p.project_name,
 		p.offer_id,
@@ -22,8 +22,7 @@
 		from
 		project p, job j
 		where
-		1=1
-		and j.job_pay between ${minJobPay} and ${maxJobPay}
+		j.job_pay between ${minJobPay} and ${maxJobPay}
 		and p.project_number = j.project_number
 		and ST_Distance(ST_GeomFromText('POINT(${myLng} ${myLat})'), p.project_location) <![CDATA[ < ]]> ${maxDistance}
 	<if test="projectSubjectFilter!='없음'">

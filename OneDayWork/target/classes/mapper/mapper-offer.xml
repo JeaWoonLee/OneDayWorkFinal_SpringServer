@@ -146,4 +146,55 @@
 	where
 		project_number = #{projectNumber}
 </select>
+
+<select id="requestOfferProjectList" parameterType="String" resultType="com.lx.odw.vo.OfferWorkVO">
+select DISTINCT
+	project_number
+from
+	project
+where
+	offer_id = #{offerId} and
+	project_start_date <![CDATA[ <= ]]> curdate() and
+	project_end_date <![CDATA[ >= ]]> curdate()
+</select>
+<select id="getProjectCommuteInfo" parameterType="String" resultType="com.lx.odw.vo.OfferWorkVO">
+select DISTINCT
+	t.total, r.recruit, a.absent, p.project_number, p.work_start_time, p.work_end_time, p.offer_id, p.project_name, j.job_limit_count
+from
+	project p, job j,
+	(select
+		sum(j.job_limit_count) as total, p.project_number
+	 from
+		project p, job j
+	 where
+		p.project_number = #{projectNumber} and
+		p.project_number = j.project_number
+		) t,
+	(select DISTINCT
+		count(*) as recruit , p.project_number
+	 from
+		project p, job j, job_candidate c
+	 where
+		p.project_number = #{projectNumber} and
+		p.project_number = j.project_number and
+		j.job_number = c.job_number and
+		c.target_date = curdate() and
+		c.candidate_status BETWEEN 1 and 6) r,
+	(select DISTINCT
+		count(*) as absent, p.project_number
+	 from 
+		project p , job j, job_candidate c
+	 where
+	 	 p.project_number = #{projectNumber} and
+	 	 p.project_number = j.project_number and
+		 j.job_number = c.job_number and
+		 c.target_date = curdate() and
+         c.candidate_status = 1 or
+         c.candidate_status = 5) a
+where
+	p.project_number = #{projectNumber} and
+	p.project_number = j.project_number and
+	p.project_start_date  <![CDATA[ <= ]]> curdate() and
+	p.project_end_date <![CDATA[ >= ]]> curdate();
+</select>
 </mapper>
