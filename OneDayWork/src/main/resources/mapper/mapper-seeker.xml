@@ -156,6 +156,7 @@
 </select>
 <select id="managejobList" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
 	select 
+		distinct
 		p.project_number,
 		ST_X(p.project_location) as project_lng,
 		ST_Y(p.project_location) as project_lat,
@@ -173,17 +174,23 @@
 		j.job_name,
 		c.target_date,
 		c.candidate_number,
-		c.candidate_status
+		c.seeker_id,
+		c.candidate_status		
 	from 
 		project p,
 		job j,
 		job_candidate c
 	where 
 		p.project_number = j.project_number and
-		j.job_number = c.job_number and
-		c.candidate_status = 0 and
+		j.job_number = c.job_number and	
 		c.seeker_id = #{seekerId} and
-		c.target_date = #{targetDate}
+		c.target_date = #{targetDate}and 
+		c.candidate_status 
+		in (select c.candidate_status 
+			from job_candidate c
+			where c.candidate_status = 0 
+				or c.candidate_status = 1
+				or c.candidate_status = 7)
 </select>
 <!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
 	<!-- select * --> 
@@ -314,8 +321,13 @@ where
 	from
 		job_candidate
 	where
-		candidate_status = 0 and
-		seeker_id = #{seekerId}
+		seeker_id = #{seekerId} and
+		candidate_status 
+		in (select candidate_status 
+			from job_candidate 
+			where candidate_status = 0 
+				or candidate_status = 1
+				or candidate_status = 7)
 	order by
 		target_date asc
 </select>

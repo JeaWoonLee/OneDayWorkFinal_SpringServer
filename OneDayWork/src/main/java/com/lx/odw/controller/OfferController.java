@@ -52,24 +52,6 @@ public class OfferController {
 		return "projectList";
 	}
 	
-<<<<<<< HEAD
-	//웹 사용자가 등록한 일감 목록
-	@RequestMapping(value="offerProjectList.do", method=RequestMethod.POST)
-	public String searchEmpListByDeptId(ProjectVO projectVO, HttpServletRequest request) {
-		//로그인에서 받아오는 부분
-		HttpSession session = request.getSession();//session=상태정보; 로그인한 사용자 목록만 볼수 있음 
-		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
-		List<ProjectVO> list = offerDAO.projectList(projectVO);
-				
-		request.setAttribute("projectList", list);
-		
-		return "projectList";
-=======
-	@RequestMapping(value="insertProject.do",method=RequestMethod.POST)
-	public @ResponseBody String insertProject (ProjectVO vo, String jobs,HttpSession seesion){
-		return service.insertProject(vo,jobs,seesion);
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
-	}
 		
 	//�쎒 援ъ씤�옄 �긽�꽭�젙蹂�
 	@RequestMapping(value="showPrjDetail.do",method=RequestMethod.GET)
