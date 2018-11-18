@@ -6,9 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import com.lx.odw.vo.CommuteInfoVO;
+import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
+import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.OfferWorkVO;
+import com.lx.odw.vo.ProjectDetailVO;
 import com.lx.odw.vo.ProjectVO;
+import com.lx.odw.vo.SeekerDetailVO;
+import com.lx.odw.vo.SeekerVO;
 
 @Service
 public interface OfferService {
@@ -28,5 +34,27 @@ public interface OfferService {
 	List<OfferWorkVO> requestOfferProjectList(String offerId);
 
 	OfferWorkVO getProjectCommuteInfo(String projectNumber);
+
+	CommuteInfoVO requestProjectCommuteInfo(String projectNumber);
+
+	int requestAbsentByCandidateNumber(JobCandidateVO vo);
+
+	int requestWorkingByCandidateNumber(JobCandidateVO vo);
+
+	int requestOffWorkByCandidateNumber(JobCandidateVO vo);
+
+	int requestEvaluate(JobCandidateVO vo);
+
+	SeekerDetailVO requestSeekerDetail(SeekerVO vo);
+
+	int allAbsent(ProjectVO vo);
+
+	int allWorking(ProjectVO vo);
+
+	int allOffWork(ProjectVO vo);
+
+	List<ProjectVO> requestOfferManageProjectList(OfferVO vo);
+
+	ProjectDetailVO requestManageProjectDetailInfo(ProjectVO vo);
 
 }

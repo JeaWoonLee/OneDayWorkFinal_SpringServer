@@ -21,7 +21,25 @@ public class SeekerVO {
 	double seekerLatitude;
 	double seekerLongitude;
 	String seekerPicture;
+	String openPictureInfo;
+	String openLocationInfo;
 	
+	public String getOpenPictureInfo() {
+		return openPictureInfo;
+	}
+
+	public void setOpenPictureInfo(String openPictureInfo) {
+		this.openPictureInfo = openPictureInfo;
+	}
+
+	public String getOpenLocationInfo() {
+		return openLocationInfo;
+	}
+
+	public void setOpenLocationInfo(String openLocationInfo) {
+		this.openLocationInfo = openLocationInfo;
+	}
+
 	public String getSeekerPicture() {
 		return seekerPicture;
 	}

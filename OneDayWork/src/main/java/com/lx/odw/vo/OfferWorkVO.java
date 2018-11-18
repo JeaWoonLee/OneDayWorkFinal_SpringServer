@@ -7,13 +7,24 @@ public class OfferWorkVO {
 
 	int total;
 	int recruit;
-	int absent;
+	int commute;
 	int jobLimitCount;
 	int projectNumber;
 	String projectName;
 	String workStartTime;
 	String workEndTime;
 	
+	
+
+	public int getCommute() {
+		return commute;
+	}
+
+
+	public void setCommute(int commute) {
+		this.commute = commute;
+	}
+
 
 	public int getJobLimitCount() {
 		return jobLimitCount;
@@ -46,12 +57,12 @@ public class OfferWorkVO {
 
 
 	public int getAbsent() {
-		return absent;
+		return commute;
 	}
 
 
 	public void setAbsent(int absent) {
-		this.absent = absent;
+		this.commute = absent;
 	}
 
 

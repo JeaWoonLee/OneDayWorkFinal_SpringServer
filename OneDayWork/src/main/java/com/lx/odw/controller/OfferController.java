@@ -13,10 +13,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lx.odw.dao.OfferDAO;
 import com.lx.odw.service.OfferService;
+import com.lx.odw.vo.CommuteInfoVO;
+import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.OfferWorkVO;
+import com.lx.odw.vo.ProjectDetailVO;
 import com.lx.odw.vo.ProjectVO;
+import com.lx.odw.vo.SeekerDetailVO;
+import com.lx.odw.vo.SeekerVO;
 
 @Controller
 public class OfferController {
@@ -97,5 +102,60 @@ public class OfferController {
 	@RequestMapping(value="getProjectCommuteInfo.do",method=RequestMethod.POST)
 	public @ResponseBody OfferWorkVO getProjectCommuteInfo(String projectNumber) {
 		return service.getProjectCommuteInfo(projectNumber);
+	}
+	
+	@RequestMapping(value="requestProjectCommuteInfo.do", method=RequestMethod.POST)
+	public @ResponseBody CommuteInfoVO requestProjectCommuteInfo(String projectNumber) {
+		return service.requestProjectCommuteInfo(projectNumber);
+	}
+	
+	@RequestMapping(value="requestAbsentByCandidateNumber",method=RequestMethod.POST)
+	public @ResponseBody int requestAbsentByCandidateNumber(JobCandidateVO vo) {
+		return service.requestAbsentByCandidateNumber(vo);
+	}
+	
+	@RequestMapping(value="requestWorkingByCandidateNumber",method=RequestMethod.POST)
+	public @ResponseBody int requestWorkingByCandidateNumber(JobCandidateVO vo) {
+		return service.requestWorkingByCandidateNumber(vo);
+	}
+	
+	@RequestMapping(value="requestOffWorkByCandidateNumber",method=RequestMethod.POST)
+	public @ResponseBody int requestOffWorkByCandidateNumber(JobCandidateVO vo) {
+		return service.requestOffWorkByCandidateNumber(vo);
+	}
+	
+	@RequestMapping(value="requestEvaluate.do",method=RequestMethod.POST)
+	public @ResponseBody int requestEvaluate(JobCandidateVO vo) {
+		return service.requestEvaluate(vo);
+	}
+	
+	@RequestMapping(value="requestSeekerDetailPopup.do",method=RequestMethod.POST)
+	public @ResponseBody SeekerDetailVO requestSeekerDetail(SeekerVO vo) {
+		return service.requestSeekerDetail(vo);
+	}
+	
+	@RequestMapping(value="allAbsent.do",method=RequestMethod.POST)
+	public @ResponseBody int  allAbsent(ProjectVO vo) {
+		return service.allAbsent(vo);
+	}
+	
+	@RequestMapping(value="allWorking.do",method=RequestMethod.POST)
+	public @ResponseBody int  allWorking(ProjectVO vo) {
+		return service.allWorking(vo);
+	}
+	
+	@RequestMapping(value="allOffWork.do",method=RequestMethod.POST)
+	public @ResponseBody int  allOffWork(ProjectVO vo) {
+		return service.allOffWork(vo);
+	}
+	
+	@RequestMapping(value="requestOfferManageProjectList.do",method=RequestMethod.POST)
+	public @ResponseBody List<ProjectVO> requestOfferManageProjectList(OfferVO vo) {
+		return service.requestOfferManageProjectList(vo);
+	}
+	
+	@RequestMapping(value="requestManageProjectDetailInfo.do",method=RequestMethod.POST)
+	public @ResponseBody ProjectDetailVO requestManageProjectDetailInfo(ProjectVO vo) {
+		return service.requestManageProjectDetailInfo(vo);
 	}
 }
