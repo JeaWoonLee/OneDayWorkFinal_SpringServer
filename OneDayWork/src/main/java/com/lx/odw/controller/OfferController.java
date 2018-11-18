@@ -37,7 +37,7 @@ public class OfferController {
 		
 	}
 	
-	//ì›¹ êµ¬ì¸ì ì¼ê°ëª©ë¡
+	//ï¿½ì’ æ´ÑŠì”¤ï¿½ì˜„ ï¿½ì”ªåª›ë¨®ã‰æ¿¡ï¿½
 	@RequestMapping(value="projectList.do", method=RequestMethod.GET)
 	public String projectList(HttpServletRequest request) {
 		
@@ -53,11 +53,11 @@ public class OfferController {
 	}
 	
 <<<<<<< HEAD
-	//À¥ »ç¿ëÀÚ°¡ µî·ÏÇÑ ÀÏ°¨ ¸ñ·Ï
+	//ì›¹ ì‚¬ìš©ìê°€ ë“±ë¡í•œ ì¼ê° ëª©ë¡
 	@RequestMapping(value="offerProjectList.do", method=RequestMethod.POST)
 	public String searchEmpListByDeptId(ProjectVO projectVO, HttpServletRequest request) {
-		//·Î±×ÀÎ¿¡¼­ ¹Ş¾Æ¿À´Â ºÎºĞ
-		HttpSession session = request.getSession();//session=»óÅÂÁ¤º¸; ·Î±×ÀÎÇÑ »ç¿ëÀÚ ¸ñ·Ï¸¸ º¼¼ö ÀÖÀ½ 
+		//ë¡œê·¸ì¸ì—ì„œ ë°›ì•„ì˜¤ëŠ” ë¶€ë¶„
+		HttpSession session = request.getSession();//session=ìƒíƒœì •ë³´; ë¡œê·¸ì¸í•œ ì‚¬ìš©ì ëª©ë¡ë§Œ ë³¼ìˆ˜ ìˆìŒ 
 		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
 		List<ProjectVO> list = offerDAO.projectList(projectVO);
 				
@@ -71,7 +71,7 @@ public class OfferController {
 >>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	}
 		
-	//ì›¹ êµ¬ì¸ì ìƒì„¸ì •ë³´
+	//ï¿½ì’ æ´ÑŠì”¤ï¿½ì˜„ ï¿½ê¸½ï¿½ê½­ï¿½ì ™è¹‚ï¿½
 	@RequestMapping(value="showPrjDetail.do",method=RequestMethod.GET)
 	public String showPrjDetail (ProjectVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -85,10 +85,10 @@ public class OfferController {
 		}
 	}
 	
-	//ì»¤ë°‹ í…ŒìŠ¤íŠ¸
+	//è€Œã…»ì»  ï¿½ë€’ï¿½ë’ªï¿½ë“ƒ
 	@RequestMapping("haruMainPage.do")
 	public String offerLogin() {
-		System.out.println("haruMainPageì´ ì‹¤í–‰ë¨");
+		System.out.println("haruMainPageï¿½ì”  ï¿½ë–ï¿½ë»¾ï¿½ë§–");
 		return "haruMainPage";
 	}
 	
