@@ -115,6 +115,18 @@ public class OfferDAO {
 
 	public ProjectVO requestManageProjectDetailInfo(ProjectVO vo) {
 		return session.selectOne("requestManageProjectDetailInfo",vo);
+	}
+
+	public List<JobCandidateVO> getTargetDateListByJobNumber(JobCandidateVO vo) {
+		return session.selectList("getTargetDateListByJobNumber",vo);
+	}
+
+	public JobCandidateVO getCandidateListByCandidateVO(JobCandidateVO vo) {
+		return session.selectOne("getCandidateListByCandidateVO",vo);
+	}
+
+	public int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
+		return session.update("requestAcceptCandidateByCandidateNumber",vo);
 	}	
 
 }

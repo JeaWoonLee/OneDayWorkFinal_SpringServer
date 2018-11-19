@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.google.gson.Gson;
+import com.lx.odw.model.CandidateMapResponseModel;
 import com.lx.odw.service.OfferService;
 import com.lx.odw.vo.CertificationVO;
 import com.lx.odw.vo.CommuteInfoVO;
@@ -181,5 +182,39 @@ public class OfferServiceImpl implements OfferService{
 		item.setProjectVO(projectVO);
 		item.setJobList(jobList);
 		return item;
+	}
+
+	@Override
+	public CandidateMapResponseModel requestCandidateListByJobNumber(JobCandidateVO vo) {
+		HashMap<String,List<JobCandidateVO>> jobCandidateList = new HashMap<String, List<JobCandidateVO>>();
+		//해당 jobNumber 로 targetDate 리스트 가져오기
+		List<JobCandidateVO> targetDateList = offerDAO.getTargetDateListByJobNumber(vo);
+		System.out.println("getDateList : " + targetDateList.toString());
+		//하나의 targetDate 마다 candidateList 를 가져오고 hashMap 에 담기
+		//Distinct 처리가 되어 있지 않으므로 같은 targetDate 의 seeker 정보가 많다. 해당 각 seekerId 를 이용하여
+		//각각 seeker의 신뢰도를 포함한 정보를 가져온다
+		List<JobCandidateVO> candidateList = new ArrayList<JobCandidateVO>();
+		for(JobCandidateVO targetDate : targetDateList) {
+			JobCandidateVO candidate = offerDAO.getCandidateListByCandidateVO(targetDate);
+			//같은 targetDate 의 값이 있을 때, 
+			if(jobCandidateList.get(targetDate.getTargetDate()) != null) {
+				candidateList = jobCandidateList.get(targetDate.getTargetDate());
+				candidateList.add(candidate);
+			} else {
+				candidateList = new ArrayList<JobCandidateVO>();
+				candidateList.add(candidate);
+			}
+			jobCandidateList.put(targetDate.getTargetDate(), candidateList);
+		}
+		
+		CandidateMapResponseModel responseModel = new CandidateMapResponseModel();
+		responseModel.setResult(jobCandidateList);
+		responseModel.setTargetDateList(targetDateList);
+		return responseModel;
+	}
+
+	@Override
+	public int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
+		return offerDAO.requestAcceptCandidateByCandidateNumber(vo);
 	}
 }

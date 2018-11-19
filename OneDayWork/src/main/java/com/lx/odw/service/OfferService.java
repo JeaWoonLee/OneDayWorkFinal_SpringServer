@@ -1,11 +1,13 @@
 package com.lx.odw.service;
 
 import java.util.List;
-import javax.servlet.http.HttpSession;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import com.lx.odw.model.CandidateMapResponseModel;
 import com.lx.odw.vo.CommuteInfoVO;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
@@ -56,5 +58,9 @@ public interface OfferService {
 	List<ProjectVO> requestOfferManageProjectList(OfferVO vo);
 
 	ProjectDetailVO requestManageProjectDetailInfo(ProjectVO vo);
+
+	CandidateMapResponseModel requestCandidateListByJobNumber(JobCandidateVO vo);
+
+	int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo);
 
 }

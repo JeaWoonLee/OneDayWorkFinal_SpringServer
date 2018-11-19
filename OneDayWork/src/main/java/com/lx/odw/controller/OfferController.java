@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lx.odw.dao.OfferDAO;
+import com.lx.odw.model.CandidateMapResponseModel;
 import com.lx.odw.service.OfferService;
 import com.lx.odw.vo.CommuteInfoVO;
 import com.lx.odw.vo.JobCandidateVO;
@@ -157,5 +158,15 @@ public class OfferController {
 	@RequestMapping(value="requestManageProjectDetailInfo.do",method=RequestMethod.POST)
 	public @ResponseBody ProjectDetailVO requestManageProjectDetailInfo(ProjectVO vo) {
 		return service.requestManageProjectDetailInfo(vo);
+	}
+	
+	@RequestMapping(value="requestCandidateListByJobNumber.do",method=RequestMethod.POST)
+	public @ResponseBody CandidateMapResponseModel requestCandidateListByJobNumber (JobCandidateVO vo) {
+		return service.requestCandidateListByJobNumber(vo);
+	}
+	
+	@RequestMapping(value="requestAcceptCandidateByCandidateNumber.do", method=RequestMethod.POST)
+	public @ResponseBody int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
+		return service.requestAcceptCandidateByCandidateNumber(vo);
 	}
 }
