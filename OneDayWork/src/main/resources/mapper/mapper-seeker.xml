@@ -188,14 +188,10 @@
 		in (select c.candidate_status 
 			from job_candidate c
 			where c.candidate_status = 0 
-				or c.candidate_status = 1
-				or c.candidate_status = 7)
+				or c.candidate_status = 8
+				)
 </select>
-<!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
-	<!-- select * --> 
-	<!-- from  job --> 
-	<!-- 윤정민 진행중.... join 해야함 -->
-<!-- </select>--> 
+
 <insert id="candidateJob" parameterType="com.lx.odw.vo.JobCandidateVO">
 	insert
 		into job_candidate
@@ -325,8 +321,7 @@ where
 		in (select candidate_status 
 			from job_candidate 
 			where candidate_status = 0 
-				or candidate_status = 1
-				or candidate_status = 7)
+				or candidate_status = 8)
 	order by
 		target_date asc
 </select>

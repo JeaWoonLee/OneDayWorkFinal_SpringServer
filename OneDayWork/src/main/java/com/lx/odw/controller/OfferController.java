@@ -58,17 +58,6 @@ public class OfferController {
 		return "projectList";
 	}
 	
-<<<<<<< HEAD
-		
-	//�쎒 援ъ씤�옄 �긽�꽭�젙蹂�
-=======
-	@RequestMapping(value="insertProject.do",method=RequestMethod.POST)
-	public @ResponseBody String insertProject (ProjectVO vo, String jobs,HttpSession seesion){
-		return service.insertProject(vo,jobs,seesion);
-	}
-		
-	//웹 구인자 상세정보
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	@RequestMapping(value="showPrjDetail.do",method=RequestMethod.GET)
 	public String showPrjDetail (ProjectVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
