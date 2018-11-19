@@ -87,7 +87,8 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="button" class="btn btn-primary" type="button" value="신청관리">
+					<a href="seekerList.do" class="btn btn-primary">신청관리</a>
+					
 					<input type="button" class="btn btn-primary" type="button" value="출결관리">
 				</td>
 			</tr>

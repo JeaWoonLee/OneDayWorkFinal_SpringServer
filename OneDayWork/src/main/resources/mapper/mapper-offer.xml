@@ -36,7 +36,7 @@
 </select>
 
 <!-- 웹 일감 목록 쿼리문 -->
-<!-- parameterType DAO에서 넣어준 value에 타입을 맞춰서 써주면 된다 String-->
+<!-- parameterType에 DAO에서 넣어준 value에 타입을 맞춰서 써주면 된다 String-->
 <select id="projectList" parameterType="String" resultType="com.lx.odw.vo.ProjectVO">
 	select
 		*
@@ -145,5 +145,17 @@
 		project
 	where
 		project_number = #{projectNumber}
+</select>
+
+<select id="seekerList" parameterType="String" resultType="com.lx.odw.vo.SeekerVO">
+	select 
+		c.seeker_id, 
+		s.seeker_name, 
+		s.seeker_birth, 
+		s.seeker_sex
+	from 
+		job_candidate c, seeker s
+	where 
+		c.seeker_id = s.seeker_id
 </select>
 </mapper>

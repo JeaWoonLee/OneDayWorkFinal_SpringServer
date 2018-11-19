@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lx.odw.dao.OfferDAO;
 import com.lx.odw.service.OfferService;
+import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.ProjectVO;
+import com.lx.odw.vo.SeekerVO;
 
 @Controller
 public class OfferController {
@@ -25,6 +27,7 @@ public class OfferController {
 	
 	@Autowired
 	OfferDAO offerDAO;
+	
 	
 	@RequestMapping(value="getOffList.do", method=RequestMethod.POST)
 	public @ResponseBody List<ProjectVO> getOffList(){
@@ -37,7 +40,7 @@ public class OfferController {
 		
 	}
 	
-	//ì›¹ êµ¬ì¸ì ì¼ê°ëª©ë¡
+	//ï¿½ì’ æ´ÑŠì”¤ï¿½ì˜„ ï¿½ì”ªåª›ë¨®ã‰æ¿¡ï¿½
 	@RequestMapping(value="projectList.do", method=RequestMethod.GET)
 	public String projectList(HttpServletRequest request) {
 		
@@ -52,26 +55,8 @@ public class OfferController {
 		return "projectList";
 	}
 	
-<<<<<<< HEAD
-	//À¥ »ç¿ëÀÚ°¡ µî·ÏÇÑ ÀÏ°¨ ¸ñ·Ï
-	@RequestMapping(value="offerProjectList.do", method=RequestMethod.POST)
-	public String searchEmpListByDeptId(ProjectVO projectVO, HttpServletRequest request) {
-		//·Î±×ÀÎ¿¡¼­ ¹Ş¾Æ¿À´Â ºÎºĞ
-		HttpSession session = request.getSession();//session=»óÅÂÁ¤º¸; ·Î±×ÀÎÇÑ »ç¿ëÀÚ ¸ñ·Ï¸¸ º¼¼ö ÀÖÀ½ 
-		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
-		List<ProjectVO> list = offerDAO.projectList(projectVO);
-				
-		request.setAttribute("projectList", list);
 		
-		return "projectList";
-=======
-	@RequestMapping(value="insertProject.do",method=RequestMethod.POST)
-	public @ResponseBody String insertProject (ProjectVO vo, String jobs,HttpSession seesion){
-		return service.insertProject(vo,jobs,seesion);
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
-	}
-		
-	//ì›¹ êµ¬ì¸ì ìƒì„¸ì •ë³´
+	//ï¿½ì’ æ´ÑŠì”¤ï¿½ì˜„ ï¿½ê¸½ï¿½ê½­ï¿½ì ™è¹‚ï¿½
 	@RequestMapping(value="showPrjDetail.do",method=RequestMethod.GET)
 	public String showPrjDetail (ProjectVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -85,10 +70,18 @@ public class OfferController {
 		}
 	}
 	
-	//ì»¤ë°‹ í…ŒìŠ¤íŠ¸
+	@RequestMapping(value="seekerList.do",method=RequestMethod.GET)
+	public String seekerList(SeekerVO seekerVO, HttpServletRequest request) {//ìš”ì²­ì„ ë°›ëŠ” ë‚´ì¥ê°ì²´ httpservletrequest
+		HttpSession session = request.getSession();
+		JobCandidateVO jobcandidateVO  = (JobCandidateVO) session.getAttribute("seekerId");
+		
+		return "seekerList";
+	}
+	
+	//è€Œã…»ì»  ï¿½ë€’ï¿½ë’ªï¿½ë“ƒ
 	@RequestMapping("haruMainPage.do")
 	public String offerLogin() {
-		System.out.println("haruMainPageì´ ì‹¤í–‰ë¨");
+		System.out.println("haruMainPageï¿½ì”  ï¿½ë–ï¿½ë»¾ï¿½ë§–");
 		return "haruMainPage";
 	}
 	
@@ -101,4 +94,20 @@ public class OfferController {
 		}
 		return "registration";
 	}
+	
+	
+//	
+//	@RequestMapping(value="projectList.do", method=RequestMethod.GET)
+//	public String projectList(HttpServletRequest request) {
+//		
+//		HttpSession session = request.getSession();
+//		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
+//		if(offerVO != null) {
+//			List<ProjectVO> list = service.projectList(offerVO.getOfferId());
+//			request.setAttribute("projectList", list);
+//		} else {
+//			return "offerLogin";
+//		}
+//		return "projectList";
+//	}
 }

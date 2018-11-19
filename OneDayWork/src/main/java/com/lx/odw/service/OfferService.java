@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ProjectVO;
+import com.lx.odw.vo.SeekerVO;
 
 @Service
 public interface OfferService {
@@ -16,12 +17,17 @@ public interface OfferService {
 
 	List<JobVO> requestOffJobListByProjectNumber(ProjectVO projectVO);
 	
-	//웹 구인자 일감목록
+	//�쎒 援ъ씤�옄 �씪媛먮ぉ濡�
 	List<ProjectVO> projectList(String offerId);
+	
+	List<SeekerVO> seekerList(SeekerVO seekervo, String offerId);
+	
 
-	//웹 구인자 상세정보
+	//�쎒 援ъ씤�옄 �긽�꽭�젙蹂�
 	String showPrjDetail(ProjectVO vo, HttpServletRequest request);
 
 	String insertProject(ProjectVO vo, String jobs, HttpSession seesion);
+
+
 
 }

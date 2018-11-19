@@ -29,7 +29,8 @@ public class JoinDAO {
 	}
 	
 	public int joinOffer(OfferVO offerVO) throws Exception {
-		return session.insert("joinOffer",offerVO);
+		return session.insert("joinOffer", offerVO);
+		//(실행할 명령문과 일치하는 고유 식별자, 명령문에 전달할 매개변수 객체)
 	}
 	
 
