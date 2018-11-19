@@ -23,10 +23,9 @@ import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.OfferWorkVO;
 import com.lx.odw.vo.ProjectDetailVO;
 import com.lx.odw.vo.ProjectVO;
-<<<<<<< HEAD
-=======
+
 import com.lx.odw.vo.SeekerDetailVO;
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
 import com.lx.odw.vo.SeekerVO;
 
 @Repository
@@ -99,10 +98,12 @@ public class OfferServiceImpl implements OfferService{
 		return "�봽濡쒖젥�듃 �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎";
 	}
 
-	@Override
-	public List<SeekerVO> seekerList(SeekerVO seekervo, String seekerId) {
-		return offerDAO.seekerList(seekerId);
+	
+	public List<JobVO> seekerList(ProjectVO projectVO) {
+		ProjectVO offerId = null;
+		return offerDAO.seekerList(offerId);
 	}
+
 
 	@Override
 	public List<OfferWorkVO> requestOfferProjectList(String offerId) {

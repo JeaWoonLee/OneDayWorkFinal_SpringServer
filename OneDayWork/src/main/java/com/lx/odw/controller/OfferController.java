@@ -14,20 +14,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lx.odw.dao.OfferDAO;
 import com.lx.odw.model.CandidateMapResponseModel;
 import com.lx.odw.service.OfferService;
-<<<<<<< HEAD
-=======
+
 import com.lx.odw.vo.CommuteInfoVO;
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.OfferWorkVO;
 import com.lx.odw.vo.ProjectDetailVO;
 import com.lx.odw.vo.ProjectVO;
-<<<<<<< HEAD
-=======
+
 import com.lx.odw.vo.SeekerDetailVO;
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
 import com.lx.odw.vo.SeekerVO;
 
 @Controller
@@ -66,17 +64,23 @@ public class OfferController {
 		return "projectList";
 	}
 	
-<<<<<<< HEAD
+	@RequestMapping(value="seekerList.do",method=RequestMethod.GET)
+	public String seekerList(HttpServletRequest request) {//요청을 받는 내장객체 httpservletrequest
+		HttpSession session = request.getSession();
+		JobVO jobVO = (JobVO) session.getAttribute("projectNumber");
 		
-	//�쎒 援ъ씤�옄 �긽�꽭�젙蹂�
-=======
+		return "seekerList";
+	}
+
+		
+
 	@RequestMapping(value="insertProject.do",method=RequestMethod.POST)
 	public @ResponseBody String insertProject (ProjectVO vo, String jobs,HttpSession seesion){
 		return service.insertProject(vo,jobs,seesion);
 	}
 		
 	//웹 구인자 상세정보
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
 	@RequestMapping(value="showPrjDetail.do",method=RequestMethod.GET)
 	public String showPrjDetail (ProjectVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -90,17 +94,10 @@ public class OfferController {
 		}
 	}
 	
-<<<<<<< HEAD
-	@RequestMapping(value="seekerList.do",method=RequestMethod.GET)
-	public String seekerList(SeekerVO seekerVO, HttpServletRequest request) {//요청을 받는 내장객체 httpservletrequest
-		HttpSession session = request.getSession();
-		JobCandidateVO jobcandidateVO  = (JobCandidateVO) session.getAttribute("seekerId");
-		
-		return "seekerList";
-	}
+
 	
-=======
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
+	
 	//而ㅻ컠 �뀒�뒪�듃
 	@RequestMapping("haruMainPage.do")
 	public String offerLogin() {
@@ -117,10 +114,7 @@ public class OfferController {
 		}
 		return "registration";
 	}
-	
-<<<<<<< HEAD
-	
-//	
+
 //	@RequestMapping(value="projectList.do", method=RequestMethod.GET)
 //	public String projectList(HttpServletRequest request) {
 //		
@@ -134,7 +128,7 @@ public class OfferController {
 //		}
 //		return "projectList";
 //	}
-=======
+
 	@RequestMapping(value="requestOfferProjectList.do",method=RequestMethod.POST)
 	public @ResponseBody List<OfferWorkVO> requestOfferProjectList(String offerId) {
 		return service.requestOfferProjectList(offerId);
@@ -209,5 +203,5 @@ public class OfferController {
 	public @ResponseBody int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
 		return service.requestAcceptCandidateByCandidateNumber(vo);
 	}
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
 }

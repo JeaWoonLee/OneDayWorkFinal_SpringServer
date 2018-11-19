@@ -33,6 +33,11 @@ public class OfferDAO {
 	public List<ProjectVO> projectList(String offerId) {
 		return session.selectList("projectList", offerId);
 	}
+	
+	//웹 신청자 목록
+		public List<JobVO> seekerList(ProjectVO projectVO) {
+			return session.selectList("seekerList", projectVO);
+		}
 
 	@Transactional
 	public int insertProject(ProjectVO vo) {
@@ -52,21 +57,15 @@ public class OfferDAO {
 	public ProjectVO showPrjDetail(ProjectVO vo) {
 		return session.selectOne("showPrjDetail",vo);
 	}
-<<<<<<< HEAD
 	
-	//웹 신청자 목록
-	public List<SeekerVO> seekerList(String seekerId) {
-		return session.selectList("seekerList", seekerId);
-	}
+	
 
 	
 	
 //	public List<ProjectVO> getFaqList() {
 //		return session.selectList("faqList");
 //	}
-	
-	
-=======
+
 
 	public List<OfferWorkVO> requestOfferProjectList(String offerId) {
 		return session.selectList("requestOfferProjectList",offerId);
@@ -142,7 +141,5 @@ public class OfferDAO {
 
 	public int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
 		return session.update("requestAcceptCandidateByCandidateNumber",vo);
-	}	
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
-
+	}
 }

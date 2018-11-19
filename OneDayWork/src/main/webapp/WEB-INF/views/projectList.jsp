@@ -33,14 +33,11 @@ function showProjectDetail (projectNumber){
 }
 </script>
 </head>
-<<<<<<< HEAD
 <body>
 
-	<%List<ProjectVO> list = (List<ProjectVO>) request.getAttribute("projectList"); %><!-- 요청해서 받은 empList를 list에 담는다. -->
-=======
 <body>
 <%List<ProjectVO> list = (List<ProjectVO>) request.getAttribute("projectList"); %>
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
 	<div class="container">
 		<h1>일감목록</h1>
 			<table class="table table-hover">
@@ -80,15 +77,8 @@ function showProjectDetail (projectNumber){
 
 				</tbody>
 			</table>
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 		</form>
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	</div>
 
 	<!-- 일감 상세정보 모달창

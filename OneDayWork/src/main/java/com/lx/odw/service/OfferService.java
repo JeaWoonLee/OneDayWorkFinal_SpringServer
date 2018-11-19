@@ -15,10 +15,9 @@ import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.OfferWorkVO;
 import com.lx.odw.vo.ProjectDetailVO;
 import com.lx.odw.vo.ProjectVO;
-<<<<<<< HEAD
-=======
+
 import com.lx.odw.vo.SeekerDetailVO;
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
 import com.lx.odw.vo.SeekerVO;
 
 @Service
@@ -31,7 +30,7 @@ public interface OfferService {
 	//�쎒 援ъ씤�옄 �씪媛먮ぉ濡�
 	List<ProjectVO> projectList(String offerId);
 	
-	List<SeekerVO> seekerList(SeekerVO seekervo, String offerId);
+	List<JobVO> seekerList(ProjectVO projectVO);
 	
 
 	//�쎒 援ъ씤�옄 �긽�꽭�젙蹂�
@@ -39,9 +38,6 @@ public interface OfferService {
 
 	String insertProject(ProjectVO vo, String jobs, HttpSession seesion);
 
-<<<<<<< HEAD
-
-=======
 	List<OfferWorkVO> requestOfferProjectList(String offerId);
 
 	OfferWorkVO getProjectCommuteInfo(String projectNumber);
@@ -71,6 +67,6 @@ public interface OfferService {
 	CandidateMapResponseModel requestCandidateListByJobNumber(JobCandidateVO vo);
 
 	int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo);
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
 
 }
