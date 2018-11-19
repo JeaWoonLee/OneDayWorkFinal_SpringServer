@@ -17,16 +17,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
-<<<<<<< HEAD
-		<!-- 가운데로 오게함 -->
-<style>
-	.container{
-	    width: fit-content; height:fit-content; margin: 0 auto; margin-top:150px;
-	}
-</style>
-
-<title>하루일감: 일감목록</title>
-=======
 <style>
 .container {
 	width: fit-content;
@@ -42,24 +32,10 @@ function showProjectDetail (projectNumber){
 	document.location="showPrjDetail.do?projectNumber="+projectNumber;
 }
 </script>
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 </head>
 <body>
-<<<<<<< HEAD
 <%List<ProjectVO> list = (List<ProjectVO>) request.getAttribute("projectList"); %>
-	
-=======
-	<%List<ProjectVO> list = (List<ProjectVO>) request.getAttribute("projectList"); %><!-- 요청해서 받은 empList를 list에 담는다. -->
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	<div class="container">
-<<<<<<< HEAD
-				<tr>
-					<th><h1>회원가입</h1></th>
-				</tr>
-		<form action="projectList.do" method="post"><!-- 검색 버튼을 누를 경우 searchEmpListByDeptId.do로 보내준다. -->
-			<input class="form-control" type="text" value="" placeholder="번호를 입력하세요" id="offerId" name="offerId">
-			<button class="btn btn-primary" id="searchButton" type="submit">검색</button>
-=======
 		<h1>일감목록</h1>
 		<form method="post" action="joinOffer.do">
 			<table class="table table-hover">
@@ -100,45 +76,8 @@ function showProjectDetail (projectNumber){
 				</tbody>
 			</table>
 
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 		</form>
-<<<<<<< HEAD
-		<table class="table table-hover">
-			<thead>
-				
-				<tr class="row">
-					<th class="col-sm-1">일감 번호</th>
-					<th class="col-sm-2">일감 이름</th>
-					<th class="col-sm-2">일감 분류</th>
-					<th class="col-sm-3">일감 시작일</th>
-					<th class="col-sm-3">일감 종료일</th>	
-									
-				</tr>
-			</thead>
-			<tbody>
-			<%
-			if(list != null) {
-				int i=1;
-				for(ProjectVO item : list) {
-					
-			%>
-				<tr class="row">
-					<th class="col-sm-1"><%=i++%></th>
-					<th class="col-sm-1"><%=item.getProjectNumber() %></th>
-					<th class="col-sm-2"><%=item.getProjectName() %></th>
-					<th class="col-sm-2"><%=item.getProjectSubject() %></th>
-					<th class="col-sm-3"><%=item.getProjectStartDate() %></th>
-					<th class="col-sm-3"><%=item.getProjectEndDate()%></th>
-				</tr>
-			<% 
-				}
-			}
-			%>
-				
-			</tbody>
-		</table>	
-=======
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
 	</div>
 
 	<!-- 일감 상세정보 모달창

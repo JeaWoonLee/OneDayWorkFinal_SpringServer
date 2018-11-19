@@ -10,8 +10,51 @@ public class JobCandidateVO {
 	public int jobNumber;
 	public String targetDate;
 	public int candidateStatus;
+	public String jobName;
+	public String seekerName;
+	public String score;
+	public String evaluate;
 	
-	
+	public String getScore() {
+		return score;
+	}
+
+
+	public void setScore(String score) {
+		this.score = score;
+	}
+
+
+	public String getEvaluate() {
+		return evaluate;
+	}
+
+
+	public void setEvaluate(String evaluate) {
+		this.evaluate = evaluate;
+	}
+
+
+	public String getSeekerName() {
+		return seekerName;
+	}
+
+
+	public void setSeekerName(String seekerName) {
+		this.seekerName = seekerName;
+	}
+
+
+	public String getJobName() {
+		return jobName;
+	}
+
+
+	public void setJobName(String jobName) {
+		this.jobName = jobName;
+	}
+
+
 	public int getCandidateNumber() {
 		return candidateNumber;
 	}

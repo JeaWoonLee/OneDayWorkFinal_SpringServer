@@ -2,7 +2,9 @@ package com.lx.odw.dao;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,9 +14,16 @@ import org.springframework.stereotype.Repository;
 
 import com.google.gson.Gson;
 import com.lx.odw.service.OfferService;
+import com.lx.odw.vo.CertificationVO;
+import com.lx.odw.vo.CommuteInfoVO;
+import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.OfferVO;
+import com.lx.odw.vo.OfferWorkVO;
+import com.lx.odw.vo.ProjectDetailVO;
 import com.lx.odw.vo.ProjectVO;
+import com.lx.odw.vo.SeekerDetailVO;
+import com.lx.odw.vo.SeekerVO;
 
 @Repository
 public class OfferServiceImpl implements OfferService{
@@ -82,5 +91,95 @@ public class OfferServiceImpl implements OfferService{
 			}
 		}
 		return "프로젝트 등록에 실패하였습니다";
+	}
+
+	@Override
+	public List<OfferWorkVO> requestOfferProjectList(String offerId) {
+		return offerDAO.requestOfferProjectList(offerId);
+	}
+
+	@Override
+	public OfferWorkVO getProjectCommuteInfo(String projectNumber) {
+		return offerDAO.getProjectCommuteInfo(projectNumber);
+	}
+
+	@Override
+	public CommuteInfoVO requestProjectCommuteInfo(String projectNumber) {
+		//모집률, 출석률, 기간 정보
+		OfferWorkVO offerWorkVO = offerDAO.getProjectCommuteInfo(projectNumber);
+		List<JobVO> jobList = offerDAO.getJobNumberList(projectNumber);
+		Map<Integer,List<JobCandidateVO>> candidateMap = new HashMap<Integer, List<JobCandidateVO>>();
+		for(JobVO item : jobList) {
+			List<JobCandidateVO> items = offerDAO.getCommuteListByJobNumber(item.getJobNumber());
+			candidateMap.put(item.getJobNumber(), items);
+		}
+		CommuteInfoVO vo = new CommuteInfoVO();
+		vo.setOfferWorkVO(offerWorkVO);
+		vo.setJobList(jobList);
+		vo.setCandidateMap(candidateMap);
+		
+		return vo;
+	}
+
+	@Override
+	public int requestAbsentByCandidateNumber(JobCandidateVO vo) {
+		return offerDAO.requestAbsentByCandidateNumber(vo);
+	}
+
+	@Override
+	public int requestWorkingByCandidateNumber(JobCandidateVO vo) {
+		return offerDAO.requestWorkingByCandidateNumber(vo);
+	}
+
+	@Override
+	public int requestOffWorkByCandidateNumber(JobCandidateVO vo) {
+		return offerDAO.requestOffWorkByCandidateNumber(vo);
+	}
+
+	@Override
+	public int requestEvaluate(JobCandidateVO vo) {
+		return offerDAO.requestEvaluate(vo);
+	}
+
+	@Override
+	public SeekerDetailVO requestSeekerDetail(SeekerVO vo) {
+		SeekerVO seekerVO = offerDAO.requestSeekerDetail(vo);
+		List<JobCandidateVO> record = offerDAO.requestSeekerRecord(vo);
+		List<CertificationVO> certificate = offerDAO.requestSeekerCertificate(vo);
+		SeekerDetailVO item = new SeekerDetailVO();
+		item.setSeekerVO(seekerVO);
+		item.setRecord(record);
+		item.setCertificate(certificate);
+		return item;
+	}
+
+	@Override
+	public int allAbsent(ProjectVO vo) {
+		return offerDAO.allAbsent(vo);
+	}
+
+	@Override
+	public int allWorking(ProjectVO vo) {
+		return offerDAO.allWorking(vo);
+	}
+
+	@Override
+	public int allOffWork(ProjectVO vo) {
+		return offerDAO.allOffWork(vo);
+	}
+
+	@Override
+	public List<ProjectVO> requestOfferManageProjectList(OfferVO vo) {
+		return offerDAO.requestOfferManageProjectList(vo);
+	}
+
+	@Override
+	public ProjectDetailVO requestManageProjectDetailInfo(ProjectVO vo) {
+		ProjectVO projectVO = offerDAO.requestManageProjectDetailInfo(vo);
+		List<JobVO> jobList = offerDAO.requestOffJobListByProjectNumber(vo);
+		ProjectDetailVO item = new ProjectDetailVO();
+		item.setProjectVO(projectVO);
+		item.setJobList(jobList);
+		return item;
 	}
 }
