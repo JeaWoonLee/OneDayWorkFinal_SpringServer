@@ -12,11 +12,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lx.odw.dao.OfferDAO;
+import com.lx.odw.model.CandidateMapResponseModel;
 import com.lx.odw.service.OfferService;
+<<<<<<< HEAD
+=======
+import com.lx.odw.vo.CommuteInfoVO;
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.OfferVO;
+import com.lx.odw.vo.OfferWorkVO;
+import com.lx.odw.vo.ProjectDetailVO;
 import com.lx.odw.vo.ProjectVO;
+<<<<<<< HEAD
+=======
+import com.lx.odw.vo.SeekerDetailVO;
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 import com.lx.odw.vo.SeekerVO;
 
 @Controller
@@ -55,8 +66,17 @@ public class OfferController {
 		return "projectList";
 	}
 	
+<<<<<<< HEAD
 		
 	//�쎒 援ъ씤�옄 �긽�꽭�젙蹂�
+=======
+	@RequestMapping(value="insertProject.do",method=RequestMethod.POST)
+	public @ResponseBody String insertProject (ProjectVO vo, String jobs,HttpSession seesion){
+		return service.insertProject(vo,jobs,seesion);
+	}
+		
+	//웹 구인자 상세정보
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	@RequestMapping(value="showPrjDetail.do",method=RequestMethod.GET)
 	public String showPrjDetail (ProjectVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -70,6 +90,7 @@ public class OfferController {
 		}
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(value="seekerList.do",method=RequestMethod.GET)
 	public String seekerList(SeekerVO seekerVO, HttpServletRequest request) {//요청을 받는 내장객체 httpservletrequest
 		HttpSession session = request.getSession();
@@ -78,6 +99,8 @@ public class OfferController {
 		return "seekerList";
 	}
 	
+=======
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	//而ㅻ컠 �뀒�뒪�듃
 	@RequestMapping("haruMainPage.do")
 	public String offerLogin() {
@@ -95,6 +118,7 @@ public class OfferController {
 		return "registration";
 	}
 	
+<<<<<<< HEAD
 	
 //	
 //	@RequestMapping(value="projectList.do", method=RequestMethod.GET)
@@ -110,4 +134,80 @@ public class OfferController {
 //		}
 //		return "projectList";
 //	}
+=======
+	@RequestMapping(value="requestOfferProjectList.do",method=RequestMethod.POST)
+	public @ResponseBody List<OfferWorkVO> requestOfferProjectList(String offerId) {
+		return service.requestOfferProjectList(offerId);
+	}
+	
+	@RequestMapping(value="getProjectCommuteInfo.do",method=RequestMethod.POST)
+	public @ResponseBody OfferWorkVO getProjectCommuteInfo(String projectNumber) {
+		return service.getProjectCommuteInfo(projectNumber);
+	}
+	
+	@RequestMapping(value="requestProjectCommuteInfo.do", method=RequestMethod.POST)
+	public @ResponseBody CommuteInfoVO requestProjectCommuteInfo(String projectNumber) {
+		return service.requestProjectCommuteInfo(projectNumber);
+	}
+	
+	@RequestMapping(value="requestAbsentByCandidateNumber",method=RequestMethod.POST)
+	public @ResponseBody int requestAbsentByCandidateNumber(JobCandidateVO vo) {
+		return service.requestAbsentByCandidateNumber(vo);
+	}
+	
+	@RequestMapping(value="requestWorkingByCandidateNumber",method=RequestMethod.POST)
+	public @ResponseBody int requestWorkingByCandidateNumber(JobCandidateVO vo) {
+		return service.requestWorkingByCandidateNumber(vo);
+	}
+	
+	@RequestMapping(value="requestOffWorkByCandidateNumber",method=RequestMethod.POST)
+	public @ResponseBody int requestOffWorkByCandidateNumber(JobCandidateVO vo) {
+		return service.requestOffWorkByCandidateNumber(vo);
+	}
+	
+	@RequestMapping(value="requestEvaluate.do",method=RequestMethod.POST)
+	public @ResponseBody int requestEvaluate(JobCandidateVO vo) {
+		return service.requestEvaluate(vo);
+	}
+	
+	@RequestMapping(value="requestSeekerDetailPopup.do",method=RequestMethod.POST)
+	public @ResponseBody SeekerDetailVO requestSeekerDetail(SeekerVO vo) {
+		return service.requestSeekerDetail(vo);
+	}
+	
+	@RequestMapping(value="allAbsent.do",method=RequestMethod.POST)
+	public @ResponseBody int  allAbsent(ProjectVO vo) {
+		return service.allAbsent(vo);
+	}
+	
+	@RequestMapping(value="allWorking.do",method=RequestMethod.POST)
+	public @ResponseBody int  allWorking(ProjectVO vo) {
+		return service.allWorking(vo);
+	}
+	
+	@RequestMapping(value="allOffWork.do",method=RequestMethod.POST)
+	public @ResponseBody int  allOffWork(ProjectVO vo) {
+		return service.allOffWork(vo);
+	}
+	
+	@RequestMapping(value="requestOfferManageProjectList.do",method=RequestMethod.POST)
+	public @ResponseBody List<ProjectVO> requestOfferManageProjectList(OfferVO vo) {
+		return service.requestOfferManageProjectList(vo);
+	}
+	
+	@RequestMapping(value="requestManageProjectDetailInfo.do",method=RequestMethod.POST)
+	public @ResponseBody ProjectDetailVO requestManageProjectDetailInfo(ProjectVO vo) {
+		return service.requestManageProjectDetailInfo(vo);
+	}
+	
+	@RequestMapping(value="requestCandidateListByJobNumber.do",method=RequestMethod.POST)
+	public @ResponseBody CandidateMapResponseModel requestCandidateListByJobNumber (JobCandidateVO vo) {
+		return service.requestCandidateListByJobNumber(vo);
+	}
+	
+	@RequestMapping(value="requestAcceptCandidateByCandidateNumber.do", method=RequestMethod.POST)
+	public @ResponseBody int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
+		return service.requestAcceptCandidateByCandidateNumber(vo);
+	}
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 }

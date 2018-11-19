@@ -4,7 +4,7 @@
 
 	<select id="getProjectList" resultType="com.lx.odw.vo.ProjectVO"
 		parameterType="com.lx.odw.model.FilterModel">
-		select
+		select distinct
 		p.project_number,
 		p.project_name,
 		p.offer_id,
@@ -22,8 +22,7 @@
 		from
 		project p, job j
 		where
-		1=1
-		and j.job_pay between ${minJobPay} and ${maxJobPay}
+		j.job_pay between ${minJobPay} and ${maxJobPay}
 		and p.project_number = j.project_number
 		and ST_Distance(ST_GeomFromText('POINT(${myLng} ${myLat})'), p.project_location) <![CDATA[ < ]]> ${maxDistance}
 	<if test="projectSubjectFilter!='없음'">
@@ -156,6 +155,7 @@
 </select>
 <select id="managejobList" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
 	select 
+		distinct
 		p.project_number,
 		ST_X(p.project_location) as project_lng,
 		ST_Y(p.project_location) as project_lat,
@@ -173,18 +173,23 @@
 		j.job_name,
 		c.target_date,
 		c.candidate_number,
-		c.candidate_status
+		c.seeker_id,
+		c.candidate_status		
 	from 
 		project p,
 		job j,
 		job_candidate c
 	where 
 		p.project_number = j.project_number and
-		j.job_number = c.job_number and
-		c.candidate_status = 0 and
-		c.seeker_id = #{seekerId}
-	order by 
-		c.target_date asc;
+		j.job_number = c.job_number and	
+		c.seeker_id = #{seekerId} and
+		c.target_date = #{targetDate}and 
+		c.candidate_status 
+		in (select c.candidate_status 
+			from job_candidate c
+			where c.candidate_status = 0 
+				or c.candidate_status = 1
+				or c.candidate_status = 7)
 </select>
 <!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
 	<!-- select * --> 
@@ -198,19 +203,7 @@
 		values
 			(#{seekerId}, #{jobNumber}, #{targetDate}, #{candidateStatus})
 </insert>
-<select id="ManageJobList" resultType="com.lx.odw.vo.ProjectVO">
-	<!-- select 절에 내가 뽑을 데이터값 추가 윤정민 병신 -->
-	select distinct job.job_name, job.job_pay, job.job_start_date,
-			job.job_end_date, job.job_requirement,
-			job.work_start_time, job.work_end_time,
-			job_candidate.seeker_id
-	from job_candidate
-			inner join job on job.job_number = job_candidate.job_number
-			inner join project on project.project_number = job.project_number	
 
-			job_candidate.candidate_status = "0"
-			and job_candidate.seeker_id = #{seekerId};
-</select>
 <update id="cancelProject" parameterType="com.lx.odw.vo.ManageVO">
 
 <!-- update job 할때 candidate로 하면 요청이 0으로 와서 신청 취소가 안됨 .... join을 걸어서 프로젝트 id도 같이 받아야하나?
@@ -321,4 +314,20 @@ where
 		target_date = curdate() and
 		candidate_status = 1
 </update>
+<select id="requestCandidateDateList" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.vo.JobCandidateVO">
+	select distinct
+		target_date
+	from
+		job_candidate
+	where
+		seeker_id = #{seekerId} and
+		candidate_status 
+		in (select candidate_status 
+			from job_candidate 
+			where candidate_status = 0 
+				or candidate_status = 1
+				or candidate_status = 7)
+	order by
+		target_date asc
+</select>
 </mapper>

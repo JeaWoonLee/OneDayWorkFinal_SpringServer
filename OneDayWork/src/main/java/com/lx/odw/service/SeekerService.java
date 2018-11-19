@@ -42,7 +42,6 @@ public interface SeekerService {
 	ManageVO requestManageProjectDetail(ManageVO vo);
 
 	
-
 	SeekerVO requestSeekerDetail(SeekerVO seekerVO);
 
 	List<CertificateVO> requestSeekerCertificationDetail(SeekerVO seekerVO);
@@ -52,5 +51,7 @@ public interface SeekerService {
 	WorkVO requestTodayWorkDetail(String seekerId);
 
 	int requestCommute(SeekerVO vo);
+
+	List<JobCandidateVO> requestCandidateDateList(JobCandidateVO vo);
 
 }

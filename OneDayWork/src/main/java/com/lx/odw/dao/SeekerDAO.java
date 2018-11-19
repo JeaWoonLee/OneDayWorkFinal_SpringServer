@@ -98,4 +98,8 @@ public class SeekerDAO {
 		return session.update("requestCommute",vo);
 	}
 
+	public List<JobCandidateVO> requestCandidateDateList(JobCandidateVO vo) {
+		return session.selectList("requestCandidateDateList",vo);
+	}
+
 }
