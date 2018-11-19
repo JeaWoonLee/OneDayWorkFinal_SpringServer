@@ -44,7 +44,7 @@ public class OfferController {
 		
 	}
 	
-	//웹 구인자 일감목록
+	//�쎒 援ъ씤�옄 �씪媛먮ぉ濡�
 	@RequestMapping(value="projectList.do", method=RequestMethod.GET)
 	public String projectList(HttpServletRequest request) {
 		
@@ -78,10 +78,10 @@ public class OfferController {
 		}
 	}
 	
-	//커밋 테스트
+	//而ㅻ컠 �뀒�뒪�듃
 	@RequestMapping("haruMainPage.do")
 	public String offerLogin() {
-		System.out.println("haruMainPage이 실행됨");
+		System.out.println("haruMainPage�씠 �떎�뻾�맖");
 		return "haruMainPage";
 	}
 	

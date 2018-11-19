@@ -42,7 +42,6 @@ public interface SeekerService {
 	ManageVO requestManageProjectDetail(ManageVO vo);
 
 	
-
 	SeekerVO requestSeekerDetail(SeekerVO seekerVO);
 
 	List<CertificateVO> requestSeekerCertificationDetail(SeekerVO seekerVO);
