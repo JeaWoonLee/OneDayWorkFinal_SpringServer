@@ -54,4 +54,6 @@ public interface SeekerService {
 
 	List<JobCandidateVO> requestCandidateDateList(JobCandidateVO vo);
 
+	List<ManageVO> requestAcceptJobList(ManageVO vo);
+
 }

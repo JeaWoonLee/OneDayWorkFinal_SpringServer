@@ -112,5 +112,10 @@ public class SeekerController {
 	public @ResponseBody List<JobCandidateVO> requestCandidateDateList(JobCandidateVO vo) {
 		return service.requestCandidateDateList(vo);
 	}
+	
+	@RequestMapping(value="requestAcceptJobList.do",method=RequestMethod.POST)
+	public @ResponseBody List<ManageVO> requestAcceptJobList(ManageVO vo) {
+		return service.requestAcceptJobList(vo);
+	}
 
 }

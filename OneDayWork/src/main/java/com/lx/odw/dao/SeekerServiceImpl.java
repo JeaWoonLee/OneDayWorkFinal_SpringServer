@@ -162,4 +162,9 @@ public class SeekerServiceImpl implements SeekerService{
 		return seekerDAO.requestCandidateDateList(vo);
 	}
 
+	@Override
+	public List<ManageVO> requestAcceptJobList(ManageVO vo) {
+		return seekerDAO.requestAcceptJobList(vo);
+	}
+
 }

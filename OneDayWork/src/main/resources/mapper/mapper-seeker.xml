@@ -325,4 +325,7 @@ where
 	order by
 		target_date asc
 </select>
+<select id="requestAcceptJobList" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
+	
+</select>
 </mapper>
