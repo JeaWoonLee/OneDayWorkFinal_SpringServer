@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lx.odw.model.LoginModel;
 import com.lx.odw.model.OfferIdModel;
 import com.lx.odw.model.OfferPwModel;
+import com.lx.odw.model.ResponseModel;
 import com.lx.odw.model.SeekerIdModel;
 import com.lx.odw.model.SeekerPwModel;
 import com.lx.odw.service.LoginService;
@@ -65,6 +66,17 @@ public class LoginController {
 	@RequestMapping(value="offerPwFind.do", method=RequestMethod.POST)
 	public @ResponseBody OfferVO offerPwFind(OfferPwModel model) {
 		return service.offerPwFind(model);
+	}
+	
+	@RequestMapping(value="seekerPwAlter.do", method=RequestMethod.POST)
+	public @ResponseBody ResponseModel seekerPwAlter(SeekerVO seekerVO) throws Exception{
+		return null;
+	}
+	
+	@RequestMapping(value="offerPwAlter.do", method=RequestMethod.POST)
+	public @ResponseBody ResponseModel offerPwAlter(OfferVO offerVO) throws Exception{
+		return null;
+		
 	}
 	
 }
