@@ -57,6 +57,4 @@ public class LoginDAO {
 	public int offerPwAlter(OfferVO offerVO) {
 		return session.update("offerPwAlter", offerVO);
 	}
-
-	
 }

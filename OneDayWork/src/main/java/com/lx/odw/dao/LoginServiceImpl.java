@@ -52,13 +52,13 @@ public class LoginServiceImpl implements LoginService{
 	}
 	
 	@Override
-	public SeekerVO seekerPwFind(SeekerPwModel model) {
-		return loginDAO.seekerPwFind(model);
-	}
-
-	@Override
 	public OfferVO offerIdFind(OfferIdModel model) {
 		return loginDAO.offerIdFind(model);
+	}
+	
+	@Override
+	public SeekerVO seekerPwFind(SeekerPwModel model) {
+		return loginDAO.seekerPwFind(model);
 	}
 	
 	@Override

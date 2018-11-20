@@ -1,26 +1,28 @@
 package com.lx.odw.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class SeekerIdModel {
 
-	String userEmail;
-	String userName;
-	public String getUserEmail() {
-		return userEmail;
+	String seekerEmail;
+	String seekerName;
+	public String getSeekerEmail() {
+		return seekerEmail;
 	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setSeekerEmail(String seekerEmail) {
+		this.seekerEmail = seekerEmail;
 	}
-	public String getUserName() {
-		return userName;
+	public String getSeekerName() {
+		return seekerName;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setSeekerName(String seekerName) {
+		this.seekerName = seekerName;
 	}
 	@Override
 	public String toString() {
-		return "SeekerIdModel [userEmail=" + userEmail + ", userName=" + userName + "]";
+		return ToStringBuilder.reflectionToString(this,ToStringStyle.JSON_STYLE);
 	}
-	
 	
 	
 }

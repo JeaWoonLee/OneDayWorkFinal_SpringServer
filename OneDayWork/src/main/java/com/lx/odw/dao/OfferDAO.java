@@ -20,7 +20,7 @@ public class OfferDAO {
 
 	@Autowired
 	SqlSession session;
-	
+
 	public List<ProjectVO> getOffList() {
 		return session.selectList("getOffList");
 	}
@@ -28,16 +28,16 @@ public class OfferDAO {
 	public List<JobVO> requestOffJobListByProjectNumber(ProjectVO projectVO) {
 		return session.selectList("requestOffJobListByProjectNumber",projectVO);
 	}
-	
+
 	//�쎒 援ъ씤�옄 �씪源�紐⑸줉
 	public List<ProjectVO> projectList(String offerId) {
 		return session.selectList("projectList", offerId);
 	}
-	
+
 	//웹 신청자 목록
-		public List<JobVO> seekerList(ProjectVO projectVO) {
-			return session.selectList("seekerList", projectVO);
-		}
+	public List<JobVO> seekerList(ProjectVO projectVO) {
+		return session.selectList("seekerList", projectVO);
+	}
 
 	@Transactional
 	public int insertProject(ProjectVO vo) {
@@ -57,14 +57,14 @@ public class OfferDAO {
 	public ProjectVO showPrjDetail(ProjectVO vo) {
 		return session.selectOne("showPrjDetail",vo);
 	}
-	
-	
 
-	
-	
-//	public List<ProjectVO> getFaqList() {
-//		return session.selectList("faqList");
-//	}
+
+
+
+
+	//	public List<ProjectVO> getFaqList() {
+	//		return session.selectList("faqList");
+	//	}
 
 
 	public List<OfferWorkVO> requestOfferProjectList(String offerId) {

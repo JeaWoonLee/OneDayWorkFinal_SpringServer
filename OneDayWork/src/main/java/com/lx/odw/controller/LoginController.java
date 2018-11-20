@@ -68,7 +68,7 @@ public class LoginController {
 		return service.offerPwFind(model);
 	}
 	
-	@RequestMapping(value="seekerPwAlter.do", method=RequestMethod.POST)
+	@RequestMapping(value="seekerPw.do", method=RequestMethod.POST)
 	public @ResponseBody ResponseModel alterSeekerPw(SeekerPwModel model) throws Exception{
 		return service.alterSeekerPw(model);
 	}
@@ -78,7 +78,7 @@ public class LoginController {
 		return service.seekerPwAlter(seekerVO);
 	}
 	
-	@RequestMapping(value="offerPwAlter.do", method=RequestMethod.POST)
+	@RequestMapping(value="offerPw.do", method=RequestMethod.POST)
 	public @ResponseBody ResponseModel alterOfferPw(OfferPwModel model) throws Exception{
 		return service.alterOfferPw(model);	
 	}

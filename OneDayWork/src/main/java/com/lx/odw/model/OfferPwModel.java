@@ -1,25 +1,27 @@
 package com.lx.odw.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class OfferPwModel {
 
-	String userId;
-	String userEmail;
-	public String getUserId() {
-		return userId;
+	String offerId;
+	String offerEmail;
+	public String getOfferId() {
+		return offerId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setOfferId(String offerId) {
+		this.offerId = offerId;
 	}
-	public String getUserEmail() {
-		return userEmail;
+	public String getOfferEmail() {
+		return offerEmail;
 	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setOfferEmail(String offerEmail) {
+		this.offerEmail = offerEmail;
 	}
 	@Override
 	public String toString() {
-		return "OfferPwModel [userId=" + userId + ", userEmail=" + userEmail + "]";
+		return ToStringBuilder.reflectionToString(this,ToStringStyle.JSON_STYLE);
 	}
-	
 	
 }

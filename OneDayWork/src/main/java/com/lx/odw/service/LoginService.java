@@ -1,5 +1,7 @@
 package com.lx.odw.service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -24,13 +26,13 @@ public interface LoginService {
 
 	String offerLogin(LoginModel model, HttpSession session, HttpServletRequest request);
 
-	OfferVO offerIdFind(OfferIdModel model);
-
-	OfferVO offerPwFind(OfferPwModel model);
-
 	SeekerVO seekerIdFind(SeekerIdModel model);
 
 	SeekerVO seekerPwFind(SeekerPwModel model);
+	
+	OfferVO offerIdFind(OfferIdModel model);
+	
+	OfferVO offerPwFind(OfferPwModel model);
 
 	ResponseModel alterOfferPw(OfferPwModel model)throws Exception;
 
@@ -39,6 +41,7 @@ public interface LoginService {
 	ResponseModel offerPwAlter(OfferVO offerVO)throws Exception;
 
 	ResponseModel alterSeekerPw(SeekerPwModel model)throws Exception;
+
 	
 	
 }
