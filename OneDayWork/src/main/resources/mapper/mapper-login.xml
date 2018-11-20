@@ -2,22 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.mapper-login">
 
-<select id="seekerLogin" parameterType="com.lx.odw.model.LoginModel" resultType="com.lx.odw.vo.SeekerVO">
-	select
-		*
-	from
-		seeker
-	where
-		seeker_id = #{userId} and
-		seeker_pw = #{userPw}
-</select>
-<select id="offerLogin" parameterType="com.lx.odw.model.LoginModel" resultType="com.lx.odw.vo.OfferVO">
-select
-		*
-	from
-		offer
-	where
-		offer_id = #{userId} and
-		offer_pw = #{userPw}
-</select>
+	<select id="seekerLogin" parameterType="com.lx.odw.model.LoginModel" resultType="com.lx.odw.vo.SeekerVO">
+		select *
+		from seeker
+		where
+			seeker_id = #{userId} and
+			seeker_pw = #{userPw}
+	</select>
+	<select id="offerLogin" parameterType="com.lx.odw.model.LoginModel" resultType="com.lx.odw.vo.OfferVO">
+		select *
+		from offer
+		where 
+			offer_id = #{userId} and
+			offer_pw = #{userPw}
+	</select>
+	<select id="seekerIdFind">
+		select seeker_id
+		from seeker
+		where 
+			seeker_email = #{userEmail} and
+			seeker_name = #{userName}
+	</select>
+	
+	<select id="seekerPwFind">
+		select seeker_pw
+		from seeker
+		where
+			seeker_id = #{userId} and
+			seeker_email = #{userEmail}
+	</select>
+
+	<select id="offerIdFind">
+		select offer_id
+		from offer
+		where
+			offer_email = #{userEmail} and
+			offer_name = #{userName}
+	</select>
+
+	<select id="offerPwFind">
+		select offer_pw
+		from offer
+		where 
+			offer_id = #{userId} and
+			offer_email = #{userEmail}
+	</select>
+
 </mapper>

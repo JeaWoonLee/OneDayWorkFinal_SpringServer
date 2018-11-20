@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lx.odw.model.LoginModel;
+import com.lx.odw.model.OfferIdModel;
+import com.lx.odw.model.OfferPwModel;
+import com.lx.odw.model.SeekerIdModel;
+import com.lx.odw.model.SeekerPwModel;
 import com.lx.odw.service.LoginService;
 import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.SeekerVO;
@@ -42,4 +46,25 @@ public class LoginController {
 	public @ResponseBody OfferVO offerMobileLogin(LoginModel model) {
 		return service.offerMobileLogin(model);
 	}
+	
+	@RequestMapping(value="seekrIdFind.do", method=RequestMethod.POST)
+	public @ResponseBody SeekerVO seekerIdFind(SeekerIdModel model) {
+		return service.seekerIdFind(model);
+	}
+	
+	@RequestMapping(value="offerIdFind.do", method=RequestMethod.POST)
+	public @ResponseBody OfferVO offerIdFind(OfferIdModel model) {
+		return service.offerIdFind(model);
+	}
+	
+	@RequestMapping(value="seekerPwFind.do", method=RequestMethod.POST)
+	public @ResponseBody SeekerVO seekerPwFind(SeekerPwModel model) {
+		return service.seekerPwFind(model);
+	}
+	
+	@RequestMapping(value="offerPwFind.do", method=RequestMethod.POST)
+	public @ResponseBody OfferVO offerPwFind(OfferPwModel model) {
+		return service.offerPwFind(model);
+	}
+	
 }
