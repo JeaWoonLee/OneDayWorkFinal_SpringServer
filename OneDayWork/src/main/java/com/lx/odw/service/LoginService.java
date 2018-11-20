@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.lx.odw.model.LoginModel;
 import com.lx.odw.model.OfferIdModel;
 import com.lx.odw.model.OfferPwModel;
+import com.lx.odw.model.ResponseModel;
 import com.lx.odw.model.SeekerIdModel;
 import com.lx.odw.model.SeekerPwModel;
 import com.lx.odw.vo.OfferVO;
@@ -30,6 +31,14 @@ public interface LoginService {
 	SeekerVO seekerIdFind(SeekerIdModel model);
 
 	SeekerVO seekerPwFind(SeekerPwModel model);
+
+	ResponseModel alterOfferPw(OfferPwModel model)throws Exception;
+
+	ResponseModel seekerPwAlter(SeekerVO seekerVO)throws Exception;
+
+	ResponseModel offerPwAlter(OfferVO offerVO)throws Exception;
+
+	ResponseModel alterSeekerPw(SeekerPwModel model)throws Exception;
 	
 	
 }

@@ -69,14 +69,23 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="seekerPwAlter.do", method=RequestMethod.POST)
+	public @ResponseBody ResponseModel alterSeekerPw(SeekerPwModel model) throws Exception{
+		return service.alterSeekerPw(model);
+	}
+	
+	@RequestMapping(value="seekerPwAlter.do", method=RequestMethod.POST)
 	public @ResponseBody ResponseModel seekerPwAlter(SeekerVO seekerVO) throws Exception{
-		return null;
+		return service.seekerPwAlter(seekerVO);
+	}
+	
+	@RequestMapping(value="offerPwAlter.do", method=RequestMethod.POST)
+	public @ResponseBody ResponseModel alterOfferPw(OfferPwModel model) throws Exception{
+		return service.alterOfferPw(model);	
 	}
 	
 	@RequestMapping(value="offerPwAlter.do", method=RequestMethod.POST)
 	public @ResponseBody ResponseModel offerPwAlter(OfferVO offerVO) throws Exception{
-		return null;
-		
+		return service.offerPwAlter(offerVO);
 	}
 	
 }
