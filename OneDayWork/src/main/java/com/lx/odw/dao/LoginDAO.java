@@ -42,24 +42,20 @@ public class LoginDAO {
 		return session.selectOne("offerPw",model);
 	}
 
-	public int alterOfferPw(OfferPwModel model) {
-
-		return 0;
-	}
-
 	public int alterSeekerPw(SeekerPwModel model) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.selectOne("alterSeekerPw",model);
 	}
 
 	public int seekerPwAlter(SeekerVO seekerVO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.update("seekerPwAlter", seekerVO);
+	}
+	
+	public int alterOfferPw(OfferPwModel model) {
+		return session.selectOne("alterOfferPw", model);	
 	}
 
 	public int offerPwAlter(OfferVO offerVO) {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.update("offerPwAlter", offerVO);
 	}
 
 	
