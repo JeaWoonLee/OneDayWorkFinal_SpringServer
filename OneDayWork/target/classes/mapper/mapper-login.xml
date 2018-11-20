@@ -16,7 +16,7 @@
 			offer_id = #{userId} and
 			offer_pw = #{userPw}
 	</select>
-	<select id="seekerIdFind">
+	<select id="seekerId" parameterType="com.lx.odw.model.SeekerIdModel" resultType="com.lx.odw.vo.SeekerVO">
 		select seeker_id
 		from seeker
 		where 
@@ -24,7 +24,7 @@
 			seeker_name = #{userName}
 	</select>
 	
-	<select id="seekerPwFind">
+	<select id="seekerPw" parameterType="com.lx.odw.model.SeekerPwModel" resultType="com.lx.odw.vo.SeekerVO">
 		select seeker_pw
 		from seeker
 		where
@@ -32,7 +32,7 @@
 			seeker_email = #{userEmail}
 	</select>
 
-	<select id="offerIdFind">
+	<select id="offerId" parameterType="com.lx.odw.model.OfferIdModel" resultType="com.lx.odw.vo.OfferVO">
 		select offer_id
 		from offer
 		where
@@ -40,7 +40,7 @@
 			offer_name = #{userName}
 	</select>
 
-	<select id="offerPwFind">
+	<select id="offerPw" parameterType="com.lx.odw.model.OfferPwModel" resultType="com.lx.odw.vo.OfferVO">
 		select offer_pw
 		from offer
 		where 
