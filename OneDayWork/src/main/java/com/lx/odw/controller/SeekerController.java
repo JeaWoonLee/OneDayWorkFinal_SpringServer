@@ -114,8 +114,8 @@ public class SeekerController {
 	}
 	
 	@RequestMapping(value="requestAcceptJobList.do",method=RequestMethod.POST)
-	public @ResponseBody List<ManageVO> requestAcceptJobList(ManageVO vo) {
-		return service.requestAcceptJobList(vo);
+	public @ResponseBody List<ManageVO> requestAcceptJobList(String seekerId) {
+		return service.requestAcceptJobList(seekerId);
 	}
 
 }

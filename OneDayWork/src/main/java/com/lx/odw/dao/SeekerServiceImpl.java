@@ -163,8 +163,8 @@ public class SeekerServiceImpl implements SeekerService{
 	}
 
 	@Override
-	public List<ManageVO> requestAcceptJobList(ManageVO vo) {
-		return seekerDAO.requestAcceptJobList(vo);
+	public List<ManageVO> requestAcceptJobList(String seekerId) {
+		return seekerDAO.requestAcceptJobList(seekerId);
 	}
 
 }

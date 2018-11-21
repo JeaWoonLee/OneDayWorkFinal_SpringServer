@@ -102,9 +102,9 @@ public class SeekerDAO {
 		return session.selectList("requestCandidateDateList",vo);
 	}
 
-	public List<ManageVO> requestAcceptJobList(ManageVO vo) {
+	public List<ManageVO> requestAcceptJobList(String seekerId) {
 		
-		return session.selectList("requestAcceptJobList", vo);
+		return session.selectList("requestAcceptJobList", seekerId);
 	}
 
 }

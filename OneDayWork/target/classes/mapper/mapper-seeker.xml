@@ -325,7 +325,14 @@ where
 	order by
 		target_date asc
 </select>
-<select id="requestAcceptJobList" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
-	
+<select id="requestAcceptJobList" parameterType="String" resultType="com.lx.odw.vo.ManageVO">
+	select *
+	from project p,
+		job j,
+		job_candidate c
+	where p.project_number = j.project_number and
+		j.job_number = c.job_number and
+		c.seeker_id = #{seekerId} and
+		c.candidate_status = 1
 </select>
 </mapper>
