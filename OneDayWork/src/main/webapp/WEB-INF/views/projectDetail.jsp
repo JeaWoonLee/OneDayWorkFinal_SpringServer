@@ -30,19 +30,19 @@
 		<h1>상세정보</h1>
 		<table class="table table-hover">
 			<tr>
-				<td>일감</td>
+				<td>일감 이름</td>
 				<td><%=item.getProjectName()%></td>
 			</tr>
 			<tr>
-				<td>업종분류</td>
+				<td>일감 분류</td>
 				<td><%=item.getProjectSubject()%></td>
 			</tr>
 			<tr>
-				<td>기간</td>
+				<td>일감 기간</td>
 				<td><%=item.getProjectStartDate()%> ~ <%=item.getProjectEndDate()%></td>
 			</tr>
 			<tr>
-				<td>근무시간</td>
+				<td>근무 시간</td>
 				<td><%=item.getWorkStartTime()%> ~ <%=item.getWorkEndTime()%></td>
 			</tr>
 			<tr>
@@ -50,8 +50,8 @@
 				<td><%=item.getProjectComment()%></td>
 			</tr>
 			<tr>
-				<td>근무 장소</td>
-				<td><label for="locationLabel">근무 장소</label>
+				<td>일감 위치</td>
+				<td><label for="locationLabel">일감 위치</label>
 					<div id="map" style="width: 450px; height: 350px;"></div>
 					<script>
 
@@ -87,7 +87,8 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="button" class="btn btn-primary" type="button" value="신청관리">
+					<a href="seekerList.do" class="btn btn-primary">신청관리</a>
+					
 					<input type="button" class="btn btn-primary" type="button" value="출결관리">
 				</td>
 			</tr>

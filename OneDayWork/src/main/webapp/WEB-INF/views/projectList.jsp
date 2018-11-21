@@ -29,15 +29,17 @@
 <script type="text/javascript">
 function showProjectDetail (projectNumber){
 	console.log(projectNumber);
-	document.location="showPrjDetail.do?projectNumber="+projectNumber;
+	document.location="showPrjDetail.do?projectNumber="+projectNumber; //projectNumber파라메터값
 }
 </script>
 </head>
 <body>
+
+<body>
 <%List<ProjectVO> list = (List<ProjectVO>) request.getAttribute("projectList"); %>
+
 	<div class="container">
 		<h1>일감목록</h1>
-		<form method="post" action="joinOffer.do">
 			<table class="table table-hover">
 				<thead>
 
@@ -75,7 +77,6 @@ function showProjectDetail (projectNumber){
 
 				</tbody>
 			</table>
-
 		</form>
 
 	</div>

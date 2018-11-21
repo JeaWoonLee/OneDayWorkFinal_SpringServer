@@ -21,7 +21,7 @@ public class OfferDAO {
 
 	@Autowired
 	SqlSession session;
-	
+
 	public List<ProjectVO> getOffList() {
 		return session.selectList("getOffList");
 	}
@@ -29,10 +29,15 @@ public class OfferDAO {
 	public List<JobVO> requestOffJobListByProjectNumber(ProjectVO projectVO) {
 		return session.selectList("requestOffJobListByProjectNumber",projectVO);
 	}
-	
-	//웹 구인자 일김목록
+
+	//�쎒 援ъ씤�옄 �씪源�紐⑸줉
 	public List<ProjectVO> projectList(String offerId) {
 		return session.selectList("projectList", offerId);
+	}
+
+	//웹 신청자 목록
+	public List<JobVO> seekerList(ProjectVO projectVO) {
+		return session.selectList("seekerList", projectVO);
 	}
 
 	@Transactional
@@ -49,7 +54,7 @@ public class OfferDAO {
 	public int subOfferCash(OfferVO offerVO) {
 		return session.update("subOfferCash",offerVO);
 	}
-	//웹 구인자 상세정보
+	//�쎒 援ъ씤�옄 �긽�꽭�젙蹂�
 	public ProjectVO showPrjDetail(ProjectVO vo) {
 		return session.selectOne("showPrjDetail",vo);
 	}
@@ -146,5 +151,4 @@ public class OfferDAO {
 		return session.selectList("requestRecruitListByJobNumAndTargetDate",item);
 	}
 	
-
 }

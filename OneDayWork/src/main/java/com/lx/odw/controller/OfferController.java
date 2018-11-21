@@ -16,14 +16,18 @@ import com.lx.odw.model.CandidateMapResponseModel;
 import com.lx.odw.model.HumanResRsponseModel;
 import com.lx.odw.model.ManageHumanResourceModel;
 import com.lx.odw.service.OfferService;
+
 import com.lx.odw.vo.CommuteInfoVO;
+
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.OfferWorkVO;
 import com.lx.odw.vo.ProjectDetailVO;
 import com.lx.odw.vo.ProjectVO;
+
 import com.lx.odw.vo.SeekerDetailVO;
+
 import com.lx.odw.vo.SeekerVO;
 
 @Controller
@@ -34,6 +38,7 @@ public class OfferController {
 	
 	@Autowired
 	OfferDAO offerDAO;
+	
 	
 	@RequestMapping(value="getOffList.do", method=RequestMethod.POST)
 	public @ResponseBody List<ProjectVO> getOffList(){
@@ -61,12 +66,23 @@ public class OfferController {
 		return "projectList";
 	}
 	
+	@RequestMapping(value="seekerList.do",method=RequestMethod.GET)
+	public String seekerList(HttpServletRequest request) {//요청을 받는 내장객체 httpservletrequest
+		HttpSession session = request.getSession();
+		JobVO jobVO = (JobVO) session.getAttribute("projectNumber");
+		
+		return "seekerList";
+	}
+
+		
+
 	@RequestMapping(value="insertProject.do",method=RequestMethod.POST)
 	public @ResponseBody String insertProject (ProjectVO vo, String jobs,HttpSession seesion){
 		return service.insertProject(vo,jobs,seesion);
 	}
 		
 	//웹 구인자 상세정보
+
 	@RequestMapping(value="showPrjDetail.do",method=RequestMethod.GET)
 	public String showPrjDetail (ProjectVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -79,6 +95,10 @@ public class OfferController {
 			return "offerLogin";
 		}
 	}
+	
+
+	
+
 	
 	//而ㅻ컠 �뀒�뒪�듃
 	@RequestMapping("haruMainPage.do")
@@ -96,7 +116,21 @@ public class OfferController {
 		}
 		return "registration";
 	}
-	
+
+//	@RequestMapping(value="projectList.do", method=RequestMethod.GET)
+//	public String projectList(HttpServletRequest request) {
+//		
+//		HttpSession session = request.getSession();
+//		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
+//		if(offerVO != null) {
+//			List<ProjectVO> list = service.projectList(offerVO.getOfferId());
+//			request.setAttribute("projectList", list);
+//		} else {
+//			return "offerLogin";
+//		}
+//		return "projectList";
+//	}
+
 	@RequestMapping(value="requestOfferProjectList.do",method=RequestMethod.POST)
 	public @ResponseBody List<OfferWorkVO> requestOfferProjectList(String offerId) {
 		return service.requestOfferProjectList(offerId);
@@ -186,4 +220,5 @@ public class OfferController {
 	public @ResponseBody HumanResRsponseModel requestTargetDateRecruitInfo (ManageHumanResourceModel vo) {
 		return service.requestTargetDateRecruitInfo(vo);
 	}
+
 }

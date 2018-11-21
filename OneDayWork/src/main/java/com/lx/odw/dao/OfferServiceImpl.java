@@ -25,7 +25,9 @@ import com.lx.odw.vo.OfferVO;
 import com.lx.odw.vo.OfferWorkVO;
 import com.lx.odw.vo.ProjectDetailVO;
 import com.lx.odw.vo.ProjectVO;
+
 import com.lx.odw.vo.SeekerDetailVO;
+
 import com.lx.odw.vo.SeekerVO;
 
 @Repository
@@ -44,13 +46,14 @@ public class OfferServiceImpl implements OfferService{
 		return offerDAO.requestOffJobListByProjectNumber(projectVO);
 	}
 
-	//웹 구인자 일감목록
+	//�쎒 援ъ씤�옄 �씪媛먮ぉ濡�
 	@Override
 	public List<ProjectVO> projectList(String offerId) {
 		return offerDAO.projectList(offerId);
 	}
+	
 
-	//웹 구인자 상세정보
+	//�쎒 援ъ씤�옄 �긽�꽭�젙蹂�
 	@Override
 	public String showPrjDetail(ProjectVO vo, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -64,6 +67,7 @@ public class OfferServiceImpl implements OfferService{
 		}
 		return "projectDetail";
 	}
+	
 
 	@Override
 	public String insertProject(ProjectVO vo, String jobs,HttpSession session) {
@@ -85,16 +89,23 @@ public class OfferServiceImpl implements OfferService{
 				offerVO.setOfferCash(pay);
 				int subOfferCash = offerDAO.subOfferCash(offerVO);
 				if(subOfferCash > 0) {
-					//성공
-					return "프로젝트를 성공적으로 등록하였습니다";
+					//�꽦怨�
+					return "�봽濡쒖젥�듃瑜� �꽦怨듭쟻�쑝濡� �벑濡앺븯���뒿�땲�떎";
 				}
 			}else {
-				//insert job 실패
-				return "직군 정보를 추가하는데 실패했습니다";
+				//insert job �떎�뙣
+				return "吏곴뎔 �젙蹂대�� 異붽��븯�뒗�뜲 �떎�뙣�뻽�뒿�땲�떎";
 			}
 		}
-		return "프로젝트 등록에 실패하였습니다";
+		return "�봽濡쒖젥�듃 �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎";
 	}
+
+	
+	public List<JobVO> seekerList(ProjectVO projectVO) {
+		ProjectVO offerId = null;
+		return offerDAO.seekerList(offerId);
+	}
+
 
 	@Override
 	public List<OfferWorkVO> requestOfferProjectList(String offerId) {

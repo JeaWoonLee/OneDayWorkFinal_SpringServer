@@ -46,8 +46,6 @@ public class JoinController {
 		return "joinOffer";
 	}
 	
-	
-	
 //	//웹페이지를 요청하는 소스 
 //	@RequestMapping(value="/joinOffer.do")
 //	public String joinOffer() {
