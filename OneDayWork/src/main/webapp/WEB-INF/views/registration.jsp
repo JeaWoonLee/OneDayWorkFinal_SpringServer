@@ -20,6 +20,7 @@ html, body {width: 100%;height: 100%;margin: 0px;padding: 0px;}
 .mainTable {width: fit-content;height: fit-content;margin: 0 auto;margin-top: 30px;}
 th{text-align: center;}
 th,td{padding: 10px}
+#projectComment{height: 250px}
 </style>
 <title>registration</title>
 </head>
@@ -58,7 +59,7 @@ th,td{padding: 10px}
 			<table class="table table-bordered" id="registrationTable">
 				<tr class="row">
 					<th class="col-sm-4">
-						<label>일감</label> 
+						<label>사업명</label> 
 					</th>
 					<td class="col-sm-8">
 						<input class="form-control" type="text" placeholder=" 사업명" id="projectName" name="projectName" required>
@@ -125,8 +126,8 @@ th,td{padding: 10px}
 				<!-- 일감 추가 영역 -->
 				<tr class="row">
 					<td colspan="11">
-						<label for="addJobButton">일감&nbsp;</label>
-						<input class="btn btn-primary" type="button" id="showJobModalButton" value="일감 추가" data-toggle="modal" data-target="#addJobModal" data-backdrop="static">
+						<label for="showJobModalButton">업무&nbsp;</label>
+						<input class="btn btn-primary" type="button" id="showJobModalButton" value="업무 추가" data-toggle="modal" data-target="#addJobModal" data-backdrop="static">
 						<table class="table table-hover">
 							<thead>
 								<tr class="row">
@@ -143,7 +144,7 @@ th,td{padding: 10px}
 							<tbody id="jobListOutput">
 								<tr>
 									<td colspan="11" style="text-align: center;">
-										<p>직군을 추가해 주세요</p>
+										<p>업무을 추가해 주세요</p>
 									</td>
 								</tr>
 							</tbody>
@@ -188,13 +189,13 @@ th,td{padding: 10px}
       		<div class="modal-content">
         		<div class="modal-header">
         			<button type="button" class="close" data-dismiss="modal">×</button>
-          	 		<h4 class="modal-title">일감 추가하기</h4>
+          	 		<h4 class="modal-title">업무 추가하기</h4>
         		</div>
         		<div class="modal-body">
           			<table class="table table-bordered">
           				<tr class="row">
           					<th class="col-sm-4">
-          						직군
+          						업무
           					</th>
           					<td class="col-sm-8" id="jobSubject">
           						<select name="jobName" id="jobName" required>

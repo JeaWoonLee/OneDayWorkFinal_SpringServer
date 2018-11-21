@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lx.odw.dao.OfferDAO;
 import com.lx.odw.model.CandidateMapResponseModel;
+import com.lx.odw.model.HumanResRsponseModel;
+import com.lx.odw.model.ManageHumanResourceModel;
 import com.lx.odw.service.OfferService;
 import com.lx.odw.vo.CommuteInfoVO;
 import com.lx.odw.vo.JobCandidateVO;
@@ -168,5 +170,20 @@ public class OfferController {
 	@RequestMapping(value="requestAcceptCandidateByCandidateNumber.do", method=RequestMethod.POST)
 	public @ResponseBody int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
 		return service.requestAcceptCandidateByCandidateNumber(vo);
+	}
+	
+	@RequestMapping(value="requestRefuseCandidateByCandidateNumber.do", method=RequestMethod.POST)
+	public @ResponseBody int requestRefuseCandidateByCandidateNumber(JobCandidateVO vo) {
+		return service.requestRefuseCandidateByCandidateNumber(vo);
+	}
+	
+	@RequestMapping(value="requestProjectRecruitInfo.do",method=RequestMethod.POST)
+	public @ResponseBody List<JobCandidateVO> requestProjectRecruitInfo(ProjectVO vo) {
+		return service.requestProjectRecruitInfo(vo);
+	}
+	
+	@RequestMapping(value="requestTargetDateRecruitInfo.do",method=RequestMethod.POST)
+	public @ResponseBody HumanResRsponseModel requestTargetDateRecruitInfo (ManageHumanResourceModel vo) {
+		return service.requestTargetDateRecruitInfo(vo);
 	}
 }

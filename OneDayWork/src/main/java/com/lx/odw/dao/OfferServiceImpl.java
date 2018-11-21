@@ -14,6 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import com.google.gson.Gson;
 import com.lx.odw.model.CandidateMapResponseModel;
+import com.lx.odw.model.HumanResRsponseModel;
+import com.lx.odw.model.ManageHumanResourceModel;
 import com.lx.odw.service.OfferService;
 import com.lx.odw.vo.CertificationVO;
 import com.lx.odw.vo.CommuteInfoVO;
@@ -217,4 +219,29 @@ public class OfferServiceImpl implements OfferService{
 	public int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
 		return offerDAO.requestAcceptCandidateByCandidateNumber(vo);
 	}
+
+	@Override
+	public int requestRefuseCandidateByCandidateNumber(JobCandidateVO vo) {
+		return offerDAO.requestRefuseCandidateByCandidateNumber(vo);
+	}
+
+	@Override
+	public List<JobCandidateVO> requestProjectRecruitInfo(ProjectVO vo) {
+		return offerDAO.requestProjectRecruitInfo(vo);
+	}
+
+	@Override
+	public HumanResRsponseModel requestTargetDateRecruitInfo(ManageHumanResourceModel vo) {
+		List<JobCandidateVO> jobNumberList = offerDAO.requestTargetDateJobNumber(vo);
+		HashMap<Integer,List<ManageHumanResourceModel>> recruitMap = new HashMap<Integer, List<ManageHumanResourceModel>>();
+		for(JobCandidateVO item : jobNumberList) {
+			List<ManageHumanResourceModel> recruitList = offerDAO.requestRecruitListByJobNumAndTargetDate(item);
+			recruitMap.put(item.getJobNumber(), recruitList);
+		}
+		HumanResRsponseModel model = new HumanResRsponseModel();
+		model.setJobNumberList(jobNumberList);
+		model.setRecruitMap(recruitMap);
+		return model;
+	}
+
 }

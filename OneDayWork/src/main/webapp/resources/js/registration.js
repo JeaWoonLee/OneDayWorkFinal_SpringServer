@@ -73,7 +73,10 @@ function insertProject(){
 			jobs:jobsStr},
 		success:function(data){
 			console.log(data);
-			alert(data);
+			if(data != null) {
+				alert("일감이 성공적으로 등록되었습니다");
+				document.location.href = "/projectList.do";
+			}
 		}
 	});
 }

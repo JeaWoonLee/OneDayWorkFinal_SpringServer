@@ -23,5 +23,9 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		return "haruMainPage";
 	}
-		
+	
+	@RequestMapping(value="document.do",method=RequestMethod.GET)
+	public String document () {
+		return "document";
+	}
 }

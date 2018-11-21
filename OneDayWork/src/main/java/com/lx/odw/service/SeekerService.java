@@ -1,10 +1,12 @@
 package com.lx.odw.service;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lx.odw.controller.CertificateVO;
 import com.lx.odw.model.FilterModel;
@@ -46,12 +48,14 @@ public interface SeekerService {
 
 	List<CertificateVO> requestSeekerCertificationDetail(SeekerVO seekerVO);
 
-	int updateSeeker(String seekerVO, String seekerPicture, HttpServletRequest request);
+	int updateSeeker(String seekerVO, MultipartFile seekerPhoto, HttpServletRequest request);
 
 	WorkVO requestTodayWorkDetail(String seekerId);
 
 	int requestCommute(SeekerVO vo);
 
 	List<JobCandidateVO> requestCandidateDateList(JobCandidateVO vo);
+
+	int updateCandidateSign(MultipartFile seekerSign, String workVO,HttpServletRequest request);
 
 }

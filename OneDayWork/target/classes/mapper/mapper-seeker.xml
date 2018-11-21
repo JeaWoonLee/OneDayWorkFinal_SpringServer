@@ -291,7 +291,8 @@ where
 		ST_Y(p.project_location) as project_latitude,
 		j.job_pay,
 		j.job_name,
-		c.candidate_status
+		c.candidate_status,
+		c.candidate_number
 	from
 		project p,
 		job j,
@@ -330,4 +331,13 @@ where
 	order by
 		target_date asc
 </select>
+<update id="updateCandidateSign" parameterType="com.lx.odw.vo.WorkVO">
+	update
+		job_candidate
+	set
+		seeker_sign = #{seekerSign}
+	where
+		seeker_id = #{jobName} and
+		candidate_number = #{candidateNumber}
+</update>
 </mapper>
