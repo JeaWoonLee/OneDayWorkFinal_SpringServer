@@ -1,16 +1,13 @@
+<%@page import="com.lx.odw.vo.JobVO"%>
+<%@page import="com.lx.odw.vo.ProjectDetailVO"%>
 <%@page import="com.lx.odw.vo.ProjectVO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="header2.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- 제이쿼리 -->
-<script src="resources/js/jquery-3.3.1.min.js"></script>
-<!--부트스트랩 코드-->
-<script src="resources/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <!-- 카카오 맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
 <style>
@@ -18,40 +15,61 @@
 	width: fit-content;
 	height: fit-content;
 	margin: 0 auto;
-	margin-top: 150px;
+	margin-top: 50px;
 }
+.title {text-align: center;}
+.item {text-align: center;}
 </style>
 <title>하루일감: 상세정보</title>
-
 </head>
 <body>
-	<%ProjectVO item = (ProjectVO) request.getAttribute("prjDetail");%>
+	<%ProjectDetailVO detailVO = (ProjectDetailVO) request.getAttribute("prjDetail");
+	ProjectVO item = detailVO.getProjectVO();
+	List<JobVO> jobList = detailVO.getJobList();
+	%>
 	<div class="container">
 		<h1>상세정보</h1>
-		<table class="table table-hover">
-			<tr>
-				<td>일감 이름</td>
+		<table class="table table-border">
+			<tr class="row">
+				<th class="col-sm-2 title">일감 이름</th>
 				<td><%=item.getProjectName()%></td>
 			</tr>
-			<tr>
-				<td>일감 분류</td>
+			<tr class="row">
+				<th class="col-sm-2 title">일감 분류</th>
 				<td><%=item.getProjectSubject()%></td>
 			</tr>
-			<tr>
-				<td>일감 기간</td>
+			<tr class="row">
+				<th class="col-sm-2 title">일감 기간</th>
 				<td><%=item.getProjectStartDate()%> ~ <%=item.getProjectEndDate()%></td>
 			</tr>
-			<tr>
-				<td>근무 시간</td>
+			<tr class="row">
+				<th class="col-sm-2 title">근무 시간</th>
 				<td><%=item.getWorkStartTime()%> ~ <%=item.getWorkEndTime()%></td>
 			</tr>
-			<tr>
-				<td>상세내용</td>
+			<tr class="row">
+				<th class="col-sm-2 title">상세내용</th>
 				<td><%=item.getProjectComment()%></td>
 			</tr>
-			<tr>
-				<td>일감 위치</td>
-				<td><label for="locationLabel">일감 위치</label>
+			<tr class="row">
+				<th class="col-sm-2 title">요구사항</th>
+				<td><%
+					if(item.getRequestPicture()!=null)out.print("사진&nbsp;");
+					if(item.getConstCertificate()!=null)out.print("건설안전교육이수증");
+					 %>
+			</tr>
+			<tr class="row">
+				<th class="col-sm-2 title">제공사항</th>
+				<td><%
+				if(item.getMorning()!=null)out.print("아침&nbsp;&nbsp;");
+				if(item.getLaunch()!=null)out.print("점심&nbsp;&nbsp;");
+				if(item.getEvening()!=null)out.print("저녁&nbsp;&nbsp;");
+				if(item.getCommute()!=null)out.print("통근 차량&nbsp;&nbsp;");
+				if(item.getOffWork()!=null)out.print("퇴근 차량&nbsp;&nbsp;");
+				%></td>
+			</tr>
+			<tr class="row">
+				<th class="col-sm-2 title">일감 위치</th>
+				<td>
 					<div id="map" style="width: 450px; height: 350px;"></div>
 					<script>
 
@@ -85,11 +103,38 @@
 					name="projectLat"> <input type="hidden" id="projectLng"
 					name="projectLng"></td>
 			</tr>
-			<tr>
+			<tr class="row">
+				<th class="col-sm-2 title">모집 직군</th>
 				<td>
-					<a href="seekerList.do" class="btn btn-primary">신청관리</a>
-					
-					<input type="button" class="btn btn-primary" type="button" value="출결관리">
+					<table class="table table-hover">
+						<thead>
+							<tr class="row">
+								<th class="col-sm-1">#</th>
+								<th class="col-sm-2">직군 이름</th>
+								<th class="col-sm-3">모집 기간</th>
+								<th class="col-sm-2">모집 정원</th>
+								<th class="col-sm-2">요구 자격</th>
+								<th class="col-sm-2"></th>
+							</tr>
+						</thead>
+						<tbody>
+						<%for(int i = 0 ; i < jobList.size(); i ++) {%>
+							<tr class="row">
+								<td class="col-sm-1 item"><%=i+1%></td>
+								<td class="col-sm-2 item"><%=jobList.get(i).getJobName()%></td>
+								<td class="col-sm-3 item"><%=jobList.get(i).getJobStartDate()+jobList.get(i).getJobEndDate()%></th>
+								<td class="col-sm-2 item"><%=jobList.get(i).getJobLimitCount()%></td>
+								<td class="col-sm-2 item"><%=jobList.get(i).getJobRequirement()%></td>
+								<td class="col-sm-2 item"><a class="btn btn-primary" href="seekerList.do?jobNumber=<%=jobList.get(i).getJobNumber()%>">신청관리</a></td>
+							</tr>
+						<%}%>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr class="row">
+				<td>					
+					<input type="button" class="btn btn-primary" type="button" value="인력관리">
 				</td>
 			</tr>
 		</table>

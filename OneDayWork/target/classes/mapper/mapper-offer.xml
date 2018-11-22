@@ -321,14 +321,14 @@ group by
 		project_end_date,work_start_time,work_end_time,request_picture,const_certificate,morning,
 		ST_X(project_location) as project_lng,
 		ST_Y(project_location) as project_lat,
-		launch,evening,commute,off_work
+		launch,evening,commute,off_work,project_comment
 	from
 		project
 	where
 		project_number = #{projectNumber}
 </select>
 <select id="getTargetDateListByJobNumber" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.vo.JobCandidateVO">
-	select
+	select DISTINCT
 		target_date, job_number, seeker_id
 	from
 		job_candidate

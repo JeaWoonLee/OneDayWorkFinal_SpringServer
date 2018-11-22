@@ -17,6 +17,7 @@
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom fonts for this template -->
+
 <link href="resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
@@ -59,11 +60,11 @@ footer {
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav text-uppercase ml-auto">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">home</a></li>
+						href="/">home</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#portfolio">일감 등록</a></li>
+						href="registration.do">일감 등록</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">일감 목록</a></li>
+						href="projectList.do">일감 목록</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#team">출퇴근 관리</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
@@ -73,9 +74,9 @@ footer {
 					<br>
 
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#contact">로그인</a></li>
+						href="offerLogin.do">로그인</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#contact">회원가입</a></li>
+						href="joinOffer.do">회원가입</a></li>
 				</ul>
 			</div>
 		</div>
@@ -86,42 +87,12 @@ footer {
 	<header class="masthead">
 		<div class="container">
 			<div class="intro-text">
-				<div class="intro-heading text-uppercase"></div>
-			</div>
-	</header>
-	<!-- Header -->
-
-
-
-
-
-
-
-
-
-
-
-	<!-- Footer -->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-
-					LX 공간정보 아카데미 <br>
-					<span class="copyright">하루일감 2018</span>
-				</div>
-				<div class="col-md-3">
-					<img class="resources/img-fluid d-block mx-auto"
-						src="resources/img/logos/harulogo_b.png" width="65%" alt="">
-				</div>
-				<div class="col-md-5">
-					<ul class="list-inline quicklinks">이제운| 김한슬| 김동가| 최선주| 윤정민|</ul>
+				<div class="intro-heading text-uppercase">
 				</div>
 			</div>
 		</div>
-	</footer>
-
-
+	</header>
+	<!-- Header -->
 	<!-- Bootstrap core JavaScript -->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
