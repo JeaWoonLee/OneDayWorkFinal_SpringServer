@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lx.odw.model.ManageHumanResourceModel;
 import com.lx.odw.vo.CertificationVO;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
@@ -57,15 +58,6 @@ public class OfferDAO {
 	public ProjectVO showPrjDetail(ProjectVO vo) {
 		return session.selectOne("showPrjDetail",vo);
 	}
-
-
-
-
-
-	//	public List<ProjectVO> getFaqList() {
-	//		return session.selectList("faqList");
-	//	}
-
 
 	public List<OfferWorkVO> requestOfferProjectList(String offerId) {
 		return session.selectList("requestOfferProjectList",offerId);
@@ -142,4 +134,21 @@ public class OfferDAO {
 	public int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
 		return session.update("requestAcceptCandidateByCandidateNumber",vo);
 	}
+
+	public int requestRefuseCandidateByCandidateNumber(JobCandidateVO vo) {
+		return session.update("requestRefuseCandidateByCandidateNumber",vo);
+	}
+
+	public List<JobCandidateVO> requestProjectRecruitInfo(ProjectVO vo) {
+		return session.selectList("requestProjectRecruitInfo",vo);
+	}
+
+	public List<JobCandidateVO> requestTargetDateJobNumber(ManageHumanResourceModel vo) {
+		return session.selectList("requestTargetDateJobNumber",vo);
+	}
+
+	public List<ManageHumanResourceModel> requestRecruitListByJobNumAndTargetDate(JobCandidateVO item) {
+		return session.selectList("requestRecruitListByJobNumAndTargetDate",item);
+	}
+	
 }

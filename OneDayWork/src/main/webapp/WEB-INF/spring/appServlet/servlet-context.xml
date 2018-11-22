@@ -27,6 +27,5 @@
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<!-- @Aspect Bean을 생성해줌 -->
-	<beans:bean id="ControllerLogger" class="com.lx.odw.aop.ControllerLogger"></beans:bean>
 	
 </beans:beans>

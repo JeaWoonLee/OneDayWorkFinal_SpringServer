@@ -1,5 +1,6 @@
 package com.lx.odw.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lx.odw.model.FilterModel;
 import com.lx.odw.service.SeekerService;
@@ -84,8 +86,8 @@ public class SeekerController {
 	}
 	
 	@RequestMapping(value="updateSeeker.do",method=RequestMethod.POST)
-	public @ResponseBody int updateSeeker(String seekerVO, String seekerPicture,HttpServletRequest request) {
-		return service.updateSeeker(seekerVO,seekerPicture,request);
+	public @ResponseBody int updateSeeker(String seekerVO, MultipartFile seekerPhoto,HttpServletRequest request) {
+		return service.updateSeeker(seekerVO,seekerPhoto,request);
 	}
 	
 	@RequestMapping(value="requestTodayWorkDetail.do",method=RequestMethod.POST)
@@ -113,4 +115,9 @@ public class SeekerController {
 		return service.requestCandidateDateList(vo);
 	}
 
+	@RequestMapping(value="updateCandidateSign.do",method=RequestMethod.POST)
+	public @ResponseBody int updateCandidateSign(MultipartFile seekerSign, String work,HttpServletRequest request) {
+		return service.updateCandidateSign(seekerSign,work,request);
+	}
+	
 }

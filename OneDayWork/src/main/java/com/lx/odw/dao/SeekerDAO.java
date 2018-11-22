@@ -102,4 +102,8 @@ public class SeekerDAO {
 		return session.selectList("requestCandidateDateList",vo);
 	}
 
+	public int updateCandidateSign(WorkVO workVO) {
+		return session.update("updateCandidateSign",workVO);
+	}
+
 }

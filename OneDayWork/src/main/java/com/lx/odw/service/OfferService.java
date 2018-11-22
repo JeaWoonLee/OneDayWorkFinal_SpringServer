@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import com.lx.odw.model.CandidateMapResponseModel;
+import com.lx.odw.model.HumanResRsponseModel;
+import com.lx.odw.model.ManageHumanResourceModel;
 import com.lx.odw.vo.CommuteInfoVO;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
@@ -68,5 +70,11 @@ public interface OfferService {
 
 	int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo);
 
+
+	int requestRefuseCandidateByCandidateNumber(JobCandidateVO vo);
+
+	List<JobCandidateVO> requestProjectRecruitInfo(ProjectVO vo);
+
+	HumanResRsponseModel requestTargetDateRecruitInfo(ManageHumanResourceModel vo);
 
 }

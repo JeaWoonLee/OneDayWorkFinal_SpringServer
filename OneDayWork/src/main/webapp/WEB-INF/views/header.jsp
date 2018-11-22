@@ -115,8 +115,7 @@ footer {
 						src="resources/img/logos/harulogo_b.png" width="65%" alt="">
 				</div>
 				<div class="col-md-5">
-					<ul class="list-inline quicklinks">이제운| 김한슬| 김동가| 최선주| 윤정민|
-					</ul>
+					<ul class="list-inline quicklinks">이제운| 김한슬| 김동가| 최선주| 윤정민|</ul>
 				</div>
 			</div>
 		</div>

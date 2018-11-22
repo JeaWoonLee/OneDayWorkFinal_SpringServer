@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.mapper-offer">
+<mapper namespace="mapper.mapper-seeker">
 
-	<select id="getOffList" resultType="com.lx.odw.vo.ProjectVO">
-		select
+<select id="getOffList" resultType="com.lx.odw.vo.ProjectVO">
+	select 
 		project_number,
 		project_name,
 		project_start_date,
 		project_end_date,
 		ST_X(project_location) as project_lng,
-		ST_Y(project_location) as
-		project_lat,
+		ST_Y(project_location) as project_lat,
 		project_comment,
 		project_subject,
 		project_enroll_date,
 		work_start_time,
 		work_end_time
-		from
+	from
 		project
+		
+</select>
 
-	</select>
-
-	<select id="requestOffJobListByProjectNumber"
-		parameterType="com.lx.odw.vo.ProjectVO"
-		resultType="com.lx.odw.vo.JobVO">
-		select
+<select id="requestOffJobListByProjectNumber" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.JobVO">
+	select
 		project_number,
 		job_pay,
 		job_number,
@@ -33,133 +30,113 @@
 		job_requirement,
 		job_limit_count,
 		job_name
-		from
+	from
 		job
-		where
+	where
 		project_number = #{projectNumber}
-
-	</select>
-
-	<!-- 웹 일감 목록 쿼리문 -->
-	<!-- parameterType에 DAO에서 넣어준 value에 타입을 맞춰서 써주면 된다 String -->
-	<select id="projectList" parameterType="String"
-		resultType="com.lx.odw.vo.ProjectVO">
-		select
-		*
-		from
-		project
-		where
-		offer_id = #{offerId}
-
-	</select>
-
-		<select id="seekerList" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.vo.JobCandidateVO">
-		select c.seeker_id, s.seeker_name, s.seeker_birth,
-		s.seeker_sex
-		from job j, job_candidate c, project p, seeker s
-		where
-		p.project_number = j.project_number and
-		j.job_number = c.job_number and
-		c.seeker_id = s.seeker_id
-		p.project_number = #{projectNumber} and
-		c.candidate_status = #{candidateStatus};
 		
-	</select>
-	
-	<!--@Transactional -->
-	<insert id="insertProject"
-		parameterType="com.lx.odw.vo.ProjectVO">
-		insert into
+</select>
+
+<!-- 웹 일감 목록 쿼리문 -->
+<!-- parameterType DAO에서 넣어준 value에 타입을 맞춰서 써주면 된다 String-->
+<select id="projectList" parameterType="String" resultType="com.lx.odw.vo.ProjectVO">
+	select
+		*
+	from
+		project
+	where
+		offer_id = #{offerId}	
+
+</select>
+
+<!--@Transactional-->
+<insert id="insertProject" parameterType="com.lx.odw.vo.ProjectVO">
+	insert into
 		project (
-		project_name,
-		project_subject,
-		project_start_date,
-		project_end_date,
-		work_start_time,
-		work_end_time,
-		const_certificate,
-		project_comment,
-		request_picture,
-		morning,
-		launch,
-		evening,
-		commute,
-		off_work,
-		project_location,
-		offer_id,
-		project_enroll_date)
+			project_name,
+			project_subject,
+			project_start_date,
+			project_end_date,
+			work_start_time,
+			work_end_time,
+			const_certificate,
+			project_comment,
+			request_picture,
+			morning,
+			launch,
+			evening,
+			commute,
+			off_work,
+			project_location,
+			offer_id,
+			project_enroll_date)
 		values (
-		#{projectName},
-		#{projectSubject},
-		#{projectStartDate},
-		#{projectEndDate},
-		#{workStartTime},
-		#{workEndTime},
-		#{constCertificate},
-		#{projectComment},
-		#{requestPicture},
-		#{morning},
-		#{launch},
-		#{evening},
-		#{commute},
-		#{offWork},
-		ST_GeomFromText('POINT(${projectLng} ${projectLat})'),
-		#{offerId},
-		curdate())
-	</insert>
-	<insert id="insertJobs" parameterType="java.util.List">
-		insert into
+			#{projectName},
+			#{projectSubject},
+			#{projectStartDate},
+			#{projectEndDate},
+			#{workStartTime},
+			#{workEndTime},
+			#{constCertificate},
+			#{projectComment},
+			#{requestPicture},
+			#{morning},
+			#{launch},
+			#{evening},
+			#{commute},
+			#{offWork},
+			ST_GeomFromText('POINT(${projectLng} ${projectLat})'),
+			#{offerId},
+			curdate())
+</insert>
+<insert id="insertJobs" parameterType="java.util.List">
+	insert into
 		job (
-		project_number,
-		job_name,
-		job_pay,
-		job_start_date,
-		job_end_date,
-		job_requirement,
-		job_limit_count)
+			project_number,
+			job_name,
+			job_pay,
+			job_start_date,
+			job_end_date,
+			job_requirement,
+			job_limit_count)
 		values
 		<foreach collection="list" item="item" separator=" , ">
 			(
 			LAST_INSERT_ID(),
-			#{item.jobName},
-			#{item.jobPay},
-			#{item.jobStartDate},
-			#{item.jobEndDate},
-			#{item.jobRequirement},
-			#{item.jobLimitCount})
+			 #{item.jobName},
+			 #{item.jobPay},
+			 #{item.jobStartDate},
+			 #{item.jobEndDate},
+			 #{item.jobRequirement},
+			 #{item.jobLimitCount})
 		</foreach>
-	</insert>
-	<update id="subOfferCash" parameterType="com.lx.odw.vo.OfferVO">
-		update
+</insert>
+<update id="subOfferCash" parameterType="com.lx.odw.vo.OfferVO">
+	update
 		offer
-		set
+	set
 		offer_cash = offer_cash - #{offerCash}
-		where
+	where
 		offer_id = #{offerId}
-	</update>
-	<!--//end @Transactional -->
-	<select id="projectDetailInfo"
-		parameterType="com.lx.odw.vo.ProjectVO"
-		resultType="com.lx.odw.vo.ProjectVO">
-		select
+</update>
+<!--//end @Transactional-->
+<select id="projectDetailInfo" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
+	select
 		*
-		from
+	from
 		project
-		where
+	where
 		offer_id = #{offerId}
-	</select>
+</select>
 
-	<select id="showPrjDetail"
-		parameterType="com.lx.odw.vo.ProjectVO"
-		resultType="com.lx.odw.vo.ProjectVO">
-		select
+<select id="showPrjDetail" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
+	select
 		project_number,
 		project_name,
 		project_start_date,
 		project_end_date,
 		ST_X(project_location) as project_lng,
-		ST_Y(project_location) as
-		project_lat,
+		ST_Y(project_location) as project_lat,
 		project_comment,
 		project_subject,
 		project_enroll_date,
@@ -168,329 +145,306 @@
 		request_picture,
 		const_certificate,
 		morning,launch,evening,commute,off_work
-		from
+	from
 		project
-		where
+	where
 		project_number = #{projectNumber}
-	</select>
+</select>
 
-	
-
-	<select id="requestOfferProjectList" parameterType="String"
-		resultType="com.lx.odw.vo.OfferWorkVO">
-		select DISTINCT
-		project_number
-		from
-		project
-		where
-		offer_id = #{offerId} and
-		project_start_date <![CDATA[ <= ]]>
-		curdate() and
-		project_end_date <![CDATA[ >= ]]>
-		curdate()
-	</select>
-	<select id="getProjectCommuteInfo" parameterType="String"
-		resultType="com.lx.odw.vo.OfferWorkVO">
-		select DISTINCT
-		t.total, r.recruit, a.commute, p.project_number,
-		p.work_start_time,
-		p.work_end_time, p.offer_id, p.project_name,
-		j.job_limit_count
-		from
-		project p, job j,
-		(select
-		sum(j.job_limit_count) as
-		total, p.project_number
-		from
+<select id="requestOfferProjectList" parameterType="String" resultType="com.lx.odw.vo.OfferWorkVO">
+select DISTINCT
+	project_number
+from
+	project
+where
+	offer_id = #{offerId} and
+	project_start_date <![CDATA[ <= ]]> curdate() and
+	project_end_date <![CDATA[ >= ]]> curdate()
+</select>
+<select id="getProjectCommuteInfo" parameterType="String" resultType="com.lx.odw.vo.OfferWorkVO">
+select DISTINCT
+	t.total, r.recruit, a.commute, p.project_number, p.work_start_time, p.work_end_time, p.offer_id, p.project_name, j.job_limit_count
+from
+	project p, job j,
+	(select
+		sum(j.job_limit_count) as total, p.project_number
+	 from
 		project p, job j
-		where
-		p.project_number =
-		#{projectNumber} and
-		p.project_number =
-		j.project_number
-		) t,
-		(select
-		DISTINCT
-		count(*) as recruit , p.project_number
-		from
-		project p, job j,
-		job_candidate c
-		where
+	 where
 		p.project_number = #{projectNumber} and
-		p.project_number =
-		j.project_number and
-		j.job_number = c.job_number and
-		c.target_date =
-		curdate() and
-		c.candidate_status BETWEEN 1 and 6) r,
-		(select DISTINCT
-		count(*) as commute, p.project_number
-		from
-		project p ,
-		job j, job_candidate c
-		where
+		p.project_number = j.project_number
+		) t,
+	(select DISTINCT
+		count(*) as recruit , p.project_number
+	 from
+		project p, job j, job_candidate c
+	 where
 		p.project_number = #{projectNumber} and
 		p.project_number = j.project_number and
 		j.job_number = c.job_number and
 		c.target_date = curdate() and
-		c.candidate_status <![CDATA[ > ]]>
-		1 and
-		c.candidate_status <![CDATA[ < ]]>
-		6) a
-		where
+		c.candidate_status BETWEEN 1 and 6) r,
+	(select DISTINCT
+		count(*) as commute, p.project_number
+	 from 
+		project p , job j, job_candidate c
+	 where
+	 	 p.project_number = #{projectNumber} and
+	 	 p.project_number = j.project_number and
+		 j.job_number = c.job_number and
+		 c.target_date = curdate() and
+         c.candidate_status <![CDATA[ > ]]> 1 and
+		 c.candidate_status <![CDATA[ < ]]> 6) a
+where
+	p.project_number = #{projectNumber} and
+	p.project_number = j.project_number and
+	p.project_start_date  <![CDATA[ <= ]]> curdate() and
+	p.project_end_date <![CDATA[ >= ]]> curdate()
+group by
+	p.project_number
+</select>
+<select id="getJobNumberList" parameterType="String" resultType="com.lx.odw.vo.JobVO">
+	select j.job_number, j.job_name, j.job_limit_count
+	from project p, job j
+	where
 		p.project_number = #{projectNumber} and
-		p.project_number =
-		j.project_number and
-		p.project_start_date  <![CDATA[ <= ]]>
-		curdate() and
-		p.project_end_date <![CDATA[ >= ]]>
-		curdate();
-	</select>
-	<select id="getJobNumberList" parameterType="String"
-		resultType="com.lx.odw.vo.JobVO">
-		select j.job_number, j.job_name, j.job_limit_count
-		from project p, job
-		j
-		where
-		p.project_number = #{projectNumber} and
-		p.project_number =
-		j.project_number and
-		j.job_start_date <![CDATA[ <= ]]>
-		curdate() and
-		j.job_end_date <![CDATA[ >= ]]>
-		curdate()
-	</select>
-	<select id="getCommuteListByJobNumber" parameterType="int"
-		resultType="com.lx.odw.vo.JobCandidateVO">
-		select
-		c.seeker_id, c.candidate_status, c.candidate_number,
-		j.job_number,
-		j.job_name, s.seeker_name,c.score,c.evaluate
-		from
-		job j,
-		job_candidate c, seeker s
-		where
+		p.project_number = j.project_number and
+		j.job_start_date <![CDATA[ <= ]]> curdate() and
+		j.job_end_date <![CDATA[ >= ]]> curdate()
+</select>
+<select id="getCommuteListByJobNumber" parameterType="int" resultType="com.lx.odw.vo.JobCandidateVO">
+	select
+		c.seeker_id, c.candidate_status, c.candidate_number, j.job_number, j.job_name, s.seeker_name,c.score,c.evaluate
+	from
+		job j, job_candidate c, seeker s
+	where
 		j.job_number = #{job_number} and
 		j.job_number = c.job_number and
 		c.target_date = curdate() and
 		c.seeker_id = s.seeker_id and
 		c.candidate_status BETWEEN 1 and 6
-	</select>
-	<update id="requestAbsentByCandidateNumber"
-		parameterType="com.lx.odw.vo.JobCandidateVO">
-		update job_candidate
-		set candidate_status = 6
-		where
-		candidate_number = #{candidateNumber}
-	</update>
-	<update id="requestWorkingByCandidateNumber"
-		parameterType="com.lx.odw.vo.JobCandidateVO">
-		update job_candidate
-		set candidate_status = 3
-		where
-		candidate_number = #{candidateNumber}
-	</update>
-	<update id="requestOffWorkByCandidateNumber"
-		parameterType="com.lx.odw.vo.JobCandidateVO">
-		update job_candidate
-		set candidate_status = 4
-		where
-		candidate_number = #{candidateNumber}
-	</update>
-	<update id="requestEvaluate"
-		parameterType="com.lx.odw.vo.JobCandidateVO">
-		update job_candidate
-		set score = #{score}, evaluate =
-		#{evaluate}
-		where candidate_number = #{candidateNumber}
-	</update>
-	<select id="requestSeekerDetailPopup"
-		parameterType="com.lx.odw.vo.SeekerVO"
-		resultType="com.lx.odw.vo.SeekerVO">
-		select
-		seeker_id, seeker_name, seeker_email, seeker_birth,
-		seeker_info, seeker_sex,
-		seeker_picture,
-		ST_X(seeker_pinaddress) as
-		seeker_longitude,
-		ST_Y(seeker_pinaddress) as seeker_latitude,
-		open_picture_info,
-		open_location_info
-		from seeker
-		where seeker_id =
-		#{seekerId}
-	</select>
-	<select id="requestSeekerRecord"
-		parameterType="com.lx.odw.vo.SeekerVO"
-		resultType="com.lx.odw.vo.JobCandidateVO">
-		select
-		c.target_date, c.candidate_number,c.candidate_status,
-		c.score,
-		c.evaluate, c.seeker_id, c.job_number, j.job_name
-		from
+</select>
+<update id="requestAbsentByCandidateNumber" parameterType="com.lx.odw.vo.JobCandidateVO">
+	update job_candidate
+	set candidate_status = 6
+	where candidate_number = #{candidateNumber}
+</update>
+<update id="requestWorkingByCandidateNumber" parameterType="com.lx.odw.vo.JobCandidateVO">
+	update job_candidate
+	set candidate_status = 3
+	where candidate_number = #{candidateNumber}
+</update>
+<update id="requestOffWorkByCandidateNumber" parameterType="com.lx.odw.vo.JobCandidateVO">
+	update job_candidate
+	set candidate_status = 4
+	where candidate_number = #{candidateNumber}
+</update>
+<update id="requestEvaluate" parameterType="com.lx.odw.vo.JobCandidateVO">
+	update job_candidate
+	set score = #{score}, evaluate = #{evaluate}
+	where candidate_number = #{candidateNumber}
+</update>
+<select id="requestSeekerDetailPopup" parameterType="com.lx.odw.vo.SeekerVO" resultType="com.lx.odw.vo.SeekerVO">
+	select 
+		seeker_id, seeker_name, seeker_email, seeker_birth, seeker_info, seeker_sex, seeker_picture,
+		ST_X(seeker_pinaddress) as seeker_longitude, ST_Y(seeker_pinaddress) as seeker_latitude,
+		open_picture_info, open_location_info
+	from seeker
+	where seeker_id = #{seekerId}
+</select>
+<select id="requestSeekerRecord" parameterType="com.lx.odw.vo.SeekerVO" resultType="com.lx.odw.vo.JobCandidateVO">
+	select
+		c.target_date, c.candidate_number,c.candidate_status, c.score, c.evaluate, c.seeker_id, c.job_number, j.job_name
+	from
 		job_candidate c, job j
-		where
+	where
 		c.seeker_id = #{seekerId} and
-		c.job_number =
-		j.job_number and
+		c.job_number = j.job_number and
 		c.candidate_status BETWEEN 4 and 6
-
-	</select>
-	<select id="requestSeekerCertificate"
-		parameterType="com.lx.odw.vo.SeekerVO"
-		resultType="com.lx.odw.vo.CertificationVO">
-		select
-		s.seeker_certificate_index,
-		s.seeker_certificate_number,
-		s.certificate_id, s.seeker_id,
-		c.certificate_name
-		from
+		
+</select>
+<select id="requestSeekerCertificate" parameterType="com.lx.odw.vo.SeekerVO" resultType="com.lx.odw.vo.CertificationVO">
+	select
+		s.seeker_certificate_index, s.seeker_certificate_number, s.certificate_id, s.seeker_id, c.certificate_name
+	from
 		certificate c, seeker_certificate s
-		where
+	where
 		s.seeker_id = #{seekerId}
-	</select>
-	<update id="allAbsent" parameterType="com.lx.odw.vo.ProjectVO">
-		update
-		job_candidate c, job
-		j , project p
-		set
+</select>
+<update id="allAbsent" parameterType="com.lx.odw.vo.ProjectVO">
+	update 
+		job_candidate c, job j , project p
+	set
 		c.candidate_status = 6
-		where
-		p.project_number =
-		#{projectNumber} and
-		p.project_number =
-		j.project_number and
+	where
+		p.project_number = #{projectNumber} and
+		p.project_number = j.project_number and
 		j.job_number = c.job_number and
-		c.candidate_status
-		= 1 and
-		c.target_date
-		= curdate()
-	</update>
-	<update id="allWorking" parameterType="com.lx.odw.vo.ProjectVO">
-		update
-		job_candidate c, job
-		j , project p
-		set
+		c.candidate_status = 1 and
+		c.target_date = curdate()
+</update>
+<update id="allWorking" parameterType="com.lx.odw.vo.ProjectVO">
+	update 
+		job_candidate c, job j , project p
+	set
 		c.candidate_status = 3
-		where
-		p.project_number =
-		#{projectNumber} and
-		p.project_number =
-		j.project_number and
+	where
+		p.project_number = #{projectNumber} and
+		p.project_number = j.project_number and
 		j.job_number = c.job_number and
-		c.candidate_status
-		= 2 and
-		c.target_date
-		= curdate()
-	</update>
-	<update id="allOffWork" parameterType="com.lx.odw.vo.ProjectVO">
-		update
-		job_candidate c, job
-		j , project p
-		set
+		c.candidate_status = 2 and
+		c.target_date = curdate()
+</update>
+<update id="allOffWork" parameterType="com.lx.odw.vo.ProjectVO">
+	update 
+		job_candidate c, job j , project p
+	set
 		c.candidate_status = 4
-		where
-		p.project_number =
-		#{projectNumber} and
-		p.project_number =
-		j.project_number and
+	where
+		p.project_number = #{projectNumber} and
+		p.project_number = j.project_number and
 		j.job_number = c.job_number and
-		c.candidate_status
-		= 3 and
-		c.target_date
-		= curdate()
-	</update>
-	<select id="requestOfferManageProjectList" parameterType="com.lx.odw.vo.OfferVO"
-		resultType="com.lx.odw.vo.ProjectVO">
-		select
-		project_number, project_name, project_enroll_date,
-		project_subject,
-		project_start_date, project_end_date
-		from
+		c.candidate_status = 3 and
+		c.target_date = curdate()
+</update>
+<select id="requestOfferManageProjectList" parameterType="com.lx.odw.vo.OfferVO" resultType="com.lx.odw.vo.ProjectVO">
+	select
+		project_number, project_name, project_enroll_date, project_subject, project_start_date, project_end_date
+	from
 		project
-		where
+	where
 		offer_id = #{offerId}
-	</select>
-	<select id="requestManageProjectDetailInfo" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
-		select
-		project_number, project_name, project_enroll_date,
-		project_subject,
-		project_start_date,
+</select>
+<select id="requestManageProjectDetailInfo" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.ProjectVO">
+	select
+		project_number, project_name, project_enroll_date, project_subject, project_start_date,
 		project_end_date,work_start_time,work_end_time,request_picture,const_certificate,morning,
 		ST_X(project_location) as project_lng,
-		ST_Y(project_location) as
-		project_lat,
+		ST_Y(project_location) as project_lat,
 		launch,evening,commute,off_work
-		from
+	from
 		project
-		where
+	where
 		project_number = #{projectNumber}
-	</select>
-	<select id="getTargetDateListByJobNumber" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.vo.JobCandidateVO">
-		select
+</select>
+<select id="getTargetDateListByJobNumber" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.vo.JobCandidateVO">
+	select
 		target_date, job_number, seeker_id
-		from
+	from
 		job_candidate
-		where
+	where
 		job_number = #{jobNumber} and
 		candidate_status = 0
-		order by
+	order by
 		target_date asc
-	</select>
-	
-
-	
-	<select id="getCandidateListByCandidateVO" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.vo.JobCandidateVO">
-		<!-- 각 seeker 의 신뢰도 수치가 존재해야 한다 total = 해당 seeker의 4~6 / offWork = 해당 seeker의 
-			4 -->
-		select DISTINCT
-		s.seeker_sex,s.seeker_birth,
-		j.job_limit_count,c.target_date, c.seeker_id,
-		c.job_number,c.candidate_number, c.candidate_status, t.total,
-		o.off_work, r.recruit
-		from
+</select>
+<select id="getCandidateListByCandidateVO" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.vo.JobCandidateVO">
+	<!-- 각 seeker 의 신뢰도 수치가 존재해야 한다  total = 해당 seeker의 4~6 / offWork = 해당 seeker의 4 -->
+	select DISTINCT
+		s.seeker_sex,s.seeker_birth, j.job_limit_count,c.target_date, c.seeker_id, c.job_number,c.candidate_number, c.candidate_status, t.total, o.off_work, r.recruit
+	from
 		job_candidate c, job j, seeker s,
-		(select
-		DISTINCT
-		count(*) as total , seeker_id
-		from
-		job_candidate
-		where
-		seeker_id =
-		#{seekerId} and
-		candidate_status BETWEEN 4 and 6) t,
 		(select DISTINCT
-		count(*) as off_work, seeker_id
+			count(*) as total , seeker_id
 		from
-		job_candidate
+			job_candidate
 		where
-		seeker_id =
-		#{seekerId} and
-		candidate_status = 4) o,
+			seeker_id = #{seekerId} and
+			candidate_status BETWEEN 4 and 6) t,
+		(select DISTINCT
+			count(*) as off_work, seeker_id
+		from
+			job_candidate
+		where
+			seeker_id = #{seekerId} and
+			candidate_status = 4) o,
 		(select
-		count(*) as recruit
+			count(*) as recruit
 		from
-		job_candidate
+			job_candidate
 		where
-		job_number = #{jobNumber} and
-		candidate_status = 1
-		and
-		target_date = #{targetDate}) r
-		where
+			job_number = #{jobNumber} and
+			candidate_status = 1 and
+			target_date = #{targetDate}) r
+	where
 		s.seeker_id = c.seeker_id and
 		c.seeker_id = #{seekerId} and
 		c.job_number = j.job_number and
 		c.job_number = #{jobNumber} and
 		c.target_date = #{targetDate} and
 		c.candidate_status = 0
-	</select>
-	<update id="requestAcceptCandidateByCandidateNumber" parameterType="com.lx.odw.vo.JobCandidateVO">
-		update
+</select>
+<update id="requestAcceptCandidateByCandidateNumber" parameterType="com.lx.odw.vo.JobCandidateVO">
+	update
 		job_candidate
-		set
+	set
 		candidate_status = 1
-		where
+	where
 		candidate_number = #{candidateNumber}
-	</update>
-
+</update>
+<update id="requestRefuseCandidateByCandidateNumber" parameterType="com.lx.odw.vo.JobCandidateVO">
+	update
+		job_candidate
+	set
+		candidate_status = 8
+	where
+		candidate_number = #{candidateNumber}
+</update>
+<select id="requestProjectRecruitInfo" parameterType="com.lx.odw.vo.ProjectVO" resultType="com.lx.odw.vo.JobCandidateVO">
+select
+	c.target_date, count(*) recruit, t.total, p.project_number
+from
+	job_candidate c, 	project p,	job j, 
+	(select
+		sum(j.job_limit_count) as total
+	from
+		project p, job j
+	where
+		p.project_number = #{projectNumber} and
+		p.project_number = j.project_number) t
+where
+	p.project_number = #{projectNumber} and
+	p.project_number = j.project_number and
+	j.job_number = c.job_number and
+	c.candidate_status = 1 and
+	c.target_date <![CDATA[ >= ]]> curdate()
+group by c.target_date
+</select>
+<select id="requestTargetDateJobNumber" parameterType="com.lx.odw.model.ManageHumanResourceModel" resultType="com.lx.odw.vo.JobCandidateVO">
+select
+	j.job_number, j.job_name, c.target_date, p.project_number, count(*) recruit, j.job_limit_count
+from
+	project p, job j, job_candidate c
+where
+ 	p.project_number = #{projectNumber} and
+	p.project_number = j.project_number and
+	j.job_number = c.job_number and
+	c.candidate_status = 1 and
+	c.target_date = #{targetDate}
+group by
+	j.job_number
+</select>
+<select id="requestRecruitListByJobNumAndTargetDate" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.model.ManageHumanResourceModel">
+select
+	j.job_number, s.seeker_id,s.seeker_name,s.total,s.off_work, c.target_date, s.seeker_sex, s.seeker_birth
+from
+	job j, job_candidate c,
+(select
+	s.seeker_id, s.seeker_name, sum(case when c.candidate_status BETWEEN 4 and 6 then 1 else 0 end) total, sum(case when c.candidate_status = 4 then 1 else 0 end) off_work,s.seeker_sex, s.seeker_birth
+from
+	seeker s, job_candidate c, job j
+where
+	c.seeker_id = s.seeker_id and
+	j.job_number = c.job_number
+group by
+	seeker_id)s
+where
+	j.job_number = c.job_number and
+	c.seeker_id = s.seeker_id and
+	c.target_date = #{targetDate} and
+	j.job_number = #{jobNumber} and
+	c.candidate_status = 1
+group by
+	s.seeker_id
+</select>
 </mapper>

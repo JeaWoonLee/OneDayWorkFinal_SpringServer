@@ -12,6 +12,7 @@ import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.lx.odw.controller.CertificateVO;
@@ -139,10 +140,15 @@ public class SeekerServiceImpl implements SeekerService{
 	}
 
 	@Override
-	public int updateSeeker(String seekerVO,String seekerPicture, HttpServletRequest request) {
+	public int updateSeeker(String seekerVO, MultipartFile seekerPhoto, HttpServletRequest request) {
 		Gson gson = new Gson();
 		SeekerVO item = gson.fromJson(seekerVO, SeekerVO.class);
-		String imgPath = Util.getUplodaPath(seekerPicture,request,item.getSeekerId());
+		String imgPath = null;
+		try {
+			imgPath = Util.getUplodaPath(seekerPhoto,request,item.getSeekerId());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		item.setSeekerPicture(imgPath);
 		return seekerDAO.updateSeeker(item);
 	}
@@ -160,6 +166,20 @@ public class SeekerServiceImpl implements SeekerService{
 	@Override
 	public List<JobCandidateVO> requestCandidateDateList(JobCandidateVO vo) {
 		return seekerDAO.requestCandidateDateList(vo);
+	}
+
+	@Override
+	public int updateCandidateSign(MultipartFile seekerSign, String work,HttpServletRequest request) {
+		try {
+			Gson gson = new Gson();
+			WorkVO workVO = gson.fromJson(work, WorkVO.class);
+			String updatePath = Util.getUplodaPath(seekerSign, request, workVO.getJobName());
+			workVO.setSeekerSign(updatePath);
+			return seekerDAO.updateCandidateSign(workVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }
