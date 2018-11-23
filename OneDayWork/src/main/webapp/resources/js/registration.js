@@ -101,18 +101,19 @@ function settingSubject() {
 		return false;
 	}else if(projectSubject == projectSubjects[1]){
 		setJobName = `<select name="jobName" id="jobName" required>
+			<option value="건설현장">건설현장</option>
 			<option value="보통인부">보통인부</option>
-			<option value="목공">목공</option>
-			<option value="철근공">철근공</option>
-			<option value="콘크리트공">콘크리트공</option>
-			<option value="비계공">비계공</option>
-			<option value="미장조적공">미장조적공</option>
-			<option value="철거할석공">철거할석공</option>
-			<option value="용접공">용접공</option>
-			<option value="타일공">타일공</option>
-			<option value="작업팀장">작업팀장</option>
-			<option value="청소">청소</option>
-			<option value="관로공">관로공</option>
+			<option value="운반">운반</option>
+			<option value="철거">철거</option>
+			<option value="목수">목수</option>
+			<option value="미장">미장</option>
+			<option value="조적">조적</option>
+			<option value="용접">용접</option>
+			<option value="타일">타일</option>
+			<option value="도장">도장</option>
+			<option value="전기">전기</option>
+			<option value="철근">철근</option>
+			<option value="면갈이">면갈이</option> 
 			</select>`;
 	} else if(projectSubject == projectSubjects[2]){
 		setJobName = `<select name="jobName" id="jobName" required>
@@ -125,6 +126,17 @@ function settingSubject() {
 	}else if(projectSubject == projectSubjects[3]){
 		setJobName = `<select name="jobName" id="jobName" required>
 			<option value="조선">조선</option>
+			<option value="배관">배관</option>
+			<option value="배선">배선</option>
+			<option value="취부">취부</option>
+			<option value="용접">용접</option>
+			<option value="닥트">닥트</option>
+			<option value="기공">기공</option>
+			<option value="조공">조공</option>
+			<option value="칸막이">칸막이</option>
+			<option value="족장">족장</option>
+			<option value="도배">도배</option>
+			<option value="단순노무">단순노무</option>
 			<option value="기타">기타</option>
 			</select>`;
 	}else if(projectSubject == projectSubjects[4]){
@@ -135,11 +147,19 @@ function settingSubject() {
 	}else if(projectSubject == projectSubjects[5]){
 		setJobName = `<select name="jobName" id="jobName" required>
 			<option value="운송">운송</option>
+			<option value="지게차"></option>
+			<option value="배반차"></option>
+			<option value="1톤 화물차"></option>
+			<option value="2.5톤 화물차"></option>
+			<option value="3.5톤 화물차"></option>
 			<option value="기타">기타</option>
 			</select>`;
 	}else if(projectSubject == projectSubjects[6]){
 		setJobName = `<select name="jobName" id="jobName" required>
 			<option value="식당">식당</option>
+			<option value="배달원">배달원</option>
+			<option value="홀서빙">홀서빙</option>
+			<option value="주방">주방</option>
 			<option value="기타">기타</option>
 			</select>`;
 	}else if(projectSubject == projectSubjects[7]){
@@ -150,6 +170,7 @@ function settingSubject() {
 	}else if(projectSubject == projectSubjects[8]){
 		setJobName = `<select name="jobName" id="jobName" required>
 			<option value="청소">청소</option>
+			<option value="운반">운반</option>
 			<option value="기타">기타</option>
 			</select>`;
 	}else if(projectSubject == projectSubjects[9]){
