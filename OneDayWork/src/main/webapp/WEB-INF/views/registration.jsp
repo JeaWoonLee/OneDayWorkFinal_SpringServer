@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="header2.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <meta charset="UTF-8">
 <!-- 카카오 맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
@@ -11,11 +11,9 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <style>
-html, body {width: 100%;height: 100%;margin: 0px;padding: 0px;}
-.navbarDiv {margin-top: 50px;}
-.mainTable {width: fit-content;height: fit-content;margin: 0 auto;margin-top: 30px;}
+
 th{text-align: center;}
-th,td{padding: 10px}
+
 #projectComment{height: 250px}
 </style>
 <title>registration</title>
@@ -25,9 +23,9 @@ th,td{padding: 10px}
 	<div class="container" id="registration">
 		<h3 style="text-align: center;">일감 등록</h3>
 		<form action="registration.do" method="get">
-			<table class="table table-bordered" id="registrationTable">
+			<table class="table table-striped" id="registrationTable">
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label>사업명</label> 
 					</th>
 					<td class="col-sm-8">
@@ -35,7 +33,7 @@ th,td{padding: 10px}
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label>업종 분류</label>
 					</th>
 					<td class="col-sm-8">
@@ -54,7 +52,7 @@ th,td{padding: 10px}
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label for="dateLabel">일감 시작~마감일</label><br>
 					</th>
 					<td class="col-sm-8">
@@ -63,7 +61,7 @@ th,td{padding: 10px}
 					</td>	
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label for="TimeLabel">업무 시작~마감시간</label><br>
 					</th>
 					<td class="col-sm-8">
@@ -72,16 +70,16 @@ th,td{padding: 10px}
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label for="demandLabel">신청 제약 사항</label> <br> 
 					</th>
-					<td class="col-sm-8">
+					<td class="col-sm-2">
 						<input type="checkbox" name="constCertificate" value="필요">건설안전교육이수증&nbsp; 
 						<input type="checkbox" id="requestPicture" name="requestPicture" value="필요">사진
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label for="demandLabel">제공 사항</label> <br> 
 					</th>
 					<td class="col-sm-8">
@@ -94,9 +92,10 @@ th,td{padding: 10px}
 				</tr>
 				<!-- 일감 추가 영역 -->
 				<tr class="row">
-					<td colspan="11">
-						<label for="showJobModalButton">업무&nbsp;</label>
-						<input class="btn btn-primary" type="button" id="showJobModalButton" value="업무 추가" data-toggle="modal" data-target="#addJobModal" data-backdrop="static">
+					<td colspan="10" style="text-align: center;">
+						<label for="showJobModalButton">업무&nbsp &nbsp;</label>
+						<input class="btn btn-sm btn-info" type="button" id="showJobModalButton" value="업무 추가" data-toggle="modal" data-target="#addJobModal" data-backdrop="static">
+						<hr>
 						<table class="table table-hover">
 							<thead>
 								<tr class="row">
@@ -142,9 +141,10 @@ th,td{padding: 10px}
 					</td>
 				</tr>
 				<tr class="row">
-					<td colspan="11">
-						<input class="btn btn-primary" type="button" value="일감 등록" id="insertProject" name="insertProject">
-					</td>
+				<td align="center"></td>
+				<td align="center"><input type="submit"
+					class="btn btn-block btn-info" value="일감 등록" id="insertProject" name="insertProject">
+				</td>
 				</tr>
 			</table>
 		</form>
@@ -219,6 +219,8 @@ th,td{padding: 10px}
 <!-- //end 일감 추가 모달창 -->
 <!-- 해당 파일 스크립트 -->
 <script type="text/javascript" src="resources/js/registration.js"></script>
+
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

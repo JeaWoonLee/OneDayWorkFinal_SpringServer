@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -92,6 +93,7 @@ public class OfferController {
 	
 	@RequestMapping(value="registration.do",method=RequestMethod.GET)
 	public String registration(HttpServletRequest request) {
+		System.out.println("registration.do실행됨");
 		HttpSession session = request.getSession();
 		OfferVO offerVO = (OfferVO)session.getAttribute("loginInfo");
 		if(offerVO == null) {
