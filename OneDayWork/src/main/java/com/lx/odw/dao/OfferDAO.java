@@ -151,4 +151,6 @@ public class OfferDAO {
 		return session.selectList("requestRecruitListByJobNumAndTargetDate",item);
 	}
 	
+	
+	
 }

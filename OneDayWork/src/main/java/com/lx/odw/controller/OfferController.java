@@ -66,29 +66,18 @@ public class OfferController {
 		return "projectList";
 	}
 	
-	@RequestMapping(value="seekerList.do",method=RequestMethod.GET)
-	public String seekerList(HttpServletRequest request) {//요청을 받는 내장객체 httpservletrequest
-		HttpSession session = request.getSession();
-		JobVO jobVO = (JobVO) session.getAttribute("projectNumber");
-		
-		return "seekerList";
-	}
-
-		
-
 	@RequestMapping(value="insertProject.do",method=RequestMethod.POST)
 	public @ResponseBody String insertProject (ProjectVO vo, String jobs,HttpSession seesion){
 		return service.insertProject(vo,jobs,seesion);
 	}
 		
 	//웹 구인자 상세정보
-
 	@RequestMapping(value="showPrjDetail.do",method=RequestMethod.GET)
 	public String showPrjDetail (ProjectVO vo,HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
 		if(offerVO != null) {
-			ProjectVO item = offerDAO.showPrjDetail(vo);
+			ProjectDetailVO item = service.requestManageProjectDetailInfo(vo);
 			request.setAttribute("prjDetail", item);
 			return "projectDetail";
 		} else {
@@ -96,14 +85,8 @@ public class OfferController {
 		}
 	}
 	
-
-	
-
-	
-	//而ㅻ컠 �뀒�뒪�듃
 	@RequestMapping("haruMainPage.do")
 	public String offerLogin() {
-		System.out.println("haruMainPage�씠 �떎�뻾�맖");
 		return "haruMainPage";
 	}
 	
@@ -116,20 +99,6 @@ public class OfferController {
 		}
 		return "registration";
 	}
-
-//	@RequestMapping(value="projectList.do", method=RequestMethod.GET)
-//	public String projectList(HttpServletRequest request) {
-//		
-//		HttpSession session = request.getSession();
-//		OfferVO offerVO = (OfferVO) session.getAttribute("loginInfo");
-//		if(offerVO != null) {
-//			List<ProjectVO> list = service.projectList(offerVO.getOfferId());
-//			request.setAttribute("projectList", list);
-//		} else {
-//			return "offerLogin";
-//		}
-//		return "projectList";
-//	}
 
 	@RequestMapping(value="requestOfferProjectList.do",method=RequestMethod.POST)
 	public @ResponseBody List<OfferWorkVO> requestOfferProjectList(String offerId) {
@@ -201,6 +170,17 @@ public class OfferController {
 		return service.requestCandidateListByJobNumber(vo);
 	}
 	
+	@RequestMapping(value="seekerList.do",method=RequestMethod.GET)
+	public String seekerList(HttpServletRequest request, JobCandidateVO vo) {
+		HttpSession session = request.getSession();
+		OfferVO offerVO = (OfferVO)session.getAttribute("loginInfo");
+		if(offerVO == null) {
+			return "offerLogin";
+		}
+		CandidateMapResponseModel candidateModel = service.requestCandidateListByJobNumber(vo);
+		request.setAttribute("seekerList", candidateModel);
+		return "seekerList";
+	}
 	@RequestMapping(value="requestAcceptCandidateByCandidateNumber.do", method=RequestMethod.POST)
 	public @ResponseBody int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
 		return service.requestAcceptCandidateByCandidateNumber(vo);
@@ -221,4 +201,14 @@ public class OfferController {
 		return service.requestTargetDateRecruitInfo(vo);
 	}
 
+	@RequestMapping(value="manageCommute.do",method=RequestMethod.GET)
+	public String manageCommute(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		OfferVO offerVO = (OfferVO)session.getAttribute("loginInfo");
+		if(offerVO == null) return "offerLogin";
+		List<OfferWorkVO> todayProjectList = service.requestOfferProjectList(offerVO.getOfferId());
+		request.setAttribute("todayProjectList", todayProjectList);
+		return "manage_commute";
+	}
+	
 }
