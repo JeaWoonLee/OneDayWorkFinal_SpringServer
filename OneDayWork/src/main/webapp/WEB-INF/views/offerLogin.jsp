@@ -7,6 +7,7 @@ if(loginResult == null){
 	loginResult = "none";
 }
 %>
+<jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,14 +53,8 @@ html, body {
 	<input id="checkLoginFail" type="hidden" value="<%=loginResult%>">
 	<%List<OfferVO> list = (List<OfferVO>) request.getAttribute("userId"); %>
 	<div class="container">
-		<table class="loginLogo">
-			<tr>
-				<td><img src="resources/img/haru.png" width="80px"
-					height="80px"></td>
-				<td><h1>하루일감</h1></td>
-			</tr>
-		</table>
-		<h4 class="offerLoginTitle">[구인자 로그인]</h4>
+
+		<h3 style="text-align: center;">구인자 로그인</h3>
 		<br>
 		<form action="offerLogin.do" method="post">
 
@@ -80,6 +75,6 @@ html, body {
 			</div>
 		</form>
 	</div>
-
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

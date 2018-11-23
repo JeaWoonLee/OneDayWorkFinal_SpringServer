@@ -2,7 +2,7 @@
 <%@page import="com.lx.odw.vo.ProjectVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="header2.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +26,12 @@ function showProjectDetail (projectNumber){
 <body>
 
 <body>
+
+<!-- 일감 목록 -->
 <%List<ProjectVO> list = (List<ProjectVO>) request.getAttribute("projectList"); %>
 
 	<div class="container">
-		<h1>일감목록</h1>
+		<h3 style="text-align: center;">일감 등록</h3>
 			<table class="table table-hover">
 				<thead>
 
@@ -124,6 +126,6 @@ function showProjectDetail (projectNumber){
 
 	</div>
 -->
-
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

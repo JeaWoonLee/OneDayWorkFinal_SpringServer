@@ -3,7 +3,7 @@
 <%@page import="com.lx.odw.vo.ProjectVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="header2.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@
 	List<JobVO> jobList = detailVO.getJobList();
 	%>
 	<div class="container">
-		<h1>상세정보</h1>
+		<h3 style="text-align: center;">상세정보</h3>
 		<table class="table table-border">
 			<tr class="row">
 				<th class="col-sm-2 title">일감 이름</th>
@@ -140,5 +140,6 @@
 		</table>
 	</div>
 	<script type="text/javascript"></script>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

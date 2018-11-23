@@ -8,7 +8,7 @@
 <%@page import="com.lx.odw.vo.ProjectVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="header2.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +47,7 @@ for (JobCandidateVO header : headerList) {
 %><!-- 요청해서 받은 empList를 list에 담는다. -->
 			
 	<div class="container">
-	<h1>신청 관리</h1>
+	<h3 style="text-align: center;">신청관리</h3>
 			<table class="table table-border">
 			<%for(JobCandidateVO header : headerList) {
 				if(targetDate == header.getTargetDate()){
@@ -356,5 +356,6 @@ function  setCertificateList (certificate){
 	}
 }
 </script>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

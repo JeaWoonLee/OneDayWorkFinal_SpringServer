@@ -7,38 +7,48 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <!-- Footer -->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
+	<footer class="text-center">
+		<a class="up-arrow" href="#myPage" data-toggle="tooltip"
+			title="TO TOP"> <span class="glyphicon glyphicon-chevron-up"></span>
+		</a><br> <br>
 
-					LX 공간정보 아카데미 <br>
-					<span class="copyright">하루일감 2018</span>
-				</div>
-				<div class="col-md-3">
-					<img class="resources/img-fluid d-block mx-auto"
-						src="resources/img/logos/harulogo_b.png" width="65%" alt="">
-				</div>
-				<div class="col-md-5">
-					<ul class="list-inline quicklinks">이제운| 김한슬| 김동가| 최선주| 윤정민|</ul>
-				</div>
-			</div>
-		</div>
+		<p>LX 공간정보 아카데미&nbsp;&nbsp;&nbsp;&nbsp; 이제운|&nbsp;&nbsp; 김한슬|&nbsp;&nbsp; 김동가|&nbsp;&nbsp; 최선주|&nbsp;&nbsp; 윤정민</p>
+		<p>
+			<img src="resources/img/harulogo_w.png" width="105px">
+		</p>
 	</footer>
-	
-	<!-- Bootstrap core JavaScript -->
-	<script src="resources/vendor/jquery/jquery.min.js"></script>
-	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Plugin JavaScript -->
-	<script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script>
+$(document).ready(function(){
+  // Initialize Tooltip
+  $('[data-toggle="tooltip"]').tooltip(); 
+  
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
-	<!-- Contact form JavaScript -->
-	<script src="resources/js/jqBootstrapValidation.js"></script>
-	<script src="resources/js/contact_me.js"></script>
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
 
-	<!-- Custom scripts for this template -->
-	<script src="resources/js/agency.min.js"></script>
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+})
+</script>
 </body>
 </html>

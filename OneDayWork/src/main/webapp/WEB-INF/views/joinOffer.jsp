@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -93,17 +91,13 @@
 </style>
 <title>하루일감: 회원가입</title>
 
-<style>
-	.container{
-	    width: fit-content; height:fit-content; margin: 0 auto; margin-top:150px;
-	}
-</style>
+
 
 </head>
 <body>
 	
 	<div class="container">
-		<h1>회원가입</h1>
+		<h3 style="text-align: center;">회원가입</h3>
 		<form method="get" action="joinOffer.do">
 			<table>
 				<tbody>
@@ -157,5 +151,7 @@
 			</table>
 		</form>
 	</div>
+	
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

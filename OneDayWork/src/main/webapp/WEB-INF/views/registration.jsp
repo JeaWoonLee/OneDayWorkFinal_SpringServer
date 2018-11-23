@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="header2.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <meta charset="UTF-8">
 <!-- 카카오 맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
@@ -219,6 +219,8 @@ th,td{padding: 10px}
 <!-- //end 일감 추가 모달창 -->
 <!-- 해당 파일 스크립트 -->
 <script type="text/javascript" src="resources/js/registration.js"></script>
+
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>
