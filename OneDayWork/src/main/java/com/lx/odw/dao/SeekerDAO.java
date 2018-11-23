@@ -107,4 +107,9 @@ public class SeekerDAO {
 		return session.selectList("requestAcceptJobList", seekerId);
 	}
 
+	public List<ManageVO> requestFinishJobList(String seekerId) {
+		// TODO Auto-generated method stub
+		return session.selectList("requestFinishJobList", seekerId);
+	}
+
 }

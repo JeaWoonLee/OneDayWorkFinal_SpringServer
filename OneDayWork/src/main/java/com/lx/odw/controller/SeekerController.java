@@ -118,4 +118,8 @@ public class SeekerController {
 		return service.requestAcceptJobList(seekerId);
 	}
 
+	@RequestMapping(value="requestFinishJobList.do",method=RequestMethod.POST)
+	public @ResponseBody List<ManageVO> requestFinishJobList(String seekerId) {
+		return service.requestFinishJobList(seekerId);
+	}
 }

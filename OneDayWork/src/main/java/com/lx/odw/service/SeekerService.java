@@ -56,4 +56,6 @@ public interface SeekerService {
 
 	List<ManageVO> requestAcceptJobList(String seekerId);
 
+	List<ManageVO> requestFinishJobList(String seekerId);
+
 }
