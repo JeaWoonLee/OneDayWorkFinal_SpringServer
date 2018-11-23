@@ -17,6 +17,12 @@ if(loginResult == null){
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 <style>
+footer {
+      position:absolute;
+      bottom:0;
+      width:100%;
+       
+    }
 </style>
 <script type="text/javascript">
 	$(function(){

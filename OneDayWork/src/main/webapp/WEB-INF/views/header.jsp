@@ -24,6 +24,7 @@
 
 <style>
 
+
 body {font: 400 15px/1.8 Lato, sans-serif; color: #777;}
 h3, h4 {margin: 10px 0 30px 0; letter-spacing: 10px; font-size: 20px; color: #111;}
 .container {padding: 80px 120px;}
@@ -55,6 +56,7 @@ h3, h4 {margin: 10px 0 30px 0; letter-spacing: 10px; font-size: 20px; color: #11
 .dropdown-menu li a:hover {background-color: LightGray !important;}
 footer {background-color: #2d2d30;color: #f5f5f5;padding: 32px;font-size: 12px;bottom: 0;width: 100%;
 
+    margin: 0 auto;
 
 }
 footer a {color: #f5f5f5;}

@@ -142,8 +142,8 @@ th{text-align: center;}
 				</tr>
 				<tr class="row">
 				<td align="center"></td>
-				<td align="center"><input type="button"
-					class="btn btn-block btn-info" type="button" value="일감 등록">
+				<td align="center"><input type="submit"
+					class="btn btn-block btn-info" value="일감 등록" id="insertProject" name="insertProject">
 				</td>
 				</tr>
 			</table>

@@ -15,6 +15,14 @@ function showProjectDetail (projectNumber){
 	document.location="showPrjDetail.do?projectNumber="+projectNumber; //projectNumber파라메터값
 }
 </script>
+<style>
+footer {
+      position:absolute;
+      bottom:0;
+      width:100%;
+       
+    }
+</style>
 </head>
 <body>
 

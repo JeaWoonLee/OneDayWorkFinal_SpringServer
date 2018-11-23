@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 
@@ -94,11 +96,11 @@
 
 	<div class="container">
 		<h3 class="text-center">회원가입</h3>
-		<form class="form-horizontal" action="joinOffer.do" method="get">
+		<form class="form-horizontal" action="joinOffer.do" method="POST">
 
 
 			<div class="form-group">
-				<label class="control-label col-sm-3" type="text" id="offerId"
+				<label class="control-label col-sm-3" type="text" id="offerId "
 					name="offerId" maxlength="20">아이디:</label> <input type="hidden"
 					id="offerIdHidden">
 				<div class="col-sm-5">
@@ -120,7 +122,7 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="pwd">비밀번호 확인:</label>
+				<label class="control-label col-sm-3">비밀번호 확인:</label>
 				<div class="col-sm-5">
 					<input type="password" class="form-control" id="pwReInput"
 						name="pwReInput">
@@ -128,7 +130,7 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="pwd">이름:</label>
+				<label class="control-label col-sm-3">이름:</label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="offerName"
 						name="offerName">
@@ -136,7 +138,7 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="pwd">이메일:</label>
+				<label class="control-label col-sm-3">이메일:</label>
 				<div class="col-sm-5">
 					<input type="email" class="form-control" id="offerEmail"
 						name="offerEmail">
@@ -144,7 +146,7 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="pwd">회사명:</label>
+				<label class="control-label col-sm-3">회사명:</label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="companyName"
 						name="companyName">
@@ -152,7 +154,7 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="pwd">사업자 번호:</label>
+				<label class="control-label col-sm-3">사업자 번호:</label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="companyNo"
 						name="companyNo">
@@ -160,24 +162,25 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-3" for="pwd">계좌:</label>
-
+				<label class="control-label col-sm-3">계좌:</label>
 
 
 				<div class="col-sm-1">
-					<button class="btn btn-sm" type="button" data-toggle="dropdown">
-						은행 <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a href="#">신한은행</a></li>
-						<li><a href="#">기업은행</a></li>
-						<li><a href="#">하나은행</a></li>
-						<li><a href="#">국민은행</a></li>
-						<li><a href="#">농협</a></li>
-					</ul>
+				
+						<select name="offerAccount" id="offerAccount" required>
+							<option value="">은행</option>
+							<option value="신한은행">신한은행</option>
+							<option value="국민은행">국민은행</option>
+							<option value="농협">농협</option>
+							<option value="기업은행">기업은행</option>
+							<option value="하나은행">하나은행</option>
+							<option value="기업은행">기업은행</option>
+						</select>
+					
 				</div>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="id" name="userId">
+				
+				<div class="col-sm-4" style="padding-left: 40px;">
+					<input type="text" class="form-control" id="bank" name="bank">
 				</div>
 
 
@@ -191,13 +194,14 @@
 				</div>
 			</div>
 	</div>
-
+ 
 
 
 
 	</div>
 
 	</form>
+	
 	<!-- 
 	<div class="container">
 		<h3 style="text-align: center;">회원가입</h3>
@@ -254,7 +258,7 @@
 			</table>
 		</form>
 	</div>
-	 -->
+	-->
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
