@@ -39,8 +39,8 @@ h3, h4 {margin: 10px 0 30px 0; letter-spacing: 10px; font-size: 20px; color: #11
 .list-group-item:last-child {border-bottom-right-radius: 0;border-bottom-left-radius: 0;}
 .thumbnail {padding: 0 0 15px 0;border: none;border-radius: 0;}
 .thumbnail p {margin-top: 15px;color: #555;}
-.btn {padding: 10px 20px;background-color: #333;color: #f1f1f1;transition: .2s;}
-.btn:hover, .btn:focus {border: 1px solid #333;background-color: #fff;color: #000;}
+
+
 .modal-header, h4, .close {background-color: #333;color: #fff !important;text-align: center;font-size: 30px;}
 .modal-header, .modal-body {padding: 40px 50px;}
 .nav-tabs li a {color: #777;}
@@ -50,15 +50,19 @@ h3, h4 {margin: 10px 0 30px 0; letter-spacing: 10px; font-size: 20px; color: #11
 .navbar-nav li a:hover {color: #fff !important;}
 .navbar-nav li.active a {color: #fff !important;background-color: #29292c !important;}
 .navbar-default .navbar-toggle {border-color: transparent;}
-.open .dropdown-toggle {color: #fff;background-color: #555 !important;}
+.open .dropdown-toggle {color: #fff;background-color: LightGray !important;}
 .dropdown-menu li a {color: #000 !important;}
-.dropdown-menu li a:hover {background-color: black !important;}
-footer {background-color: #2d2d30;color: #f5f5f5;padding: 32px;font-size: 12px;bottom: 0;width: 100%;}
+.dropdown-menu li a:hover {background-color: LightGray !important;}
+footer {background-color: #2d2d30;color: #f5f5f5;padding: 32px;font-size: 12px;bottom: 0;width: 100%;
+
+
+}
 footer a {color: #f5f5f5;}
 footer a:hover {color: #777;text-decoration: none;}
+
 .form-control {border-radius: 0;}
 textarea {resize: none;}
-.jumbotron { background-image: url("resources/img/header.png");color: #fff;padding: 100px 25px;font-family: Montserrat, sans-serif;opacity: 0.9;}
+.jumbotron { background-image: url("resources/img/header.png");color: #fff;font-family: Montserrat, sans-serif;opacity: 0.9;}
 </style>
 
 </head>
@@ -74,7 +78,7 @@ textarea {resize: none;}
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#myPage">하 루 일 감</a>
+				<a class="navbar-brand" href="haruMainPage.do">하 루 일 감</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-center">

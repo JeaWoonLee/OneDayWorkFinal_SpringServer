@@ -10,23 +10,19 @@
 
 <!-- Footer -->
 	<footer class="text-center">
-		<a class="up-arrow" href="#myPage" data-toggle="tooltip"
-			title="TO TOP"> <span class="glyphicon glyphicon-chevron-up"></span>
-		</a><br> <br>
-
 		<p>LX 공간정보 아카데미&nbsp;&nbsp;&nbsp;&nbsp; 이제운|&nbsp;&nbsp; 김한슬|&nbsp;&nbsp; 김동가|&nbsp;&nbsp; 최선주|&nbsp;&nbsp; 윤정민</p>
 		<p>
 			<img src="resources/img/harulogo_w.png" width="105px">
 		</p>
 	</footer>
-
+<!-- 
 	<script>
 $(document).ready(function(){
   // Initialize Tooltip
   $('[data-toggle="tooltip"]').tooltip(); 
   
   // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+ // $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
     // Make sure this.hash has a value before overriding default behavior
     if (this.hash !== "") {
@@ -39,9 +35,9 @@ $(document).ready(function(){
 
       // Using jQuery's animate() method to add smooth page scroll
       // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 900, function(){
+     // $('html, body').animate({
+      //  scrollTop: $(hash).offset().top
+   //   }, 900, function(){
    
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
@@ -50,5 +46,6 @@ $(document).ready(function(){
   });
 })
 </script>
+ -->
 </body>
 </html>

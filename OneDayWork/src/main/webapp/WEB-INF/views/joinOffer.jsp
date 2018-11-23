@@ -83,19 +83,122 @@
 	}
 </script>
 
-		<!-- 가운데로 오게함 -->
-<style>
-	.container{
-	    width: fit-content; height:fit-content; margin: 0 auto; margin-top:150px;
-	}
-</style>
+<!-- 가운데로 오게함 -->
+
 <title>하루일감: 회원가입</title>
 
 
 
 </head>
 <body>
-	
+
+	<div class="container">
+		<h3 class="text-center">회원가입</h3>
+		<form class="form-horizontal" action="joinOffer.do" method="get">
+
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" type="text" id="offerId"
+					name="offerId" maxlength="20">아이디:</label> <input type="hidden"
+					id="offerIdHidden">
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="id" name="userId">
+					
+				</div>
+				<div class="col-sm-1">
+					
+					<span><button type="button" class="btn btn-danger btn-sm"
+						id="checkOverlapButton">중복확인</button></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">비밀번호:</label>
+				<div class="col-sm-5">
+					<input type="password" class="form-control" id="offerPw"
+						maxlength="20" name="offerPw">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="pwd">비밀번호 확인:</label>
+				<div class="col-sm-5">
+					<input type="password" class="form-control" id="pwReInput"
+						name="pwReInput">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="pwd">이름:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="offerName"
+						name="offerName">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="pwd">이메일:</label>
+				<div class="col-sm-5">
+					<input type="email" class="form-control" id="offerEmail"
+						name="offerEmail">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="pwd">회사명:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="companyName"
+						name="companyName">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="pwd">사업자 번호:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="companyNo"
+						name="companyNo">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="pwd">계좌:</label>
+
+
+
+				<div class="col-sm-1">
+					<button class="btn btn-sm" type="button" data-toggle="dropdown">
+						은행 <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#">신한은행</a></li>
+						<li><a href="#">기업은행</a></li>
+						<li><a href="#">하나은행</a></li>
+						<li><a href="#">국민은행</a></li>
+						<li><a href="#">농협</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="id" name="userId">
+				</div>
+
+
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3"></label>
+				<div class="col-sm-6">
+					<button type="submit" class="btn btn-block btn-info" id="offerJoinButton"
+						name="offererLogin" disabled=true>회원가입</button>
+				</div>
+			</div>
+	</div>
+
+
+
+
+	</div>
+
+	</form>
+	<!-- 
 	<div class="container">
 		<h3 style="text-align: center;">회원가입</h3>
 		<form method="get" action="joinOffer.do">
@@ -136,7 +239,7 @@
 					<tr>
 						<td>계좌</td>
 						<td class="dropdown">
-							<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">은행 <span class="caret"></span></button>
+							<button class="btn btn-default btn-sm" type="button" data-toggle="dropdown">은행 <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li><a href="#">신한은행</a></li>
 								<li><a href="#">국민은행</a></li>
@@ -151,7 +254,7 @@
 			</table>
 		</form>
 	</div>
-	
-<jsp:include page="footer.jsp"></jsp:include>
+	 -->
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

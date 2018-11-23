@@ -17,12 +17,6 @@
 <!-- 카카오 맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
 <style>
-.container {
-	width: fit-content;
-	height: fit-content;
-	margin: 0 auto;
-	margin-top: 150px;
-}
 #map-container{text-align: center;}
 #map{display: inline-block;}
 </style>
@@ -48,7 +42,7 @@ for (JobCandidateVO header : headerList) {
 			
 	<div class="container">
 	<h3 style="text-align: center;">신청관리</h3>
-			<table class="table table-border">
+			<table class="table table-striped">
 			<%for(JobCandidateVO header : headerList) {
 				if(targetDate == header.getTargetDate()){
 					break;
@@ -78,9 +72,9 @@ for (JobCandidateVO header : headerList) {
 				                int old = todayYear - seekerYear + 1;
 									out.print(old);%></td>
 								<td class="col-sm-3"><%="신뢰도 "+(int)(((double)item.getOffWork()/(double)item.getTotal())*100)+"% ("+item.getOffWork()+"/"+item.getTotal()+")"%></td>
-								<td class="col-sm-1"><a href="#" id="showCandidateDetail" class="btn btn-warning" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' data-toggle="modal" data-target="#seekerDetailModal">상세정보</a></td>
-								<td class="col-sm-1"><a href="#" onClick='refuseCandidate"<%=item.getCandidateNumber()%>")' class="btn btn-danger">신청 거절</a></td>
-								<td class="col-sm-1"><a href="#" onClick='acceptCandidate("<%=item.getCandidateNumber()%>")' class="btn btn-primary">신청 수락</a></td>
+								<td class="col-sm-1"><a href="#" id="showCandidateDetail" class="btn btn-primary btn-sm" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' data-toggle="modal" data-target="#seekerDetailModal">상세정보</a></td>
+								<td class="col-sm-1"><a href="#" onClick='refuseCandidate"<%=item.getCandidateNumber()%>")' class="btn btn-danger btn-sm">신청 거절</a></td>
+								<td class="col-sm-1"><a href="#" onClick='acceptCandidate("<%=item.getCandidateNumber()%>")' class="btn btn-success btn-sm">신청 수락</a></td>
 							</tr>
 						<% }%>
 						</table>

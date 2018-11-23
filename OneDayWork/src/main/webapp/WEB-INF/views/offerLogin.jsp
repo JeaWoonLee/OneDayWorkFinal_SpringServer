@@ -17,28 +17,6 @@ if(loginResult == null){
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 <style>
-html, body {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	width: 100%;
-}
-
-#id, #pw {
-	width: 400px;
-	height: 30px;
-}
-
-#offererLogin {
-	width: 405px;
-	height: 40px;
-	background-color: #03611c;
-	color: white;
-	font-size: 13pt;
-}
-.container {width: fit-content; height:fit-content; margin: 0 auto; margin-top: 200px}
-.loginLogo{width: fit-content; height:fit-content; margin: 0 auto;}
-.offerLoginTitle{width: fit-content; height:fit-content; margin: 0 auto; }
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -52,6 +30,39 @@ html, body {
 <body>
 	<input id="checkLoginFail" type="hidden" value="<%=loginResult%>">
 	<%List<OfferVO> list = (List<OfferVO>) request.getAttribute("userId"); %>
+
+<!-- 로그인 화면 -->
+	<div class="container">
+		<h3 class="text-center">로그인</h3>
+		<form class="form-horizontal" action="offerLogin.do" method="post">
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="email">아이디:</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" id="id"
+						placeholder="아이디를 입력하세요" name="userId">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="pwd">비밀번호:</label>
+				<div class="col-sm-6">
+					<input type="password" class="form-control" id="pw"
+						placeholder="비밀번호를 입력하세요" name="userPw">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3"></label>
+				<div class="col-sm-6">
+					<button type="submit" class="btn btn-block btn-info" id="offererLogin"
+						name="offererLogin">로그인</button>
+				</div>
+			</div>
+
+
+		</form>
+	</div>
+<!-- 로그인 화면 -->
+
+	<!-- 
 	<div class="container">
 
 		<h3 style="text-align: center;">구인자 로그인</h3>
@@ -75,6 +86,8 @@ html, body {
 			</div>
 		</form>
 	</div>
-<jsp:include page="footer.jsp"></jsp:include>
+	 -->
+
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

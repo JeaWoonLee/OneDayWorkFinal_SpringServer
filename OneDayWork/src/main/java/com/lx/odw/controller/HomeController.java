@@ -21,7 +21,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		return "haruMainPage";
+		return "header3";
 	}
 	
 	@RequestMapping(value="document.do",method=RequestMethod.GET)
