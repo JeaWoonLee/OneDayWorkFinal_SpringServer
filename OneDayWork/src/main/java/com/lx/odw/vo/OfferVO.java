@@ -14,6 +14,7 @@ public class OfferVO {
 	String companyNo;
 	String companyName;
 	int offerCash;
+	String offerSign;
 	
 	
 	
@@ -123,7 +124,13 @@ public class OfferVO {
 		this.offerCash = offerCash;
 	}
 
-
+	public String getOfferSign() {
+		return offerSign;
+	}
+	
+	public void setOfferSign(String offerSign) {
+		this.offerSign = offerSign;
+	}
 
 	@Override
 	public String toString() {
