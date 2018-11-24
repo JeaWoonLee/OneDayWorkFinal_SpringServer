@@ -28,4 +28,7 @@
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<!-- @Aspect Bean을 생성해줌 -->
 	
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+ 
+	
 </beans:beans>

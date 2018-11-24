@@ -17,8 +17,26 @@ public class WorkVO {
     int candidateNumber;
     String seekerSign;
 
+    String workStartTime;
+    String workEndTime;
+    
+    public String getWorkStartTime() {
+		return workStartTime;
+	}
 
-    public String getSeekerSign() {
+	public void setWorkStartTime(String workStartTime) {
+		this.workStartTime = workStartTime;
+	}
+
+	public String getWorkEndTime() {
+		return workEndTime;
+	}
+
+	public void setWorkEndTime(String workEndTime) {
+		this.workEndTime = workEndTime;
+	}
+
+	public String getSeekerSign() {
         return seekerSign;
     }
 

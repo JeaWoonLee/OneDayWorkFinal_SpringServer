@@ -161,6 +161,7 @@ for (JobCandidateVO header : headerList) {
 		</div>
 	</div>
 	<!-- //end 상세정보 모달창-->
+<!-- 상세정보 스크립트 -->
 <script type="text/javascript">
 var map;
 var mapContainer;

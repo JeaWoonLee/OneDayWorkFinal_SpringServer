@@ -1,6 +1,5 @@
 package com.lx.odw.controller;
 
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -120,4 +119,8 @@ public class SeekerController {
 		return service.updateCandidateSign(seekerSign,work,request);
 	}
 	
+	@RequestMapping(value="requestSeekerRecord.do",method=RequestMethod.POST)
+	public @ResponseBody List<JobCandidateVO> requestSeekerRecord (SeekerVO vo) {
+		return service.requestSeekerRecord(vo);
+	}
 }

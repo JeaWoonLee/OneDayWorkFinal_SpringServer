@@ -3,7 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="header2.jsp"></jsp:include>
-<%List<OfferWorkVO> todayProjectList = (List<OfferWorkVO>) request.getAttribute("todayProjectList"); %>
+<%List<OfferWorkVO> todayProjectList = (List<OfferWorkVO>) request.getAttribute("todayProjectList"); 
+System.out.println(todayProjectList.toString());%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +14,15 @@
 <body>
 <div class="container">
 	<h1>출퇴근 관리</h1>
+	<br><br>
 	<table class="table table-boder">
 		<%for(OfferWorkVO item : todayProjectList){ %>
 		<tr class="row">
-			<td class="col-sm-2">
-				
-			</td>
-			
+			<td class="col-sm-4"><%=item.getProjectName()%></td>
+			<td class="col-sm-3"><%=item.getWorkStartTime() + " ~ " + item.getWorkEndTime() %></td>
+			<td class="col-sm-2"><%="모집률 : ( "+item.getRecruit() + " / " + item.getTotal() +" )"%></td>
+			<td class="col-sm-2"><%="출석률 : ( "+ item.getCommute()+" / " + item.getRecruit() + " )"%></td>
+			<td class="col-sm-1"><a href="manageCommuteDateil.do?projectNumber=<%=item.getProjectNumber()%>&projectName=<%=item.getProjectName()%>" class="btn btn-primary">출퇴근 관리</a></td>
 		</tr>
 		<%} %>
 	</table>

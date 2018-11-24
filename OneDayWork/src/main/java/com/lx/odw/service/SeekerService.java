@@ -58,4 +58,6 @@ public interface SeekerService {
 
 	int updateCandidateSign(MultipartFile seekerSign, String workVO,HttpServletRequest request);
 
+	List<JobCandidateVO> requestSeekerRecord(SeekerVO vo);
+
 }

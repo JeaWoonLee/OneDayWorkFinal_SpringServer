@@ -292,7 +292,9 @@ where
 		j.job_pay,
 		j.job_name,
 		c.candidate_status,
-		c.candidate_number
+		c.candidate_number,
+		p.work_start_time,
+		p.work_end_time
 	from
 		project p,
 		job j,

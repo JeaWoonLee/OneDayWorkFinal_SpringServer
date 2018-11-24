@@ -1,5 +1,6 @@
 package com.lx.odw.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -94,7 +95,6 @@ public class OfferController {
 	
 	@RequestMapping(value="registration.do",method=RequestMethod.GET)
 	public String registration(HttpServletRequest request) {
-		System.out.println("registration.do실행됨");
 		HttpSession session = request.getSession();
 		OfferVO offerVO = (OfferVO)session.getAttribute("loginInfo");
 		if(offerVO == null) {
@@ -210,10 +210,26 @@ public class OfferController {
 		OfferVO offerVO = (OfferVO)session.getAttribute("loginInfo");
 		if(offerVO == null) return "offerLogin";
 		List<OfferWorkVO> todayProjectList = service.requestOfferProjectList(offerVO.getOfferId());
-		request.setAttribute("todayProjectList", todayProjectList);
+		List<OfferWorkVO> projectList = new ArrayList<OfferWorkVO>();
+		for(OfferWorkVO item : todayProjectList) {
+			item = service.getProjectCommuteInfo(String.valueOf(item.getProjectNumber()));
+			projectList.add(item);
+		}
+		request.setAttribute("todayProjectList", projectList);
 		return "manage_commute";
 	}
 	
+	@RequestMapping(value="manageCommuteDateil.do", method=RequestMethod.GET)
+	public String manageCommuteDateil(String projectNumber,String projectName, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		OfferVO offerVO = (OfferVO)session.getAttribute("loginInfo");
+		if(offerVO == null) return "offerLogin";
+		
+		CommuteInfoVO item = service.requestProjectCommuteInfo(projectNumber);
+		request.setAttribute("projectName", projectName);
+		request.setAttribute("CommuteInfoVO", item);
+		return "manageCommuteDetail";
+	}
 	@RequestMapping(value="requestOfferDetail.do", method=RequestMethod.POST)
 	public @ResponseBody OfferVO requestOfferDetail(OfferVO offerVO) {
 		return service.requestOfferDetail(offerVO);

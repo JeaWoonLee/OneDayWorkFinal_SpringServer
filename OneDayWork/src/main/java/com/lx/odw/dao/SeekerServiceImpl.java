@@ -182,4 +182,9 @@ public class SeekerServiceImpl implements SeekerService{
 		return 0;
 	}
 
+	@Override
+	public List<JobCandidateVO> requestSeekerRecord(SeekerVO vo) {
+		return seekerDAO.requestSeekerRecord(vo);
+	}
+
 }

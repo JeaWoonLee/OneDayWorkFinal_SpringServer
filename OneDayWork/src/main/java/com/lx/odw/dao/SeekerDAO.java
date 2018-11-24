@@ -106,4 +106,8 @@ public class SeekerDAO {
 		return session.update("updateCandidateSign",workVO);
 	}
 
+	public List<JobCandidateVO> requestSeekerRecord(SeekerVO vo) {
+		return session.selectList("requestSeekerRecord",vo);
+	}
+
 }
