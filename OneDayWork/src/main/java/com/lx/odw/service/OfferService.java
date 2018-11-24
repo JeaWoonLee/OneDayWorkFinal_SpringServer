@@ -80,7 +80,7 @@ public interface OfferService {
 
 	int updateOffer(String offerVO, HttpServletRequest request);
 
-	int updateOfferSign(MultipartFile OfferSign, String offerSign, HttpServletRequest request);
+	int updateOfferSign(MultipartFile OfferSign, String offerVO, HttpServletRequest request);
 
 	OfferVO requestOfferDetail(OfferVO offerVO);
 

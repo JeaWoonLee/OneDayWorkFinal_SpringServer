@@ -271,8 +271,8 @@ public class OfferServiceImpl implements OfferService{
 		try {
 			Gson gson = new Gson();
 			OfferVO offerVO = gson.fromJson(offer, OfferVO.class);
-			String updatePath = Util.getUplodaPath(offerSign, request, offerVO.getCompanyName());
-			offerVO.setOfferSign(updatePath);
+			String updateOfferPath = Util.getUplodaPath(offerSign, request, offerVO.getCompanyName());
+			offerVO.setOfferSign(updateOfferPath);
 			return offerDAO.updateOfferSign(offerVO);
 		} catch (IOException e) {
 			e.printStackTrace();

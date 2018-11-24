@@ -225,8 +225,8 @@ public class OfferController {
 	}
 	
 	@RequestMapping(value="updateOfferSign.do",method=RequestMethod.POST)
-	public @ResponseBody int updateCandidateSign(MultipartFile seekerSign, String work,HttpServletRequest request) {
-		return service.updateOfferSign(seekerSign,work,request);
+	public @ResponseBody int updateOfferSign(MultipartFile offerSign, String offer,HttpServletRequest request) {
+		return service.updateOfferSign(offerSign,offer,request);
 	}
 	
 }
