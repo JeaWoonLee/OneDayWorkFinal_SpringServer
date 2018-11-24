@@ -150,6 +150,19 @@ public class OfferDAO {
 	public List<ManageHumanResourceModel> requestRecruitListByJobNumAndTargetDate(JobCandidateVO item) {
 		return session.selectList("requestRecruitListByJobNumAndTargetDate",item);
 	}
+
+	public int updateOffer(OfferVO offerVO) {
+		return session.update("updateOffer",offerVO);
+	}
+
+	public int updateOfferSign(OfferVO offerVO) {
+		return session.update("updateOfferSign",offerVO);
+	}
+
+	public OfferVO requestOfferDetail(OfferVO offerVO) {
+		return session.selectOne("requestOfferDetail",offerVO);
+	}
+
 	
 	
 	

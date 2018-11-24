@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lx.odw.model.CandidateMapResponseModel;
 import com.lx.odw.model.HumanResRsponseModel;
@@ -76,5 +77,12 @@ public interface OfferService {
 	List<JobCandidateVO> requestProjectRecruitInfo(ProjectVO vo);
 
 	HumanResRsponseModel requestTargetDateRecruitInfo(ManageHumanResourceModel vo);
+
+	int updateOffer(String offerVO, HttpServletRequest request);
+
+	int updateOfferSign(MultipartFile OfferSign, String offerSign, HttpServletRequest request);
+
+	OfferVO requestOfferDetail(OfferVO offerVO);
+
 
 }

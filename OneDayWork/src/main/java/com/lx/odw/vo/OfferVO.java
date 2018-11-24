@@ -15,7 +15,7 @@ public class OfferVO {
 	String companyName;
 	int offerCash;
 	String offerSign;
-	
+	String offerInfo;
 	
 	
 	public String getOfferId() {
@@ -132,6 +132,14 @@ public class OfferVO {
 		this.offerSign = offerSign;
 	}
 
+	public String getOfferInfo() {
+		return offerInfo;
+	}
+	
+	public void setOfferInfo(String offerInfo) {
+		this.offerInfo = offerInfo;
+	}
+	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this,ToStringStyle.JSON_STYLE);

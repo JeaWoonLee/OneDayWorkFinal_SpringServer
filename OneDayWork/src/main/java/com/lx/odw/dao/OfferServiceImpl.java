@@ -1,5 +1,6 @@
 package com.lx.odw.dao;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,12 +12,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.lx.odw.model.CandidateMapResponseModel;
 import com.lx.odw.model.HumanResRsponseModel;
 import com.lx.odw.model.ManageHumanResourceModel;
 import com.lx.odw.service.OfferService;
+import com.lx.odw.util.Util;
 import com.lx.odw.vo.CertificationVO;
 import com.lx.odw.vo.CommuteInfoVO;
 import com.lx.odw.vo.JobCandidateVO;
@@ -29,6 +32,7 @@ import com.lx.odw.vo.ProjectVO;
 import com.lx.odw.vo.SeekerDetailVO;
 
 import com.lx.odw.vo.SeekerVO;
+import com.lx.odw.vo.WorkVO;
 
 @Repository
 public class OfferServiceImpl implements OfferService{
@@ -254,5 +258,31 @@ public class OfferServiceImpl implements OfferService{
 		model.setRecruitMap(recruitMap);
 		return model;
 	}
+	
+	@Override
+	public int updateOffer(String offerVO, HttpServletRequest request) {
+		Gson gson = new Gson();
+		OfferVO item = gson.fromJson(offerVO, OfferVO.class);
+		return offerDAO.updateOffer(item);
+	}
 
+	@Override
+	public int updateOfferSign(MultipartFile offerSign, String offer,HttpServletRequest request) {
+		try {
+			Gson gson = new Gson();
+			OfferVO offerVO = gson.fromJson(offer, OfferVO.class);
+			String updatePath = Util.getUplodaPath(offerSign, request, offerVO.getCompanyName());
+			offerVO.setOfferSign(updatePath);
+			return offerDAO.updateOfferSign(offerVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public OfferVO requestOfferDetail(OfferVO offerVO) {
+		return offerDAO.requestOfferDetail(offerVO);
+	}
+	
 }

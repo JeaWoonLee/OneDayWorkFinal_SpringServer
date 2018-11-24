@@ -447,4 +447,35 @@ where
 group by
 	s.seeker_id
 </select>
+<select id="requestOfferDetail" parameterType="com.lx.odw.vo.OfferVO" resultType="com.lx.odw.vo.OfferVO">
+	select
+		offer_id,
+		offer_name,
+		offer_email,
+		offer_account,
+		bank,
+		offer_cash,
+		offer_info,
+	from 
+		offer
+	where
+		offer_id = #{offerId}
+</select>
+<update id="updateOffer" parameterType="com.lx.odw.vo.OfferVO">
+	update
+		offer
+	set
+		offer_account = #{offerAccount},
+		bank = #{bank},
+	where
+		seeker_id = #{seekerId}
+</update>
+<update id="updateOfferSign" parameterType="com.lx.odw.vo.OfferVO">
+	update
+		offer
+	set
+		offer_sign = #{offerSign}
+	where
+		offer_id = #{companyName}
+</update>
 </mapper>

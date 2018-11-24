@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lx.odw.dao.OfferDAO;
 import com.lx.odw.model.CandidateMapResponseModel;
@@ -211,6 +212,21 @@ public class OfferController {
 		List<OfferWorkVO> todayProjectList = service.requestOfferProjectList(offerVO.getOfferId());
 		request.setAttribute("todayProjectList", todayProjectList);
 		return "manage_commute";
+	}
+	
+	@RequestMapping(value="requestOfferDetail.do", method=RequestMethod.POST)
+	public @ResponseBody OfferVO requestOfferDetail(OfferVO offerVO) {
+		return service.requestOfferDetail(offerVO);
+	}
+	
+	@RequestMapping(value="updateOffer.do",method=RequestMethod.POST)
+	public @ResponseBody int updateOffer(String offerVO, HttpServletRequest request) {
+		return service.updateOffer(offerVO,request);
+	}
+	
+	@RequestMapping(value="updateOfferSign.do",method=RequestMethod.POST)
+	public @ResponseBody int updateCandidateSign(MultipartFile seekerSign, String work,HttpServletRequest request) {
+		return service.updateOfferSign(seekerSign,work,request);
 	}
 	
 }
