@@ -265,11 +265,11 @@ group by
 </select>
 <select id="requestSeekerCertificate" parameterType="com.lx.odw.vo.SeekerVO" resultType="com.lx.odw.vo.CertificationVO">
 	select
-		s.seeker_certificate_index, s.seeker_certificate_number, s.certificate_id, s.seeker_id, c.certificate_name
+		seeker_certificate_index, seeker_certificate_number, seeker_id, certificate_name
 	from
-		certificate c, seeker_certificate s
+		seeker_certificate
 	where
-		s.seeker_id = #{seekerId}
+		seeker_id = #{seekerId}
 </select>
 <update id="allAbsent" parameterType="com.lx.odw.vo.ProjectVO">
 	update 

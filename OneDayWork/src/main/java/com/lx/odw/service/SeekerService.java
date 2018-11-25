@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lx.odw.controller.CertificateVO;
 import com.lx.odw.model.FilterModel;
+import com.lx.odw.vo.CertificationVO;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ManageVO;
@@ -61,5 +62,7 @@ public interface SeekerService {
 	int updateCandidateSign(MultipartFile seekerSign, String workVO,HttpServletRequest request);
 
 	List<JobCandidateVO> requestSeekerRecord(SeekerVO vo);
+
+	int updateCertificate(CertificationVO vo);
 
 }

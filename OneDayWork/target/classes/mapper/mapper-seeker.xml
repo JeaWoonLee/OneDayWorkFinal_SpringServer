@@ -261,16 +261,14 @@ where
 </select>
 <select id="requestSeekerCertificationDetail" parameterType="com.lx.odw.vo.SeekerVO" resultType="com.lx.odw.controller.CertificateVO">
 	select 
-		s.seeker_id,
-		s.seeker_certificate_index,
-		s.seeker_certificate_number,
-		c.certificate_id,
-		c.certificate_name
+		seeker_id,
+		seeker_certificate_index,
+		seeker_certificate_number,
+		certificate_name
 	from
-		certificate c, seeker_certificate s
+		seeker_certificate
 	where
-		c.certificate_id = s.certificate_id and
-		s.seeker_id = #{seekerId}
+		seeker_id = #{seekerId}
 </select>
 <update id="updateSeeker" parameterType="com.lx.odw.vo.SeekerVO">
 	update
@@ -279,11 +277,20 @@ where
 		seeker_account = #{seekerAccount},
 		seeker_info = #{seekerInfo},
 		seeker_pinaddress = ST_GeomFromText('POINT(${seekerLongitude} ${seekerLatitude})'),
-		bank = #{bank},
-		seeker_picture = #{seekerPicture}
+		bank = #{bank}
+		<if test="seekerPicture != null">
+		,seeker_picture = #{seekerPicture}
+		</if>
 	where
 		seeker_id = #{seekerId}
 </update>
+<insert id="updateCertificate" parameterType="com.lx.odw.controller.CertificateVO">
+	insert seeker_certificate
+		(seeker_id, certificate_name, seeker_certificate_number)
+	values
+		(#{seekerId},#{certificateName},#{seekerCertificateNumber})
+
+</insert>
 <select id="requestTodayWorkDetail" parameterType="String" resultType="com.lx.odw.vo.WorkVO">
 	select
 		p.project_name,
@@ -386,7 +393,16 @@ select
 	update
 		job_candidate
 	set
-		seeker_sign = #{seekerSign}
+		<foreach collection="list" item="item" separator=" , ">
+			(
+			LAST_INSERT_ID(),
+			 #{item.jobName},
+			 #{item.jobPay},
+			 #{item.jobStartDate},
+			 #{item.jobEndDate},
+			 #{item.jobRequirement},
+			 #{item.jobLimitCount})
+		</foreach>
 	where
 		seeker_id = #{jobName} and
 		candidate_number = #{candidateNumber}

@@ -1,5 +1,6 @@
 package com.lx.odw.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lx.odw.controller.CertificateVO;
 import com.lx.odw.model.FilterModel;
+import com.lx.odw.vo.CertificationVO;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ManageVO;
@@ -121,6 +123,10 @@ public class SeekerDAO {
 
 	public List<JobCandidateVO> requestSeekerRecord(SeekerVO vo) {
 		return session.selectList("requestSeekerRecord",vo);
+	}
+
+	public int updateCertificate(CertificationVO vo) {
+		return session.update("updateCertificate",vo);
 	}
 
 }

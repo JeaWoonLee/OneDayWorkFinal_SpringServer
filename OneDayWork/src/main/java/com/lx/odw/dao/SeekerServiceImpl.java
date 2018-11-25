@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -19,6 +21,7 @@ import com.lx.odw.controller.CertificateVO;
 import com.lx.odw.model.FilterModel;
 import com.lx.odw.service.SeekerService;
 import com.lx.odw.util.Util;
+import com.lx.odw.vo.CertificationVO;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ManageVO;
@@ -145,14 +148,21 @@ public class SeekerServiceImpl implements SeekerService{
 		SeekerVO item = gson.fromJson(seekerVO, SeekerVO.class);
 		String imgPath = null;
 		try {
-			imgPath = Util.getUplodaPath(seekerPhoto,request,item.getSeekerId());
+			
+			if(seekerPhoto != null)	imgPath = Util.getUplodaPath(seekerPhoto,request,item.getSeekerId());
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		item.setSeekerPicture(imgPath);
 		return seekerDAO.updateSeeker(item);
 	}
-
+	
+	@Override
+	public int updateCertificate(CertificationVO vo) {
+		return seekerDAO.updateCertificate(vo);
+	}
+	
 	@Override
 	public WorkVO requestTodayWorkDetail(String seekerId) {
 		return seekerDAO.requestTodayWorkDetail(seekerId);

@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lx.odw.model.FilterModel;
 import com.lx.odw.service.SeekerService;
+import com.lx.odw.vo.CertificationVO;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
 import com.lx.odw.vo.ManageVO;
@@ -79,6 +80,11 @@ public class SeekerController {
 	@RequestMapping(value="updateSeeker.do",method=RequestMethod.POST)
 	public @ResponseBody int updateSeeker(String seekerVO, MultipartFile seekerPhoto,HttpServletRequest request) {
 		return service.updateSeeker(seekerVO,seekerPhoto,request);
+	}
+	
+	@RequestMapping(value="updateCertificate.do",method=RequestMethod.POST)
+	public @ResponseBody int updateCertificate(CertificationVO vo) {
+		return service.updateCertificate(vo);
 	}
 	
 	@RequestMapping(value="requestTodayWorkDetail.do",method=RequestMethod.POST)
