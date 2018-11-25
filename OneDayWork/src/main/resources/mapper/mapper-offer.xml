@@ -455,7 +455,9 @@ group by
 		offer_account,
 		bank,
 		offer_cash,
-		offer_info,
+		offer_sign,
+		company_no,
+		company_name
 	from 
 		offer
 	where
@@ -466,9 +468,9 @@ group by
 		offer
 	set
 		offer_account = #{offerAccount},
-		bank = #{bank},
+		bank = #{bank}
 	where
-		seeker_id = #{seekerId}
+		offer_id = #{offerId}
 </update>
 <update id="updateOfferSign" parameterType="com.lx.odw.vo.OfferVO">
 	update
@@ -476,6 +478,6 @@ group by
 	set
 		offer_sign = #{offerSign}
 	where
-		offer_id = #{companyName}
+		offer_id = #{offerId}
 </update>
 </mapper>
