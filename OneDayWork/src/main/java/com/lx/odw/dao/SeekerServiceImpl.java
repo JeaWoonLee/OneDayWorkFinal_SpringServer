@@ -169,6 +169,22 @@ public class SeekerServiceImpl implements SeekerService{
 	}
 
 	@Override
+	public List<ManageVO> requestAcceptJobList(String seekerId) {
+		return seekerDAO.requestAcceptJobList(seekerId);
+	}
+
+	@Override
+	public List<ManageVO> requestFinishJobList(String seekerId) {
+		
+		return seekerDAO.requestFinishJobList(seekerId);
+	}
+
+	@Override
+	public ManageVO requestjobManageDetail(ManageVO vo) {
+	
+		return seekerDAO.requestjobManageDetail(vo);
+	}
+	
 	public int updateCandidateSign(MultipartFile seekerSign, String work,HttpServletRequest request) {
 		try {
 			Gson gson = new Gson();

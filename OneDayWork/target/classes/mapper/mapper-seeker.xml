@@ -194,14 +194,10 @@
 		in (select c.candidate_status 
 			from job_candidate c
 			where c.candidate_status = 0 
-				or c.candidate_status = 1
-				or c.candidate_status = 7)
+				or c.candidate_status = 8
+				)
 </select>
-<!-- <select id="ManageJobList" resultType="com.lx.odw.vo.JobVO"> -->
-	<!-- select * --> 
-	<!-- from  job --> 
-	<!-- 윤정민 진행중.... join 해야함 -->
-<!-- </select>--> 
+
 <insert id="candidateJob" parameterType="com.lx.odw.vo.JobCandidateVO">
 	insert
 		into job_candidate
@@ -334,10 +330,57 @@ where
 		in (select candidate_status 
 			from job_candidate 
 			where candidate_status = 0 
-				or candidate_status = 1
-				or candidate_status = 7)
+				or candidate_status = 8)
 	order by
 		target_date asc
+</select>
+<!-- 내용 수정 -->
+<select id="requestAcceptJobList" parameterType="String" resultType="com.lx.odw.vo.ManageVO">
+	select *
+	from project p,
+		job j,
+		job_candidate c
+	where p.project_number = j.project_number and
+		j.job_number = c.job_number and
+		c.seeker_id = #{seekerId} and
+		c.candidate_status = 1
+</select>
+<select id="requestFinishJobList" parameterType="String" resultType="com.lx.odw.vo.ManageVO">
+	select 
+		j.job_name, j.job_pay, c.target_date, c.candidate_status
+	from project p,
+		job j,
+		job_candidate c
+	where p.project_number = j.project_number and
+		j.job_number = c.job_number and
+		c.seeker_id = #{seekerId} and
+		c.candidate_status BETWEEN 4 and 6
+	order by
+		c.target_date DESC 
+</select>
+<select id="requestjobManageDetail" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
+select
+		j.job_number,
+		p.project_number,
+		j.job_pay,
+		j.job_name,
+		j.job_start_date,
+		j.job_end_date,
+		j.job_requirement,
+		ST_X(p.project_location) as project_lng,
+		ST_Y(p.project_location) as project_lat,
+		p.project_name,
+		c.target_date,
+		p.project_comment,
+		p.project_subject
+	from 
+		project p,
+		job j,
+		job_candidate c
+	where 
+		p.project_number = j.project_number and
+		j.job_number = c.job_number and
+		candidate_number = #{candidateNumber}
 </select>
 <update id="updateCandidateSign" parameterType="com.lx.odw.vo.WorkVO">
 	update

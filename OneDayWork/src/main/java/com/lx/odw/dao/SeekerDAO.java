@@ -102,6 +102,19 @@ public class SeekerDAO {
 		return session.selectList("requestCandidateDateList",vo);
 	}
 
+	public List<ManageVO> requestAcceptJobList(String seekerId) {
+		
+		return session.selectList("requestAcceptJobList", seekerId);
+	}
+
+	public List<ManageVO> requestFinishJobList(String seekerId) {
+		return session.selectList("requestFinishJobList", seekerId);
+	}
+
+	public ManageVO requestjobManageDetail(ManageVO vo) {
+		return session.selectOne("requestjobManageDetail", vo);
+	}
+	
 	public int updateCandidateSign(WorkVO workVO) {
 		return session.update("updateCandidateSign",workVO);
 	}
