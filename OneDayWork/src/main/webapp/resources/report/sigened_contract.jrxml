@@ -6,11 +6,17 @@
 	<import value="java.util.*"/>
 	<parameter name="candidateNumber" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select o.company_name, o.offer_name,
-		 s.seeker_name, s.seeker_birth, s.seeker_pinaddress,
-		 p.project_subject, p.work_start_time, p.work_end_time,
+		<![CDATA[select o.company_name, o.offer_name,o.offer_address,
+		 s.seeker_name,
+		 DATE_FORMAT(s.seeker_birth,'%y%m%d') as seeker_birth,
+		 (case when s.seeker_sex = "남자" then 1 else 2 end) seeker_sex,
+		 s.seeker_address,
+		 p.project_subject, 
+		 TIME_FORMAT(p.work_start_time, '%H시 %i분') work_start_time, 
+		 TIME_FORMAT(p.work_end_time,' %H시 %i분') work_end_time,
 		 j.job_name, j.job_pay,
-		 c.target_date,c.seeker_sign
+		 DATE_FORMAT(c.target_date,'%Y-%m-%d') as target_date,
+		 c.seeker_sign
 from
 	offer o, seeker s, project p, job j, job_candidate c
 where
@@ -28,29 +34,35 @@ where
 		<property name="com.jaspersoft.studio.field.label" value="offer_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="offer"/>
 	</field>
+	<field name="offer_address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="offer_address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="offer"/>
+	</field>
 	<field name="seeker_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="seeker_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="seeker"/>
 	</field>
-	<field name="seeker_birth" class="java.sql.Date">
+	<field name="seeker_birth" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="seeker_birth"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="seeker"/>
 	</field>
-	<field name="seeker_pinaddress" class="java.lang.Object">
-		<property name="com.jaspersoft.studio.field.label" value="seeker_pinaddress"/>
+	<field name="seeker_sex" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="seeker_sex"/>
+	</field>
+	<field name="seeker_address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="seeker_address"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="seeker"/>
 	</field>
 	<field name="project_subject" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="project_subject"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="project"/>
 	</field>
-	<field name="work_start_time" class="java.sql.Time">
+	<field name="work_start_time" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="work_start_time"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="project"/>
 	</field>
-	<field name="work_end_time" class="java.sql.Time">
+	<field name="work_end_time" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="work_end_time"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="project"/>
 	</field>
 	<field name="job_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="job_name"/>
@@ -60,7 +72,7 @@ where
 		<property name="com.jaspersoft.studio.field.label" value="job_pay"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="job"/>
 	</field>
-	<field name="target_date" class="java.sql.Date">
+	<field name="target_date" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="target_date"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="job_candidate"/>
 	</field>
@@ -83,11 +95,11 @@ where
 		</band>
 	</title>
 	<detail>
-		<band height="715" splitType="Stretch">
+		<band height="740" splitType="Stretch">
 			<frame>
 				<reportElement x="-20" y="40" width="595" height="140" uuid="c4fa4354-8f2b-456d-8298-a1b8d4e39ba3"/>
 				<staticText>
-					<reportElement x="101" y="13" width="58" height="16" uuid="40293f74-3d21-46e6-9c00-6b2069877ca9"/>
+					<reportElement x="100" y="10" width="58" height="19" uuid="40293f74-3d21-46e6-9c00-6b2069877ca9"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
@@ -173,8 +185,8 @@ where
 					<reportElement x="233" y="29" width="1" height="106" uuid="f364d7e7-b09e-481f-9067-2b1bd358464a"/>
 				</line>
 				<textField>
-					<reportElement x="249" y="29" width="230" height="20" uuid="0fe3d996-4893-421a-92df-4c0b42b2d01c"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
+					<reportElement x="235" y="29" width="264" height="20" uuid="0fe3d996-4893-421a-92df-4c0b42b2d01c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{company_name}]]></textFieldExpression>
@@ -206,7 +218,7 @@ where
 					<text><![CDATA[주민등록번호]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="402" y="93" width="98" height="20" uuid="f491973e-e9be-4493-8dca-66e4fcdec9c9"/>
+					<reportElement x="402" y="93" width="38" height="20" uuid="f491973e-e9be-4493-8dca-66e4fcdec9c9"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
@@ -233,180 +245,216 @@ where
 					</textElement>
 					<textFieldExpression><![CDATA[$F{offer_name}]]></textFieldExpression>
 				</textField>
+				<textField>
+					<reportElement x="234" y="71" width="265" height="21" uuid="cc394cc8-7e7b-4992-819f-53dd6e887e38"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{offer_address}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="233" y="114" width="266" height="20" uuid="4c78d3e2-19ed-41c4-94e4-13ddb1318815"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{seeker_address}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="450" y="93" width="3" height="20" uuid="2d89162d-4cde-417f-a459-d86358eaf1f4"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="NanumBarunGothic"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{seeker_sex}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="440" y="93" width="10" height="20" uuid="1ff624fd-4569-412d-b8f1-9df108d548e6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="NanumBarunGothic"/>
+					</textElement>
+					<text><![CDATA[-]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="460" y="93" width="47" height="20" uuid="4ee95042-8763-43ec-98a3-66b0e5cb85f2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="NanumBarunGothic"/>
+					</textElement>
+					<text><![CDATA[* * * * * *]]></text>
+				</staticText>
 			</frame>
 			<frame>
-				<reportElement x="-20" y="182" width="595" height="533" uuid="6556230f-0206-414f-ad6c-616fb18b260c"/>
+				<reportElement x="-20" y="182" width="595" height="558" uuid="6556230f-0206-414f-ad6c-616fb18b260c"/>
 				<image>
-					<reportElement x="480" y="350" width="84" height="79" uuid="7287a0d9-5a73-4dff-a538-d71eb4e15412"/>
+					<reportElement x="465" y="400" width="70" height="70" uuid="770a83ea-0881-4cba-9e2c-bca8c9d8a0d1"/>
 					<imageExpression><![CDATA["http://192.168.40.20/odw/"+$F{seeker_sign}]]></imageExpression>
 				</image>
 				<image>
-					<reportElement x="480" y="440" width="84" height="79" uuid="979fe11a-6cb2-4bd8-bfca-d83c4c194f63"/>
+					<reportElement x="465" y="480" width="70" height="70" uuid="4741fcab-1145-4289-aad4-ea9493c925b8"/>
 					<imageExpression><![CDATA["http://192.168.40.20/odw/"+$F{seeker_sign}]]></imageExpression>
 				</image>
 				<staticText>
-					<reportElement x="101" y="22" width="58" height="16" uuid="eeb479cc-4a78-4428-b2a0-badceaf1acd4"/>
+					<reportElement x="100" y="10" width="58" height="19" uuid="eeb479cc-4a78-4428-b2a0-badceaf1acd4"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[2. 근로조건]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="120" y="38" width="49" height="16" uuid="3ec81374-6d01-4aee-897f-356835ef2eec"/>
+					<reportElement x="120" y="40" width="49" height="20" uuid="3ec81374-6d01-4aee-897f-356835ef2eec"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[(1) 직종 : ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="120" y="54" width="80" height="16" uuid="fa33a832-1111-424e-9caf-b478d890db96"/>
+					<reportElement x="120" y="60" width="80" height="20" uuid="fa33a832-1111-424e-9caf-b478d890db96"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[(2) 급여의 형태 : ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="120" y="70" width="360" height="58" uuid="19f9c293-49e2-44cf-ade8-8bfdb2454b84"/>
-					<textElement verticalAlignment="Middle">
+					<reportElement x="120" y="80" width="360" height="60" uuid="19f9c293-49e2-44cf-ade8-8bfdb2454b84"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
-					<text><![CDATA[(3) 급여의 계산 및 지급방법 : 급여는 원칙으로 매월 1일부터 말일까지 계산하여 	익월 5일에 현금 또는 수취계좌번호에 입금하는 방법으로 지급한다. 1일8시간 또는 월 소정근로시간을 근로하지 않은 경우에도 위와 같이 지급	하되 일할 또는 월 할 계산하여 지급한다. ]]></text>
+					<text><![CDATA[(3) 급여의 계산 및 지급방법 : 급여는 원칙으로 매월 1일부터 말일까지 계산하여 익월 5일
+        에 현금 또는 수취계좌번호에 입금하는 방법으로 지급한다. 1일8시간 또는 월 
+        소정근로시간을 근로하지 않은 경우에도 위와 같이 지급하되 일할 또는 월 할 계산하여 
+        지급한다. ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="100" y="157" width="68" height="16" uuid="a8efd1a1-7165-4fa8-838b-fb30825b2358"/>
+					<reportElement x="100" y="170" width="68" height="20" uuid="a8efd1a1-7165-4fa8-838b-fb30825b2358"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[3. 근로기간 : ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="120" y="173" width="360" height="44" uuid="8e91b9d6-1647-46c1-9dd7-3de47d9e4192"/>
+					<reportElement x="119" y="200" width="360" height="40" uuid="8e91b9d6-1647-46c1-9dd7-3de47d9e4192"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
-					<text><![CDATA[  당 근로계약에 의해 근무하는 근로자는 위 근로계약기간이 종료하면 별도의 조치없이 당연히 근로관계가 종료된다. 다만 위 기간이후에도 계속 근로하고자 하는 경우에는 “을”은 “갑”의 동의를 얻어 새로이 근로계약을 체결하여야 한다. ]]></text>
+					<text><![CDATA[  당 근로계약에 의해 근무하는 근로자는 위 근로계약기간이 종료하면 별도의 조치없이 
+당연히 근로관계가 종료된다. 다만 위 기간이후에도 계속 근로하고자 하는 경우에는 “을”은
+“갑”의 동의를 얻어 새로이 근로계약을 체결하여야 한다. ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="100" y="250" width="80" height="16" uuid="d1393517-584c-4b9b-a047-b23a325d601c"/>
+					<reportElement x="100" y="270" width="80" height="20" uuid="d1393517-584c-4b9b-a047-b23a325d601c"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[4. 기타 근로조건]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="120" y="266" width="360" height="34" uuid="72811416-ce9b-449c-befd-2643ca40bc2f"/>
+					<reportElement x="119" y="300" width="360" height="19" uuid="72811416-ce9b-449c-befd-2643ca40bc2f"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[ 기타 본 근로계약서에 기재되지 않은 사항은 당사 사규 또는 법령 및 관례에 의한다.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="280" y="380" width="80" height="30" uuid="6719f46a-cdf3-468d-9968-3bd5306d8a1e"/>
+					<reportElement x="300" y="420" width="80" height="30" uuid="6719f46a-cdf3-468d-9968-3bd5306d8a1e"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA["갑"]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="280" y="460" width="80" height="30" uuid="c8d2d4f2-5b2a-49fc-a27f-298b3c2164d2"/>
+					<reportElement x="300" y="500" width="80" height="30" uuid="c8d2d4f2-5b2a-49fc-a27f-298b3c2164d2"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA["을" 근로자]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="501" y="380" width="40" height="30" uuid="1f92955f-c073-480c-b094-f2b9fcfc50a3"/>
+					<reportElement x="480" y="420" width="40" height="30" uuid="1f92955f-c073-480c-b094-f2b9fcfc50a3"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[(인)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="500" y="460" width="40" height="30" uuid="31de0c9f-3669-4c09-8ec0-5a55bb461f29"/>
+					<reportElement x="480" y="500" width="40" height="30" uuid="31de0c9f-3669-4c09-8ec0-5a55bb461f29"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[(인)]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="169" y="38" width="330" height="15" uuid="45aa3e32-d888-4816-a5f6-380bf041e590"/>
+					<reportElement x="169" y="40" width="330" height="20" uuid="45aa3e32-d888-4816-a5f6-380bf041e590"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{project_subject}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="200" y="54" width="100" height="15" uuid="d32328dd-ceac-4785-a468-ec6adf546fc2"/>
+					<reportElement x="200" y="60" width="60" height="20" uuid="d32328dd-ceac-4785-a468-ec6adf546fc2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{job_pay}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="300" y="53" width="80" height="16" uuid="db236b21-90cc-4cab-ba42-37cf689e71d5"/>
+					<reportElement x="260" y="60" width="80" height="20" uuid="db236b21-90cc-4cab-ba42-37cf689e71d5"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[원/1일 8시간 기준]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="168" y="157" width="81" height="15" uuid="1e1ac54f-cbbe-4b8f-b0bc-bf1b6ffd79ee"/>
+					<reportElement x="168" y="170" width="67" height="20" uuid="1e1ac54f-cbbe-4b8f-b0bc-bf1b6ffd79ee"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{target_date}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="369" y="157" width="81" height="15" uuid="5e6822b6-9cf8-40ef-9bcd-e6743f71c1bd"/>
+					<reportElement x="324" y="170" width="64" height="20" uuid="5e6822b6-9cf8-40ef-9bcd-e6743f71c1bd"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{target_date}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="249" y="157" width="90" height="15" uuid="12988073-e876-452e-9204-50ac8bbb643c"/>
+					<reportElement x="235" y="170" width="51" height="20" uuid="12988073-e876-452e-9204-50ac8bbb643c"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{work_start_time}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="339" y="157" width="30" height="16" uuid="6b5f011f-e87d-4a73-9558-7b1ac4cf6bb9"/>
+					<reportElement x="286" y="170" width="30" height="20" uuid="6b5f011f-e87d-4a73-9558-7b1ac4cf6bb9"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[부터]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="450" y="157" width="90" height="15" uuid="4a5077ec-7095-4407-85bb-e55f313bf069"/>
+					<reportElement x="388" y="170" width="50" height="20" uuid="4a5077ec-7095-4407-85bb-e55f313bf069"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{work_end_time}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="540" y="156" width="30" height="16" uuid="e8096ca1-61e3-41b9-a0fa-679cd6c98420"/>
+					<reportElement x="438" y="170" width="30" height="20" uuid="e8096ca1-61e3-41b9-a0fa-679cd6c98420"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<text><![CDATA[까지]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="249" y="320" width="100" height="30" uuid="dd2578ae-6009-4658-a1d0-376546948e37"/>
+					<reportElement x="251" y="350" width="100" height="30" uuid="dd2578ae-6009-4658-a1d0-376546948e37"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{target_date}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="380" y="381" width="100" height="30" uuid="7a8530c2-3fee-4c31-a16b-afdba0fb1e31"/>
+					<reportElement x="380" y="420" width="100" height="30" uuid="7a8530c2-3fee-4c31-a16b-afdba0fb1e31"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{offer_name}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="380" y="460" width="100" height="30" uuid="ad594fec-a32b-4fd9-8957-84bb85dfeb15"/>
+					<reportElement x="380" y="500" width="100" height="30" uuid="ad594fec-a32b-4fd9-8957-84bb85dfeb15"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="NanumBarunGothic"/>
 					</textElement>

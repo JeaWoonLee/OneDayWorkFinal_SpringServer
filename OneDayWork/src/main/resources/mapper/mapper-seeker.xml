@@ -393,18 +393,8 @@ select
 	update
 		job_candidate
 	set
-		<foreach collection="list" item="item" separator=" , ">
-			(
-			LAST_INSERT_ID(),
-			 #{item.jobName},
-			 #{item.jobPay},
-			 #{item.jobStartDate},
-			 #{item.jobEndDate},
-			 #{item.jobRequirement},
-			 #{item.jobLimitCount})
-		</foreach>
+		seeker_sign = #{seekerSign}
 	where
-		seeker_id = #{jobName} and
 		candidate_number = #{candidateNumber}
 </update>
 </mapper>
