@@ -122,4 +122,9 @@ public class SeekerController {
 	public @ResponseBody List<ManageVO> requestFinishJobList(String seekerId) {
 		return service.requestFinishJobList(seekerId);
 	}
+	
+	@RequestMapping(value="requestjobManageDetail.do",method=RequestMethod.POST)
+	public @ResponseBody ManageVO requestjobManageDetail(ManageVO vo) {
+		return service.requestjobManageDetail(vo);
+	}
 }

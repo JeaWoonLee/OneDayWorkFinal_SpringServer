@@ -108,8 +108,12 @@ public class SeekerDAO {
 	}
 
 	public List<ManageVO> requestFinishJobList(String seekerId) {
-		// TODO Auto-generated method stub
 		return session.selectList("requestFinishJobList", seekerId);
+	}
+
+	public ManageVO requestjobManageDetail(ManageVO vo) {
+		
+		return session.selectOne("requestjobManageDetail", vo);
 	}
 
 }

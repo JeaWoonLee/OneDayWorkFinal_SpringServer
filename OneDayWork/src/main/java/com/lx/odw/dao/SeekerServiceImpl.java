@@ -172,6 +172,12 @@ public class SeekerServiceImpl implements SeekerService{
 		
 		return seekerDAO.requestFinishJobList(seekerId);
 	}
+
+	@Override
+	public ManageVO requestjobManageDetail(ManageVO vo) {
+	
+		return seekerDAO.requestjobManageDetail(vo);
+	}
 	
 
 

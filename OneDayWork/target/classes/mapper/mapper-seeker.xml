@@ -350,4 +350,28 @@ where
 				or c.candidate_status = 5
 				or c.candidate_status =6  )
 </select>
+<select id="requestjobManageDetail" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
+select
+		j.job_number,
+		p.project_number,
+		j.job_pay,
+		j.job_name,
+		j.job_start_date,
+		j.job_end_date,
+		j.job_requirement,
+		ST_X(p.project_location) as project_lng,
+		ST_Y(p.project_location) as project_lat,
+		p.project_name,
+		c.target_date,
+		p.project_comment,
+		p.project_subject
+	from 
+		project p,
+		job j,
+		job_candidate c
+	where 
+		p.project_number = j.project_number and
+		j.job_number = c.job_number and
+		candidate_number = #{candidateNumber}
+</select>
 </mapper>

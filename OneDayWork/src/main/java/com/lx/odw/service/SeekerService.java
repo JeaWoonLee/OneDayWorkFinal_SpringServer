@@ -58,4 +58,6 @@ public interface SeekerService {
 
 	List<ManageVO> requestFinishJobList(String seekerId);
 
+	ManageVO requestjobManageDetail(ManageVO vo);
+
 }
