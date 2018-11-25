@@ -98,12 +98,34 @@
 	from
 		job_candidate
 	where
-		candidate_status = 1 
+		candidate_status BETWEEN 1 and 6 
 		and	job_number = #{jobNumber} and
-		target_date =
-		Date(#{targetDate})
+		target_date = #{targetDate}
 </select>
+<select id="requestDisableDaysByJobNumber" parameterType="int" resultType="com.lx.odw.vo.JobCandidateVO">
+	select 
+		x.target_date, x.cnt as recruit, b.job_limit_count
+	from
+		job b, (
+			select
+				job_number, target_date, count(*) cnt
+			from
+				job_candidate
+			where
+				candidate_status BETWEEN 1 and 6
+				and target_date >= curdate()
+				and job_number = #{jobNumber}
+			group by
+				job_number, target_date
+		) x
+	where
+		 x.job_number = b.job_number
+		 and b.job_number = #{jobNumber}
+		 
+	order by
+		x.target_date
 
+</select>
 <select id="checkAnotherAccepted" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="int">
 	select
 		count(*)
@@ -136,23 +158,7 @@
 		candidate_status = 1 and
 		target_date = Date(#{targetDate})
 </select>
-<select id="requestDisableDaysByJobNumber" parameterType="int" resultType="com.lx.odw.vo.JobCandidateVO">
-	select 
-		x.target_date 
-	from
-		job b, (
-			select
-				job_number, target_date, count(*) cnt
-			from
-				job_candidate
-			group by
-				job_number, target_date
-		) x
-	where
-		 x.job_number = b.job_number
-		 and b.job_number = #{jobNumber}
-		 and x.cnt = b.job_limit_count
-</select>
+
 <select id="managejobList" parameterType="com.lx.odw.vo.ManageVO" resultType="com.lx.odw.vo.ManageVO">
 	select 
 		distinct
