@@ -102,6 +102,7 @@ public class SeekerDAO {
 		return session.selectList("requestCandidateDateList",vo);
 	}
 
+<<<<<<< HEAD
 	public List<ManageVO> requestAcceptJobList(String seekerId) {
 		
 		return session.selectList("requestAcceptJobList", seekerId);
@@ -114,6 +115,14 @@ public class SeekerDAO {
 	public ManageVO requestjobManageDetail(ManageVO vo) {
 		
 		return session.selectOne("requestjobManageDetail", vo);
+=======
+	public int updateCandidateSign(WorkVO workVO) {
+		return session.update("updateCandidateSign",workVO);
+	}
+
+	public List<JobCandidateVO> requestSeekerRecord(SeekerVO vo) {
+		return session.selectList("requestSeekerRecord",vo);
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	}
 
 }

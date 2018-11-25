@@ -287,7 +287,10 @@ where
 		ST_Y(p.project_location) as project_latitude,
 		j.job_pay,
 		j.job_name,
-		c.candidate_status
+		c.candidate_status,
+		c.candidate_number,
+		p.work_start_time,
+		p.work_end_time
 	from
 		project p,
 		job j,
@@ -325,6 +328,7 @@ where
 	order by
 		target_date asc
 </select>
+<<<<<<< HEAD
 <!-- 내용 수정 -->
 <select id="requestAcceptJobList" parameterType="String" resultType="com.lx.odw.vo.ManageVO">
 	select *
@@ -374,4 +378,15 @@ select
 		j.job_number = c.job_number and
 		candidate_number = #{candidateNumber}
 </select>
+=======
+<update id="updateCandidateSign" parameterType="com.lx.odw.vo.WorkVO">
+	update
+		job_candidate
+	set
+		seeker_sign = #{seekerSign}
+	where
+		seeker_id = #{jobName} and
+		candidate_number = #{candidateNumber}
+</update>
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 </mapper>

@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"
 	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -84,27 +84,127 @@
 		});
 	}
 </script>
-<<<<<<< HEAD
 
-		<!-- 가운데로 오게함 -->
-<style>
-	.container{
-	    width: fit-content; height:fit-content; margin: 0 auto; margin-top:150px;
-	}
-</style>
+<!-- 가운데로 오게함 -->
+
 <title>하루일감: 회원가입</title>
-=======
-<style>
-	.container{
-	    width: fit-content; height:fit-content; margin: 0 auto; margin-top:150px;
-	}
-</style>
->>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
+
+
+
 </head>
 <body>
-	
+
 	<div class="container">
-		<h1>회원가입</h1>
+		<h3 class="text-center">회원가입</h3>
+		<form class="form-horizontal" action="joinOffer.do" method="POST">
+
+
+			<div class="form-group">
+				<label class="control-label col-sm-3" type="text" id="offerId "
+					name="offerId" maxlength="20">아이디:</label> <input type="hidden"
+					id="offerIdHidden">
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="id" name="userId">
+					
+				</div>
+				<div class="col-sm-1">
+					
+					<span><button type="button" class="btn btn-danger btn-sm"
+						id="checkOverlapButton">중복확인</button></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">비밀번호:</label>
+				<div class="col-sm-5">
+					<input type="password" class="form-control" id="offerPw"
+						maxlength="20" name="offerPw">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3">비밀번호 확인:</label>
+				<div class="col-sm-5">
+					<input type="password" class="form-control" id="pwReInput"
+						name="pwReInput">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3">이름:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="offerName"
+						name="offerName">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3">이메일:</label>
+				<div class="col-sm-5">
+					<input type="email" class="form-control" id="offerEmail"
+						name="offerEmail">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3">회사명:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="companyName"
+						name="companyName">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3">사업자 번호:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="companyNo"
+						name="companyNo">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3">계좌:</label>
+
+
+				<div class="col-sm-1">
+				
+						<select name="offerAccount" id="offerAccount" required>
+							<option value="">은행</option>
+							<option value="신한은행">신한은행</option>
+							<option value="국민은행">국민은행</option>
+							<option value="농협">농협</option>
+							<option value="기업은행">기업은행</option>
+							<option value="하나은행">하나은행</option>
+							<option value="기업은행">기업은행</option>
+						</select>
+					
+				</div>
+				
+				<div class="col-sm-4" style="padding-left: 40px;">
+					<input type="text" class="form-control" id="bank" name="bank">
+				</div>
+
+
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-3"></label>
+				<div class="col-sm-6">
+					<button type="submit" class="btn btn-block btn-info" id="offerJoinButton"
+						name="offererLogin" disabled=true>회원가입</button>
+				</div>
+			</div>
+	</div>
+ 
+
+
+
+	</div>
+
+	</form>
+	
+	<!-- 
+	<div class="container">
+		<h3 style="text-align: center;">회원가입</h3>
 		<form method="get" action="joinOffer.do">
 			<table>
 				<tbody>
@@ -143,7 +243,7 @@
 					<tr>
 						<td>계좌</td>
 						<td class="dropdown">
-							<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">은행 <span class="caret"></span></button>
+							<button class="btn btn-default btn-sm" type="button" data-toggle="dropdown">은행 <span class="caret"></span></button>
 							<ul class="dropdown-menu">
 								<li><a href="#">신한은행</a></li>
 								<li><a href="#">국민은행</a></li>
@@ -158,5 +258,7 @@
 			</table>
 		</form>
 	</div>
+	-->
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

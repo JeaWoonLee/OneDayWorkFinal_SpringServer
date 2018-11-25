@@ -29,7 +29,8 @@ public class JoinDAO {
 	}
 	
 	public int joinOffer(OfferVO offerVO) throws Exception {
-		return session.insert("joinOffer",offerVO);
+		return session.insert("joinOffer", offerVO);
+		//(������ ��ɹ��� ��ġ�ϴ� ���� �ĺ���, ��ɹ��� ������ �Ű����� ��ü)
 	}
 	
 

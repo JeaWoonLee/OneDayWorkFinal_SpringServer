@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lx.odw.model.ManageHumanResourceModel;
 import com.lx.odw.vo.CertificationVO;
 import com.lx.odw.vo.JobCandidateVO;
 import com.lx.odw.vo.JobVO;
@@ -20,7 +21,7 @@ public class OfferDAO {
 
 	@Autowired
 	SqlSession session;
-	
+
 	public List<ProjectVO> getOffList() {
 		return session.selectList("getOffList");
 	}
@@ -28,10 +29,15 @@ public class OfferDAO {
 	public List<JobVO> requestOffJobListByProjectNumber(ProjectVO projectVO) {
 		return session.selectList("requestOffJobListByProjectNumber",projectVO);
 	}
-	
-	//웹 구인자 일김목록
+
+	//�쎒 援ъ씤�옄 �씪源�紐⑸줉
 	public List<ProjectVO> projectList(String offerId) {
 		return session.selectList("projectList", offerId);
+	}
+
+	//웹 신청자 목록
+	public List<JobVO> seekerList(ProjectVO projectVO) {
+		return session.selectList("seekerList", projectVO);
 	}
 
 	@Transactional
@@ -48,7 +54,7 @@ public class OfferDAO {
 	public int subOfferCash(OfferVO offerVO) {
 		return session.update("subOfferCash",offerVO);
 	}
-	//웹 구인자 상세정보
+	//�쎒 援ъ씤�옄 �긽�꽭�젙蹂�
 	public ProjectVO showPrjDetail(ProjectVO vo) {
 		return session.selectOne("showPrjDetail",vo);
 	}
@@ -115,6 +121,49 @@ public class OfferDAO {
 
 	public ProjectVO requestManageProjectDetailInfo(ProjectVO vo) {
 		return session.selectOne("requestManageProjectDetailInfo",vo);
-	}	
+	}
 
+	public List<JobCandidateVO> getTargetDateListByJobNumber(JobCandidateVO vo) {
+		return session.selectList("getTargetDateListByJobNumber",vo);
+	}
+
+	public JobCandidateVO getCandidateListByCandidateVO(JobCandidateVO vo) {
+		return session.selectOne("getCandidateListByCandidateVO",vo);
+	}
+
+	public int requestAcceptCandidateByCandidateNumber(JobCandidateVO vo) {
+		return session.update("requestAcceptCandidateByCandidateNumber",vo);
+	}
+
+	public int requestRefuseCandidateByCandidateNumber(JobCandidateVO vo) {
+		return session.update("requestRefuseCandidateByCandidateNumber",vo);
+	}
+
+	public List<JobCandidateVO> requestProjectRecruitInfo(ProjectVO vo) {
+		return session.selectList("requestProjectRecruitInfo",vo);
+	}
+
+	public List<JobCandidateVO> requestTargetDateJobNumber(ManageHumanResourceModel vo) {
+		return session.selectList("requestTargetDateJobNumber",vo);
+	}
+
+	public List<ManageHumanResourceModel> requestRecruitListByJobNumAndTargetDate(JobCandidateVO item) {
+		return session.selectList("requestRecruitListByJobNumAndTargetDate",item);
+	}
+
+	public int updateOffer(OfferVO offerVO) {
+		return session.update("updateOffer",offerVO);
+	}
+
+	public int updateOfferSign(OfferVO offerVO) {
+		return session.update("updateOfferSign",offerVO);
+	}
+
+	public OfferVO requestOfferDetail(OfferVO offerVO) {
+		return session.selectOne("requestOfferDetail",offerVO);
+	}
+
+	
+	
+	
 }

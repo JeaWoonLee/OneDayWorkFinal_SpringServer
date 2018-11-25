@@ -3,69 +3,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="header.jsp"></jsp:include>
 <meta charset="UTF-8">
-<!-- 제이쿼리 -->
-<script src="resources/js/jquery-3.3.1.min.js"></script>
-<!--부트스트랩 코드-->
-<script src="resources/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <!-- 카카오 맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
 <!-- 제이쿼리 날짜 선택기 -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <style>
-html, body {width: 100%;height: 100%;margin: 0px;padding: 0px;}
-.navbarDiv {margin-top: 50px;}
-.mainTable {width: fit-content;height: fit-content;margin: 0 auto;margin-top: 30px;}
+
 th{text-align: center;}
-th,td{padding: 10px}
+
+#projectComment{height: 250px}
 </style>
 <title>registration</title>
 </head>
 <body>
-	<!-- Header -->
-	<div class="container-fluid">
-		<table class="mainTable">
-			<tr>
-				<td><img src="resources/img/haru.png" width="80px"
-					height="80px"></td>
-				<td><h1>하루일감</h1></td>
-			</tr>
-		</table>
-	</div>
-	<div class="navbarDiv">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="haruMainPage.do">하루일감</a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="haruMainPage.do">홈</a></li>
-					<li><a href="registration.do">일감 등록</a></li>
-					<li><a href="#">일감 보기</a></li>
-					<li><a href="#">전자근로계약서</a></li>
-				</ul>
-			</div>
-		</nav>
-	</div>
-	<!-- //end Header -->
-
 	<!-- 일감 등록 -->
 	<div class="container" id="registration">
 		<h3 style="text-align: center;">일감 등록</h3>
 		<form action="registration.do" method="get">
-			<table class="table table-bordered" id="registrationTable">
+			<table class="table table-striped" id="registrationTable">
 				<tr class="row">
-					<th class="col-sm-4">
-						<label>일감</label> 
+					<th class="col-sm-2">
+						<label>사업명</label> 
 					</th>
 					<td class="col-sm-8">
 						<input class="form-control" type="text" placeholder=" 사업명" id="projectName" name="projectName" required>
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label>업종 분류</label>
 					</th>
 					<td class="col-sm-8">
@@ -84,7 +52,7 @@ th,td{padding: 10px}
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label for="dateLabel">일감 시작~마감일</label><br>
 					</th>
 					<td class="col-sm-8">
@@ -93,7 +61,7 @@ th,td{padding: 10px}
 					</td>	
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label for="TimeLabel">업무 시작~마감시간</label><br>
 					</th>
 					<td class="col-sm-8">
@@ -102,16 +70,16 @@ th,td{padding: 10px}
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label for="demandLabel">신청 제약 사항</label> <br> 
 					</th>
-					<td class="col-sm-8">
+					<td class="col-sm-2">
 						<input type="checkbox" name="constCertificate" value="필요">건설안전교육이수증&nbsp; 
 						<input type="checkbox" id="requestPicture" name="requestPicture" value="필요">사진
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<th class="col-sm-2">
 						<label for="demandLabel">제공 사항</label> <br> 
 					</th>
 					<td class="col-sm-8">
@@ -124,9 +92,10 @@ th,td{padding: 10px}
 				</tr>
 				<!-- 일감 추가 영역 -->
 				<tr class="row">
-					<td colspan="11">
-						<label for="addJobButton">일감&nbsp;</label>
-						<input class="btn btn-primary" type="button" id="showJobModalButton" value="일감 추가" data-toggle="modal" data-target="#addJobModal" data-backdrop="static">
+					<td colspan="10" style="text-align: center;">
+						<label for="showJobModalButton">업무&nbsp &nbsp;</label>
+						<input class="btn btn-sm btn-info" type="button" id="showJobModalButton" value="업무 추가" data-toggle="modal" data-target="#addJobModal" data-backdrop="static">
+						<hr>
 						<table class="table table-hover">
 							<thead>
 								<tr class="row">
@@ -143,7 +112,7 @@ th,td{padding: 10px}
 							<tbody id="jobListOutput">
 								<tr>
 									<td colspan="11" style="text-align: center;">
-										<p>직군을 추가해 주세요</p>
+										<p>업무을 추가해 주세요</p>
 									</td>
 								</tr>
 							</tbody>
@@ -172,9 +141,10 @@ th,td{padding: 10px}
 					</td>
 				</tr>
 				<tr class="row">
-					<td colspan="11">
-						<input class="btn btn-primary" type="button" value="일감 등록" id="insertProject" name="insertProject">
-					</td>
+				<td align="center"></td>
+				<td align="center"><input type="submit"
+					class="btn btn-block btn-info" value="일감 등록" id="insertProject" name="insertProject">
+				</td>
 				</tr>
 			</table>
 		</form>
@@ -188,13 +158,13 @@ th,td{padding: 10px}
       		<div class="modal-content">
         		<div class="modal-header">
         			<button type="button" class="close" data-dismiss="modal">×</button>
-          	 		<h4 class="modal-title">일감 추가하기</h4>
+          	 		<h4 class="modal-title">업무 추가하기</h4>
         		</div>
         		<div class="modal-body">
           			<table class="table table-bordered">
           				<tr class="row">
           					<th class="col-sm-4">
-          						직군
+          						업무
           					</th>
           					<td class="col-sm-8" id="jobSubject">
           						<select name="jobName" id="jobName" required>
@@ -249,6 +219,8 @@ th,td{padding: 10px}
 <!-- //end 일감 추가 모달창 -->
 <!-- 해당 파일 스크립트 -->
 <script type="text/javascript" src="resources/js/registration.js"></script>
+
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lx.odw.model.FilterModel;
 import com.lx.odw.service.SeekerService;
@@ -34,7 +35,7 @@ public class SeekerController {
 	public @ResponseBody List<JobVO> requestProjectJobListByProjectNumber (ProjectVO projectVO) {
 		return service.requestProjectJobListByProjectNumber(projectVO);
 	}
-	//TODO asdasd
+
 	@RequestMapping(value="requestProjectDetail.do",method=RequestMethod.POST)
 	public @ResponseBody ProjectVO requestProjectDetail(ProjectVO projectVO) {
 		return service.requestProjectDetail(projectVO);
@@ -84,8 +85,8 @@ public class SeekerController {
 	}
 	
 	@RequestMapping(value="updateSeeker.do",method=RequestMethod.POST)
-	public @ResponseBody int updateSeeker(String seekerVO, String seekerPicture,HttpServletRequest request) {
-		return service.updateSeeker(seekerVO,seekerPicture,request);
+	public @ResponseBody int updateSeeker(String seekerVO, MultipartFile seekerPhoto,HttpServletRequest request) {
+		return service.updateSeeker(seekerVO,seekerPhoto,request);
 	}
 	
 	@RequestMapping(value="requestTodayWorkDetail.do",method=RequestMethod.POST)
@@ -118,6 +119,7 @@ public class SeekerController {
 		return service.requestAcceptJobList(seekerId);
 	}
 
+<<<<<<< HEAD
 	@RequestMapping(value="requestFinishJobList.do",method=RequestMethod.POST)
 	public @ResponseBody List<ManageVO> requestFinishJobList(String seekerId) {
 		return service.requestFinishJobList(seekerId);
@@ -126,5 +128,15 @@ public class SeekerController {
 	@RequestMapping(value="requestjobManageDetail.do",method=RequestMethod.POST)
 	public @ResponseBody ManageVO requestjobManageDetail(ManageVO vo) {
 		return service.requestjobManageDetail(vo);
+=======
+	@RequestMapping(value="updateCandidateSign.do",method=RequestMethod.POST)
+	public @ResponseBody int updateCandidateSign(MultipartFile seekerSign, String work,HttpServletRequest request) {
+		return service.updateCandidateSign(seekerSign,work,request);
+	}
+	
+	@RequestMapping(value="requestSeekerRecord.do",method=RequestMethod.POST)
+	public @ResponseBody List<JobCandidateVO> requestSeekerRecord (SeekerVO vo) {
+		return service.requestSeekerRecord(vo);
+>>>>>>> branch 'master' of https://github.com/JeaWoonLee/OneDayWorkFinal_SpringServer
 	}
 }

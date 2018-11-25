@@ -2,22 +2,74 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.mapper-login">
 
-<select id="seekerLogin" parameterType="com.lx.odw.model.LoginModel" resultType="com.lx.odw.vo.SeekerVO">
-	select
-		*
-	from
-		seeker
-	where
-		seeker_id = #{userId} and
-		seeker_pw = #{userPw}
-</select>
-<select id="offerLogin" parameterType="com.lx.odw.model.LoginModel" resultType="com.lx.odw.vo.OfferVO">
-select
-		*
-	from
-		offer
-	where
-		offer_id = #{userId} and
-		offer_pw = #{userPw}
-</select>
+	<select id="seekerLogin" parameterType="com.lx.odw.model.LoginModel" resultType="com.lx.odw.vo.SeekerVO">
+		select *
+		from seeker
+		where
+			seeker_id = #{userId} and
+			seeker_pw = #{userPw}
+	</select>
+	<select id="offerLogin" parameterType="com.lx.odw.model.LoginModel" resultType="com.lx.odw.vo.OfferVO">
+		select *
+		from offer
+		where 
+			offer_id = #{userId} and
+			offer_pw = #{userPw}
+	</select>
+	<select id="seekerId" parameterType="com.lx.odw.model.SeekerIdModel" resultType="com.lx.odw.vo.SeekerVO">
+		select seeker_id
+		from seeker
+		where 
+			seeker_email = #{seekerEmail} and
+			seeker_name = #{seekerName}
+	</select>
+	
+	<select id="seekerPw" parameterType="com.lx.odw.model.SeekerPwModel" resultType="com.lx.odw.vo.SeekerVO">
+		select seeker_pw
+		from seeker
+		where
+			seeker_id = #{seekerId} and
+			seeker_email = #{seekerEmail}
+	</select>
+
+	<select id="offerId" parameterType="com.lx.odw.model.OfferIdModel" resultType="com.lx.odw.vo.OfferVO">
+		select offer_id
+		from offer
+		where
+			offer_email = #{offerEmail} and
+			offer_name = #{offerName}
+	</select>
+
+	<select id="offerPw" parameterType="com.lx.odw.model.OfferPwModel" resultType="com.lx.odw.vo.OfferVO">
+		select offer_pw
+		from offer
+		where 
+			offer_id = #{offerId} and
+			offer_email = #{offerEmail}
+	</select>
+	
+	<select id="alterSeekerPw" parameterType="com.lx.odw.model.SeekerPwModel" resultType="Integer">
+		select seeker_pw 
+		from seeker 
+		where seeker_pw = #{seekerPw}
+	</select>
+	
+	<update id="seekerPwAlter" parameterType="com.lx.odw.vo.SeekerVO">
+		update seeker 
+		set offer_pw = #{offerPw} 
+		where offer_pw = #{offerPw}
+	</update>
+	
+	<select id="alterOfferPw" parameterType="com.lx.odw.model.OfferPwModel" resultType="Integer">
+		select seeker_pw 
+		from seeker 
+		where offer_pw = #{offerPw}
+	</select>
+	
+	<update id="offerPwAlter" parameterType="com.lx.odw.vo.OfferVO">
+		update offer 
+		set offer_pw = #{offerPw} 
+		where offer_pw = #{offerPw}
+	</update>
+
 </mapper>
