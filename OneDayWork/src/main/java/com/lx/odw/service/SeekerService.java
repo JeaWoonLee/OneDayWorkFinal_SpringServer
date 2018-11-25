@@ -56,6 +56,11 @@ public interface SeekerService {
 
 	List<JobCandidateVO> requestCandidateDateList(JobCandidateVO vo);
 
+	List<ManageVO> requestAcceptJobList(String seekerId);
+
+	List<ManageVO> requestFinishJobList(String seekerId);
+
+	ManageVO requestjobManageDetail(ManageVO vo);
 	int updateCandidateSign(MultipartFile seekerSign, String workVO,HttpServletRequest request);
 
 	List<JobCandidateVO> requestSeekerRecord(SeekerVO vo);

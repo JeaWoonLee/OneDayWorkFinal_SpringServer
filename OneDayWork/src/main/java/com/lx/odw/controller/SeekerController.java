@@ -113,7 +113,22 @@ public class SeekerController {
 	public @ResponseBody List<JobCandidateVO> requestCandidateDateList(JobCandidateVO vo) {
 		return service.requestCandidateDateList(vo);
 	}
+	
+	@RequestMapping(value="requestAcceptJobList.do",method=RequestMethod.POST)
+	public @ResponseBody List<ManageVO> requestAcceptJobList(String seekerId) {
+		return service.requestAcceptJobList(seekerId);
+	}
 
+	@RequestMapping(value="requestFinishJobList.do",method=RequestMethod.POST)
+	public @ResponseBody List<ManageVO> requestFinishJobList(String seekerId) {
+		return service.requestFinishJobList(seekerId);
+	}
+	
+	@RequestMapping(value="requestjobManageDetail.do",method=RequestMethod.POST)
+	public @ResponseBody ManageVO requestjobManageDetail(ManageVO vo) {
+		return service.requestjobManageDetail(vo);
+	}
+	
 	@RequestMapping(value="updateCandidateSign.do",method=RequestMethod.POST)
 	public @ResponseBody int updateCandidateSign(MultipartFile seekerSign, String work,HttpServletRequest request) {
 		return service.updateCandidateSign(seekerSign,work,request);
