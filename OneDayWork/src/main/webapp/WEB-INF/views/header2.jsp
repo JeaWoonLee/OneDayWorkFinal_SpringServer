@@ -13,7 +13,7 @@
 <style>
 html, body {width: 100%;height: 100%;margin: 0px;padding: 0px;}
 .navbarDiv {margin-top: 50px;}
-.mainTable {width: fit-content;height: fit-content;margin: 0 auto;margin-top: 30px;}
+.manumberable {width: fit-content;height: fit-content;margin: 0 auto;margin-top: 30px;}
 th{text-align: center;}
 th,td{padding: 10px}
 #projectComment{height: 250px}
@@ -23,7 +23,7 @@ th,td{padding: 10px}
 <body id="page-top">
 	<!-- Header -->
 	<div class="container-fluid">
-		<table class="mainTable">
+		<table class="manumberable">
 			<tr>
 				<td><img src="resources/img/haru.png" width="80px"
 					height="80px"></td>

@@ -13,31 +13,31 @@
 
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.js"
-	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	numberegrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 
 <script type="text/javascript">
 	var isOverlapCheck = false;
 
 	$(function() {
-		$('#offerJoinButton').on("click", function() {
-			var offerIdHidden = $('#offerIdHidden').val();
-			var offerPw = $('#offerPw').val();
-			var pwReInput = $('#pwReInput').val();
-			var offerName = $('#offerName').val();
-			var offerEmail = $('#offerEmail').val();
-			var companyName = $('#companyName').val();
-			var companyNo = $('#companyNo').val();
-			var offerAccount = $('#offerAccount').val();
+		$("#offerJoinButton").on("click", function() {
+			var offerIdHidden = $("#offerIdHidden").val();
+			var offerPw = $("#offerPw").val();
+			var pwReInput = $("#pwReInput").val();
+			var offerName = $("#offerName").val();
+			var offerEmail = $("#offerEmail").val();
+			var companyName = $("#companyName").val();
+			var companyNo = $("#companyNo").val();
+			var offerAccount = $("#offerAccount").val();
 
 			if (offerPw != pwReInput) {
-				alert('패스워드를 다르게 입력하셨습니다');
+				alert("패스워드를 다르게 입력하셨습니다");
 				return;
 			}
 
 			$.ajax({
-				method : 'POST',
-				url : 'joinOffer.do',
+				method : "POST",
+				url : "joinOffer.do",
 				data : {
 					offerId : offerIdHidden,
 					offerPw : offerPw,
@@ -49,36 +49,36 @@
 				},
 				success : function(data) {
 					if (data.response == 1) {
-						alert('회원가입 성공');
+						alert("회원가입 성공");
 						document.location.href = "haruMainPage.do";
 					} else {
-						alert('회원가입 실패');
+						alert("회원가입 실패");
 					}
 				}
 			});
 		});
-		$('#checkOverlapButton').on("click", checkOverlap);
+		$("#checkOverlapButton").on("click", checkOverlap);
 	});
 
 	function checkOverlap() {
-		var offerId = $('#offerId').val();
+		var offerId = $("#offerId").val();
 
 		$.ajax({
-			method : 'POST',
-			url : 'checkOfferOverlap.do',
+			method : "POST",
+			url : "checkOfferOverlap.do",
 			data : {
 				userId : offerId
 			},
 			success : function(data) {
 				if (data.response == 1) {
-					alert('이미 해당 아이디가 존재합니다');
+					alert("이미 해당 아이디가 존재합니다");
 				} else {
-					alert('해당 아이디는 사용 가능합니다');
+					alert("해당 아이디는 사용 가능합니다");
 					isOverlapCheck = true;
-					$('#offerId').attr("disabled", true);
-					$('#checkOverlapButton').attr("disabled", true);
-					$('#offerIdHidden').attr('value', offerId);
-					$('#offerJoinButton').attr('disabled', false);
+					$("#offerId").attr("disabled", true);
+					$("#checkOverlapButton").attr("disabled", true);
+					$("#offerIdHidden").attr("value", offerId);
+					$("#offerJoinButton").attr("disabled", false);
 				}
 			}
 		});
@@ -168,7 +168,7 @@
 				<div class="col-sm-1">
 				
 						<select name="offerAccount" id="offerAccount" required>
-							<option value="">은행</option>
+							<option value=null>은행</option>
 							<option value="신한은행">신한은행</option>
 							<option value="국민은행">국민은행</option>
 							<option value="농협">농협</option>

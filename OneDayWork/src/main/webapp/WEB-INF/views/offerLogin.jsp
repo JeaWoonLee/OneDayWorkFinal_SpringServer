@@ -14,7 +14,7 @@ if(loginResult == null){
 <meta charset="UTF-8">
 <title>offerer Login</title>
 <script src="https://code.jquery.com/jquery-3.3.1.js"
-	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	numberegrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 <style>
 footer {
@@ -26,9 +26,9 @@ footer {
 </style>
 <script type="text/javascript">
 	$(function(){
-		var checkLoginFail = $('#checkLoginFail').val();
-		if(checkLoginFail != 'none'){
-			alert('로그인에 실패했습니다!');
+		var checkLoginFail = $("#checkLoginFail").val();
+		if(checkLoginFail != "none"){
+			alert("로그인에 실패했습니다!");
 		}
 	});
 </script>
