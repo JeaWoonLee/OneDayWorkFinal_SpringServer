@@ -1,6 +1,7 @@
 package com.lx.odw.controller;
 
 import java.io.OutputStream;
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,14 +50,19 @@ public class JasperController {
 		jasperReport = JasperCompileManager.compileReport(jasperDesign);
 		reportParameters = new HashMap<String, Object>();
 		reportParameters.put("candidateNumber", candidateNumber);
+		Connection conn = dataSource.getConnection();
 		byte[] byteStream;
 	      byteStream = JasperRunManager.runReportToPdf(jasperReport,
-	          reportParameters, dataSource.getConnection());
+	          reportParameters, conn);
 	      outStream = res.getOutputStream();
 	      res.setHeader("Content-Disposition", "inline; filename=\"" + DOWNLOAD_FILE_NAME+"\"");
 	      res.setContentType(FILE_TYPE);
 	      res.setContentLength(byteStream.length);
 	      outStream.write(byteStream, 0, byteStream.length);
+	      outStream.flush();
+	      outStream.close();
+	      conn.close();
+	      System.out.println("reportReturn");
 	}
 	
 	@RequestMapping(value="unsignedContract.do",method=RequestMethod.GET)
@@ -74,14 +80,20 @@ public class JasperController {
 		jasperReport = JasperCompileManager.compileReport(jasperDesign);
 		reportParameters = new HashMap<String, Object>();
 		reportParameters.put("candidateNumber", candidateNumber);
+		Connection conn = dataSource.getConnection();
 		byte[] byteStream;
 	      byteStream = JasperRunManager.runReportToPdf(jasperReport,
-	          reportParameters, dataSource.getConnection());
+	          reportParameters, conn);
 	      outStream = res.getOutputStream();
 	      res.setHeader("Content-Disposition", "inline; filename=\"" + DOWNLOAD_FILE_NAME+"\"");
 	      res.setContentType(FILE_TYPE);
 	      res.setContentLength(byteStream.length);
 	      outStream.write(byteStream, 0, byteStream.length);
+	      outStream.flush();
+	      outStream.close();
+	      conn.close();
+	      System.out.println("reportReturn");
+
 	}
 	
 }

@@ -1,3 +1,4 @@
+<%@page import="com.lx.odw.vo.OfferVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -26,7 +27,7 @@
 
 
 body {font: 400 15px/1.8 Lato, sans-serif; color: #777;}
-h3, h4 {margin: 10px 0 30px 0; letter-spacing: 10px; font-size: 20px; color: #111;}
+h3, h4 {margin: 10px 0 30px 0; letter-spacing: 10px; font-size: 30px; color: #111;}
 .container {padding: 80px 120px;}
 .person {border: 10px solid transparent;margin-bottom: 25px;width: 80%;height: 80%;opacity: 0.7;}
 .person:hover {border-color: #f1f1f1;}
@@ -65,6 +66,14 @@ footer a:hover {color: #777;text-decoration: none;}
 .form-control {border-radius: 0;}
 textarea {resize: none;}
 .jumbotron { background-image: url("resources/img/header.png");color: #fff;font-family: Montserrat, sans-serif;opacity: 0.9;}
+h5{color: black; font-size: 30px;}
+td{color:black; font-size : 20px; font-style: inherit;}
+h1{color: black; font-size: 30px;}
+.form-control{color:black; font-size: 20px;}
+.btn{color:black; font-size:20px;}
+li{font-size:20px;font-weight: bold;}
+.active{font-size:20px;font-weight: bold;}
+#myNavbar{height: 150px;}
 </style>
 
 </head>
@@ -87,12 +96,18 @@ textarea {resize: none;}
 					<li class="active"><a href="haruMainPage.do">Home</a></li>
 					<li><a href="registration.do">일감 등록</a></li>
 					<li><a href="projectList.do">일감 목록</a></li>
-					<li><a href="#">출퇴근 관리</a></li>
-					<li><a href="#">회원정보 수정</a></li>
+					<li><a href="manageCommute.do">출퇴근 관리</a></li>
+					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+				<%OfferVO userInfo = (OfferVO) session.getAttribute("loginInfo");
+				if(userInfo == null){ %>
 					<li><a href="offerLogin.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
 					<li><a href="joinOffer.do"><span class="glyphicon glyphicon-user"></span>회원가입</a></li>
+				<%} else {%>
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span>회원 정보 수정</a></li>
+					<li><a href="logout.do"><span class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
+				<%}%>
 				</ul>
 			</div>
 		</div>

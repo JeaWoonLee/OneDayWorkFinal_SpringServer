@@ -88,4 +88,9 @@ public class LoginController {
 		return service.offerPwAlter(offerVO);
 	}
 	
+	@RequestMapping(value="logout.do", method=RequestMethod.GET)
+	public String logout(HttpSession session) throws Exception {
+		session.setAttribute("loginInfo", null);
+		return "haruMainPage";
+	}
 }

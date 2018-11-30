@@ -7,7 +7,7 @@
 <%@page import="com.lx.odw.vo.CommuteInfoVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="header2.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
 <%CommuteInfoVO vo = (CommuteInfoVO) request.getAttribute("CommuteInfoVO");
 String projectName = (String) request.getAttribute("projectName");
 OfferWorkVO offerWorkVO = vo.getOfferWorkVO();
@@ -78,6 +78,10 @@ td{vertical-align: middle;}
 .starRev{margin-bottom: 50px;margin-left: 30px;}
 #evaluate{width: 300px ; height: 215px;}
 .center{margin-left: auto; margin-right: auto;text-align: center;display: inherit;}
+th{color:black;font-size:20px;font-weight: bold;}
+.modal-title{color:white;font-size:30px;font-weight: bold;}
+p{color:black;font-size:25px;font-weight: bold;}
+h1{font-weight: bold;}
 </style>
 <!-- 카카오 맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
@@ -85,7 +89,7 @@ td{vertical-align: middle;}
 </head>
 <body>
 	<div class="container">
-		<h1><%=projectName%></h1>
+		<h1 class="text-center"><%=projectName%></h1>
 		<!-- 기본정보 -->
 		<table class="table table-boder" id="basic-info">
 			<tr class="row">
@@ -130,51 +134,51 @@ td{vertical-align: middle;}
 		<!-- //end 기본정보 -->
 		
 		<!-- 퇴근자 인원 목록 -->
-		<h4>퇴근자 인원 목록</h4>
-		<table class="table table-hover">
+		<h5 class="text-center">[퇴근자 인원 목록]</h5>
+		<table class="table table-hover alert alert-success">
 			<%for(JobCandidateVO item :offWorkList){ %>
 				<tr class="row">
 					<td class="col-sm-2"><%=item.getJobName()%></td>
 					<td class="col-sm-2"><%=item.getSeekerName()%></td>
 					<td class="col-sm-1"></td>
-					<td class="col-sm-2"><input class="btn btn-warning" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
+					<td class="col-sm-2"><input class="btn btn-warning btn-lg" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
 					<%if(item.getEvaluate()==null){ %>
-					<td class="col-sm-2"><input class="btn btn-primary" type="button" value="평가" data-toggle="modal" data-target="#seekerEvaluateModal" onclick="evaluating(<%=item.getCandidateNumber()%>)"></td>
+					<td class="col-sm-2"><input class="btn btn-lg btn-info" type="button" value="평가" data-toggle="modal" data-target="#seekerEvaluateModal" onclick="evaluating(<%=item.getCandidateNumber()%>)"></td>
 					<%} else{%>
 					<td class="col-sm-2"></td>
 					<%} %>
-					<td class="col-sm-2"><input class="btn btn-primary" type="button" value="근로계약서" onclick="showContract(<%=item.getCandidateNumber()%>)"></td>
+					<td class="col-sm-2"><input class="btn btn-lg btn-info" type="button" value="근로계약서" onclick="showContract(<%=item.getCandidateNumber()%>)"></td>
 				</tr>
 			<%} %>
 		</table>
 		<!-- //end 퇴근자 인원 목록 -->
 		
 		<!-- 근무중 인원 목록 -->
-		<h4>근무중 인원 목록</h4>
-		<table class="table table-hover">
+		<h5 class="text-center">[근무중 인원 목록]</h5>
+		<table class="table table-hover alert alert-success">
 			<%for(JobCandidateVO item :workingList){ %>
 				<tr class="row">
 					<td class="col-sm-2"><%=item.getJobName()%></td>
 					<td class="col-sm-2"><%=item.getSeekerName()%></td>
 					<td class="col-sm-1"></td>
-					<td class="col-sm-2"><input class="btn btn-warning" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
-					<td class="col-sm-2"><input class="btn btn-primary" type="button" value="퇴근" onclick="offWork(<%=item.getCandidateNumber()%>)"></td>
-					<td class="col-sm-2"><input class="btn btn-primary" type="button" value="근로계약서" onclick="showContract(<%=item.getCandidateNumber()%>)"></td>				
+					<td class="col-sm-2"><input class="btn btn-warning btn-lg" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
+					<td class="col-sm-2"><input class="btn btn-lg btn-info" type="button" value="퇴근" onclick="offWork(<%=item.getCandidateNumber()%>)"></td>
+					<td class="col-sm-2"><input class="btn btn-lg btn-info" type="button" value="근로계약서" onclick="showContract(<%=item.getCandidateNumber()%>)"></td>				
 				</tr>
 			<%} %>
 		</table>
 		<!-- //end 근무중 인원 목록 -->
 		
 		<!-- 출근 인원 목록 -->
-		<h4>출근 인원 목록</h4>
-		<table class="table table-hover">
+		<h5 class="text-center">[출근 인원 목록]</h5>
+		<table class="table table-hover alert alert-success">
 			<%for(JobCandidateVO item :commuteList){ %>
 				<tr class="row">
 					<td class="col-sm-2"><%=item.getJobName()%></td>
 					<td class="col-sm-2"><%=item.getSeekerName()%></td>
 					<td class="col-sm-1"></td>
-					<td class="col-sm-2"><input class="btn btn-warning" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
-					<td class="col-sm-2"><input class="btn btn-primary" type="button" value="출근 확인" onclick="working(<%=item.getCandidateNumber()%>)"></td>
+					<td class="col-sm-2"><input class="btn btn-warning btn-lg" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
+					<td class="col-sm-2"><input class="btn btn-lg btn-info" type="button" value="출근 확인" onclick="working(<%=item.getCandidateNumber()%>)"></td>
 					<td class="col-sm-2"></td>
 				</tr>
 			<%} %>
@@ -182,15 +186,15 @@ td{vertical-align: middle;}
 		<!-- //end 출근 인원 목록 -->
 		
 		<!-- 미출근 인원 목록 -->
-		<h4>미출근 인원 목록</h4>
-		<table class="table table-hover">
+		<h5 class="text-center">[미출근 인원 목록]</h5>
+		<table class="table table-hover alert alert-success">
 			<%for(JobCandidateVO item :notCommuteList){ %>
 				<tr class="row">
 					<td class="col-sm-2"><%=item.getJobName()%></td>
 					<td class="col-sm-2"><%=item.getSeekerName()%></td>
 					<td class="col-sm-1"></td>
-					<td class="col-sm-2"><input class="btn btn-warning" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
-					<td class="col-sm-2"><input class="btn btn-primary" type="button" value="결근" onclick="absent(<%=item.getCandidateNumber()%>)"></td>
+					<td class="col-sm-2"><input class="btn btn-warning btn-lg" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
+					<td class="col-sm-2"><input class="btn btn-lg btn-info" type="button" value="결근" onclick="absent(<%=item.getCandidateNumber()%>)"></td>
 					<td class="col-sm-2"></td>
 				</tr>
 			<%} %>
@@ -198,14 +202,14 @@ td{vertical-align: middle;}
 		<!-- //end 미출근 인원 목록 -->
 		
 		<!-- 결근 인원 목록 -->
-		<h4>결근 인원 목록</h4>
-		<table class="table table-hover">
+		<h5 class="text-center">[결근 인원 목록]</h5>
+		<table class="table table-hover alert alert-success">
 			<%for(JobCandidateVO item :absentList){ %>
 				<tr class="row">
 					<td class="col-sm-2"><%=item.getJobName()%></td>
 					<td class="col-sm-2"><%=item.getSeekerName()%></td>
 					<td class="col-sm-1"></td>
-					<td class="col-sm-2"><input class="btn btn-warning" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
+					<td class="col-sm-2"><input class="btn btn-warning btn-lg" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
 					<td class="col-sm-2"></td>
 					<td class="col-sm-2"></td>
 				</tr>
@@ -214,14 +218,14 @@ td{vertical-align: middle;}
 		<!-- //end 결근 인원 목록 -->
 		
 		<!-- 무단 이탈 인원 목록 -->
-		<h4>무단이탈 인원 목록</h4>
-		<table class="table table-hover">
+		<h5 class="text-center">[무단이탈 인원 목록]</h5>
+		<table class="table table-hover alert alert-success">
 			<%for(JobCandidateVO item :runList){ %>
 				<tr class="row">
 					<td class="col-sm-2"><%=item.getJobName()%></td>
 					<td class="col-sm-2"><%=item.getSeekerName()%></td>
 					<td class="col-sm-1"></td>
-					<td class="col-sm-2"><input class="btn btn-warning" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
+					<td class="col-sm-2"><input class="btn btn-warning btn-lg" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' type="button" value="정보" data-toggle="modal" data-target="#seekerDetailModal"></td>
 					<td class="col-sm-2"></td>
 					<td class="col-sm-2"></td>
 				</tr>
@@ -237,49 +241,49 @@ td{vertical-align: middle;}
       		<div class="modal-content">
         		<div class="modal-header">
         			<button type="button" class="close" data-dismiss="modal">×</button>
-          	 		<h4 class="modal-title">구직자 상세정보</h4>
+          	 		<h5 class="modal-title">구직자 상세정보</h5>
         		</div>
         		<div class="modal-body">
         			<p><strong>기본정보</strong></p>
           			<table class="table table-boder">
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">아이디</th>
-          					<td class="col-sm-8" id="seekerIdOutput"></td>
+          					<th class="col-sm-3">아이디</th>
+          					<td class="col-sm-7" id="seekerIdOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">이름</th>
-          					<td class="col-sm-8" id="seekerNameOutput"></td>
+          					<th class="col-sm-3">이름</th>
+          					<td class="col-sm-7" id="seekerNameOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">성별</th>
-          					<td class="col-sm-8" id="seekerSexOutput"></td>
+          					<th class="col-sm-3">성별</th>
+          					<td class="col-sm-7" id="seekerSexOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">생년월일</th>
-          					<td class="col-sm-8" id="seekerBirthOutput"></td>
+          					<th class="col-sm-3">생년월일</th>
+          					<td class="col-sm-7" id="seekerBirthOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">이메일</th>
-          					<td class="col-sm-8" id="seekerEmailOutput"></td>
+          					<th class="col-sm-3">이메일</th>
+          					<td class="col-sm-7" id="seekerEmailOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">소개글</th>
-          					<td class="col-sm-8" id="seekerInfoOutput"></td>
+          					<th class="col-sm-3">소개글</th>
+          					<td class="col-sm-7" id="seekerInfoOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           			</table>
-          			<span><strong>이력정보</strong></span>&nbsp;&nbsp;&nbsp;<span id="seekerReliability"></span>
+          			<p><strong>이력정보</strong></span>&nbsp;&nbsp;&nbsp;<span id="seekerReliability"></p>
           			<table class="table table-hover">
           				<tbody id="recordOutput"></tbody>
           			</table>
@@ -287,7 +291,8 @@ td{vertical-align: middle;}
           			<table class="table table-hover">
           				<tbody id="certificateOutput"></tbody>
           			</table>
-          			<span><strong>활동 위치&nbsp;&nbsp;</strong></span><input class="btn btn-primary" id="openButton" type="button" value="펼치기" onclick="relayout()">
+          			<p><strong>활동 위치&nbsp;&nbsp;</strong></p>
+          			<input class="btn btn-lg btn-info" id="openButton" type="button" value="펼치기" onclick="relayout()">
           			<table class="table">
           				<tr class="row">
           					<td class="col-sm-12" id="map-container">
@@ -301,7 +306,7 @@ td{vertical-align: middle;}
           			
         		</div>
         		<div class="modal-footer">
-        			<button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
+        			<button type="button" class="btn btn-lg btn-info" data-dismiss="modal">닫기</button>
         		</div>
       		</div>
 		</div>
@@ -314,11 +319,11 @@ td{vertical-align: middle;}
       		<div class="modal-content">
         		<div class="modal-header">
         			<button type="button" class="close" data-dismiss="modal">×</button>
-          	 		<h4 class="modal-title">구직자 평가</h4>
+          	 		<h5 class="modal-title">구직자 평가</h5>
         		</div>
         		<div class="modal-body">
         			<!-- 별점 주기 -->
-        			<h4>별점</h4>
+        			<h5>별점</h5>
 					<div class="starRev">
   						<span class="starR1 on">별1_왼쪽</span>
   						<span class="starR2">별1_오른쪽</span>
@@ -332,9 +337,9 @@ td{vertical-align: middle;}
   						<span class="starR2">별5_오른쪽</span>
 					</div>
 					<br>
-					<h4>평가내용</h4>
+					<h5>평가내용</h5>
 					<div class="center">
-						<textarea rows="10" cols="70" id="evaluteStr">
+						<textarea rows="10" cols="50" id="evaluteStr">
 							
 						</textarea>
 					</div>
@@ -342,7 +347,7 @@ td{vertical-align: middle;}
 					<input type="hidden" id="canidateNumber">
         		</div>
         		<div class="modal-footer">
-        			<button type="button" class="btn btn-primary" id="evaluateButton" data-dismiss="modal">평가하기</button>
+        			<button type="button" class="btn btn-lg btn-info" id="evaluateButton" data-dismiss="modal">평가하기</button>
         			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
         		</div>
       		</div>

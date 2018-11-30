@@ -16,12 +16,7 @@ function showProjectDetail (projectNumber){
 }
 </script>
 <style>
-footer {
-      position:absolute;
-      bottom:0;
-      width:100%;
-       
-    }
+th{color:black;text-size:15px;}
 </style>
 </head>
 <body>
@@ -31,54 +26,6 @@ footer {
 <!-- 일감 목록 -->
 <%List<ProjectVO> list = (List<ProjectVO>) request.getAttribute("projectList"); %>
 
-	
-	<!-- 
-	
-	<div class="container">
-		<h3 style="text-align: center;">일감 등록</h3>
-			<table class="table table-hover">
-				<thead>
-
-					<tr class="row">
-						<th class="col-sm-1">순서</th>
-						<th class="col-sm-2">일감 이름</th>
-						<th class="col-sm-2">일감 분류</th>
-						<th class="col-sm-2">일감 시작일</th>
-						<th class="col-sm-2">일감 종료일</th>
-						<th class="col-sm-2"></th>
-
-					</tr>
-				</thead>
-				<tbody>
-					<%
-						if (list != null) {
-							int i = 1;
-							for (ProjectVO item : list) {
-					%>
-					<tr class="row">
-						<th class="col-sm-1"><%=i++%></th>
-						<th class="col-sm-2"><%=item.getProjectName()%></th>
-						<th class="col-sm-2"><%=item.getProjectSubject()%></th>
-						<th class="col-sm-2"><%=item.getProjectStartDate()%></th>
-						<th class="col-sm-2"><%=item.getProjectEndDate()%></th>
-						<td><input class="btn btn-primary" type="button"
-							id="showProjectModalButton" value="상세정보" 
-							onclick="showProjectDetail(<%=item.getProjectNumber()%>)"></td>
-
-					</tr>
-					<%
-						}
-						}
-					%>
-
-				</tbody>
-			</table>
-		</form>
-
-	</div>
-	
-	 -->
-	 
 	<div class="container">
 		<h3 class="text-center">일감 목록</h3>
 		<form class="form-horizontal" action="joinOffer.do" method="get">

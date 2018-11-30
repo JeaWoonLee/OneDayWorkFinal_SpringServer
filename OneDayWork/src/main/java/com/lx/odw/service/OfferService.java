@@ -84,5 +84,7 @@ public interface OfferService {
 
 	OfferVO requestOfferDetail(OfferVO offerVO);
 
+	int requestAllCancel(JobCandidateVO vo);
+
 
 }

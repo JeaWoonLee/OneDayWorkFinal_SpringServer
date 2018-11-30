@@ -328,30 +328,36 @@ group by
 		project_number = #{projectNumber}
 </select>
 <select id="getTargetDateListByJobNumber" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.vo.JobCandidateVO">
-	select DISTINCT
-		target_date, job_number, seeker_id
+	select
+		c.target_date, c.seeker_id,c.job_number, j.job_limit_count, r.recruit
 	from
-		job_candidate
+		job_candidate c, job j,
+		(select count(seeker_id) as recruit, job_number
+		 from job_candidate
+		 where job_number = #{jobNumber} 
+		 and candidate_status BETWEEN 1 and 6
+		 group by target_date) r
 	where
-		job_number = #{jobNumber} and
-		candidate_status = 0
+		c.job_number = #{jobNumber} and
+		c.job_number = j.job_number and
+		c.candidate_status = 0
 	order by
-		target_date asc
+		c.target_date asc
 </select>
 <select id="getCandidateListByCandidateVO" parameterType="com.lx.odw.vo.JobCandidateVO" resultType="com.lx.odw.vo.JobCandidateVO">
 	<!-- 각 seeker 의 신뢰도 수치가 존재해야 한다  total = 해당 seeker의 4~6 / offWork = 해당 seeker의 4 -->
-	select DISTINCT
+	select
 		s.seeker_sex,s.seeker_birth, j.job_limit_count,c.target_date, c.seeker_id, c.job_number,c.candidate_number, c.candidate_status, t.total, o.off_work, r.recruit
 	from
 		job_candidate c, job j, seeker s,
-		(select DISTINCT
+		(select
 			count(*) as total , seeker_id
 		from
 			job_candidate
 		where
 			seeker_id = #{seekerId} and
 			candidate_status BETWEEN 4 and 6) t,
-		(select DISTINCT
+		(select
 			count(*) as off_work, seeker_id
 		from
 			job_candidate
@@ -373,6 +379,8 @@ group by
 		c.job_number = #{jobNumber} and
 		c.target_date = #{targetDate} and
 		c.candidate_status = 0
+	group by
+		c.seeker_id
 </select>
 <update id="requestAcceptCandidateByCandidateNumber" parameterType="com.lx.odw.vo.JobCandidateVO">
 	update
@@ -406,7 +414,7 @@ where
 	p.project_number = #{projectNumber} and
 	p.project_number = j.project_number and
 	j.job_number = c.job_number and
-	c.candidate_status = 1 and
+	c.candidate_status BETWEEN 1 and 6 and
 	c.target_date <![CDATA[ >= ]]> curdate()
 group by c.target_date
 </select>
@@ -419,7 +427,7 @@ where
  	p.project_number = #{projectNumber} and
 	p.project_number = j.project_number and
 	j.job_number = c.job_number and
-	c.candidate_status = 1 and
+	c.candidate_status BETWEEN 1 and 6 and
 	c.target_date = #{targetDate}
 group by
 	j.job_number
@@ -443,7 +451,7 @@ where
 	c.seeker_id = s.seeker_id and
 	c.target_date = #{targetDate} and
 	j.job_number = #{jobNumber} and
-	c.candidate_status = 1
+	c.candidate_status BETWEEN 1 and 6
 group by
 	s.seeker_id
 </select>
@@ -479,5 +487,14 @@ group by
 		offer_sign = #{offerSign}
 	where
 		offer_id = #{offerId}
+</update>
+
+<update id="requestAllCancel" parameterType="com.lx.odw.vo.JobCandidateVO">
+    update job_candidate
+    set candidate_status = 7
+    where
+    	target_date = #{targetDate} and
+    	job_number = #{jobNumber} and
+    	candidate_status = 0
 </update>
 </mapper>

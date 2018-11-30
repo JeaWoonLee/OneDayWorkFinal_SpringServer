@@ -163,6 +163,10 @@ public class OfferDAO {
 		return session.selectOne("requestOfferDetail",offerVO);
 	}
 
+	public int requestAllCancel(JobCandidateVO vo) {
+		return session.update("requestAllCancel",vo);
+	}
+
 	
 	
 	

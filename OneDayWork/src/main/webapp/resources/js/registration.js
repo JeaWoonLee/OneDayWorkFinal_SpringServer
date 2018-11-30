@@ -72,12 +72,9 @@ function insertProject(){
 			projectComment:projectComment,
 			jobs:jobsStr},
 		success:function(data){
-			console.log(data);
-			if(data != null) {
-				console.log("성공함");
-				alert("일감이 성공적으로 등록되었습니다");
-				document.location.href = "/projectList.do";
-			}
+			console.log("성공함");
+			alert("일감이 성공적으로 등록되었습니다");
+			document.location.href = "projectList.do";
 		}
 	});
 }

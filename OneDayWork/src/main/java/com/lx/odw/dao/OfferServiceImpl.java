@@ -94,14 +94,14 @@ public class OfferServiceImpl implements OfferService{
 				int subOfferCash = offerDAO.subOfferCash(offerVO);
 				if(subOfferCash > 0) {
 					//�꽦怨�
-					return "�봽濡쒖젥�듃瑜� �꽦怨듭쟻�쑝濡� �벑濡앺븯���뒿�땲�떎";
+					return "성공적으로 일감이 등록됨";
 				}
 			}else {
 				//insert job �떎�뙣
-				return "吏곴뎔 �젙蹂대�� 異붽��븯�뒗�뜲 �떎�뙣�뻽�뒿�땲�떎";
+				return "job 인서트에 실패함";
 			}
 		}
-		return "�봽濡쒖젥�듃 �벑濡앹뿉 �떎�뙣�븯���뒿�땲�떎";
+		return "project 인서트에 실패함";
 	}
 
 	
@@ -283,6 +283,11 @@ public class OfferServiceImpl implements OfferService{
 	@Override
 	public OfferVO requestOfferDetail(OfferVO offerVO) {
 		return offerDAO.requestOfferDetail(offerVO);
+	}
+
+	@Override
+	public int requestAllCancel(JobCandidateVO vo) {
+		return offerDAO.requestAllCancel(vo);
 	}
 	
 }

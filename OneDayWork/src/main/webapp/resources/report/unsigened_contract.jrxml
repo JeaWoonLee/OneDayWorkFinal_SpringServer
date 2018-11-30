@@ -252,12 +252,16 @@ where
 				</textField>
 				<textField>
 					<reportElement x="234" y="71" width="265" height="21" uuid="cc394cc8-7e7b-4992-819f-53dd6e887e38"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="NanumBarunGothic"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{offer_address}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="233" y="114" width="266" height="20" uuid="4c78d3e2-19ed-41c4-94e4-13ddb1318815"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="NanumBarunGothic"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{seeker_address}]]></textFieldExpression>
 				</textField>
 				<textField>
@@ -286,7 +290,7 @@ where
 				<reportElement x="-20" y="182" width="595" height="548" uuid="6556230f-0206-414f-ad6c-616fb18b260c"/>
 				<image>
 					<reportElement x="468" y="400" width="71" height="70" uuid="c7dfa5c6-6b41-4a56-ab1c-8b227a106d95"/>
-					<imageExpression><![CDATA["http://192.168.40.20/odw/"+$F{offer_sign}]]></imageExpression>
+					<imageExpression><![CDATA["http://1.250.62.149/odw/"+$F{offer_sign}]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement x="100" y="10" width="58" height="19" uuid="eeb479cc-4a78-4428-b2a0-badceaf1acd4"/>

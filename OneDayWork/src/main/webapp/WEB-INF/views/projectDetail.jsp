@@ -8,9 +8,8 @@
 <!DOCTYPE html>
 <html>
 <style>
-th {
-	text-align: center;
-}
+th{color:black; font-size : 20px; font-style: inherit;}
+.title{text-align: center;vertical-align: middle;}
 </style>
 
 <head>
@@ -127,7 +126,7 @@ th {
 							<tr class="row">
 								<th class="col-sm-1">#</th>
 								<th class="col-sm-2">직군 이름</th>
-								<th class="col-sm-3">모집 기간</th>
+								<th class="col-sm-5">모집 기간</th>
 								<th class="col-sm-2">모집 정원</th>
 								<th class="col-sm-2">요구 자격</th>
 								<th class="col-sm-2"></th>
@@ -140,8 +139,8 @@ th {
 							<tr class="row">
 								<td class="col-sm-1 item"><%=i + 1%></td>
 								<td class="col-sm-2 item"><%=jobList.get(i).getJobName()%></td>
-								<td class="col-sm-3 item"><%=jobList.get(i).getJobStartDate() + jobList.get(i).getJobEndDate()%>
-								</th>
+								<td class="col-sm-5 item"><%=jobList.get(i).getJobStartDate() + jobList.get(i).getJobEndDate()%>
+								</td>
 								<td class="col-sm-2 item"><%=jobList.get(i).getJobLimitCount()%></td>
 								<td class="col-sm-2 item"><%=jobList.get(i).getJobRequirement()%></td>
 								<td class="col-sm-2 item"><a class="btn btn-sm btn-primary"

@@ -17,12 +17,7 @@ if(loginResult == null){
 	numberegrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	crossorigin="anonymous"></script>
 <style>
-footer {
-      position:absolute;
-      bottom:0;
-      width:100%;
-       
-    }
+.control-label{font-size: 20px;}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -62,38 +57,8 @@ footer {
 						name="offererLogin">로그인</button>
 				</div>
 			</div>
-
-
 		</form>
 	</div>
-<!-- 로그인 화면 -->
 
-	<!-- 
-	<div class="container">
-
-		<h3 style="text-align: center;">구인자 로그인</h3>
-		<br>
-		<form action="offerLogin.do" method="post">
-
-			<table>
-				<tr>
-					<td><input type="text" id="id" name="userId" placeholder=" ID">
-					</td>
-				</tr>
-				<tr>
-					<td><input type="password" id="pw" name="userPw"
-						placeholder=" PassWord"></td>
-				</tr>
-			</table>
-			<br>
-			<div>
-				<input type="submit" value="로그인" id="offererLogin"
-					name="offererLogin">
-			</div>
-		</form>
-	</div>
-	 -->
-
-	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

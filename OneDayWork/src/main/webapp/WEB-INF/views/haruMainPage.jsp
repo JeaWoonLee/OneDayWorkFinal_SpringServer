@@ -8,15 +8,22 @@
 <title>haruMainPage</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-
+<style type="text/css">
+.menu_item{width: 200px;height: 200px;}
+a{text-decoration: none; color: black;}
+</style>
 </head>
 <body>
 
 <!-- Container (The Band Section) -->
 <div id="band" class="container text-center">
-  <h3>하루일감</h3>
-  <p><em>하루일감 홈페이지 소개</em></p>
- 
+  <table class="table">
+  	<tr class="row">
+  		<td class="col-sm-4"><a href="registration.do"><img class="menu_item" src="resources/img/add_work.png"><br><br><span class="text-center">일감 등록</span></a> </td>
+  		<td class="col-sm-4"><a href="projectList.do"><img class="menu_item" src="resources/img/manage_work.png"><br><br><span class="text-center">일감 목록</span></a> </td>
+  		<td class="col-sm-4"><a href="manageCommute.do"><img class="menu_item" src="resources/img/manage_commute.png"><br><br><span class="text-center">출퇴근 관리</span></a> </td>
+  	</tr>
+  </table>
   </div>
 </div>
 
@@ -29,7 +36,7 @@
     <div class="row text-center">
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="paris.jpg" alt="Paris" width="400" height="300">
+          <img src="resources/img/laptop.png " alt="Paris" width="100" height="90">
           <p><strong>업종별 일감 제공</strong></p>
           
           <button class="btn" data-toggle="modal" data-target="#Modal1">상세보기</button>
@@ -37,7 +44,7 @@
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="newyork.jpg" alt="New York" width="400" height="300">
+          <img src="resources/img/main2.png" alt="Paris"  width="100" height="90">
           <p><strong>위치기반 서비스</strong></p>
           
           <button class="btn" data-toggle="modal" data-target="#Modal2">상세보기</button>
@@ -45,7 +52,7 @@
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="resources/img/jeonja.PNG"  width="400" height="300">
+          <img src="resources/img/main3.png" alt="Paris"  width="100" height="90">
           <p><strong>전자 근로 계약서</strong></p>
           
           <button class="btn" data-toggle="modal" data-target="#jeonja">상세보기</button>
@@ -61,12 +68,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4>Modal1</h4>
+          <h4>업종별 일감 제공</h4>
         </div>
         <div class="modal-body">
           <form role="form">
             <div class="form-group">
-            <img src="resources/img/jeonja.PNG" width="100%">
+            <img src="resources/img/offer_job.png" width="175%%">
             </div>
           </form>
         </div>
@@ -84,12 +91,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4>Modal2</h4>
+          <h4>위치기반 서비스</h4>
         </div>
         <div class="modal-body">
           <form role="form">
             <div class="form-group">
-            <img src="resources/img/jeonja.PNG" width="100%">
+            <img src="resources/img/find_job.jpg" width="100%">
             </div>
           </form>
         </div>
@@ -112,7 +119,7 @@
         <div class="modal-body">
           <form role="form">
             <div class="form-group">
-            <img src="resources/img/jeonja.PNG" width="100%">
+            <img src="resources/img/contract.PNG" width="100%">
             </div>
           </form>
         </div>

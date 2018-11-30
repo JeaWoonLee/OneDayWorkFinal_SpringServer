@@ -6,7 +6,7 @@
 	<import value="java.util.*"/>
 	<parameter name="candidateNumber" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select o.company_name, o.offer_name,o.offer_address,
+		<![CDATA[select o.company_name, o.offer_name,o.offer_address,o.offer_sign,
 		 s.seeker_name,
 		 DATE_FORMAT(s.seeker_birth,'%y%m%d') as seeker_birth,
 		 (case when s.seeker_sex = "남자" then 1 else 2 end) seeker_sex,
@@ -14,7 +14,8 @@
 		 p.project_subject, 
 		 TIME_FORMAT(p.work_start_time, '%H시 %i분') work_start_time, 
 		 TIME_FORMAT(p.work_end_time,' %H시 %i분') work_end_time,
-		 j.job_name, j.job_pay,
+		 j.job_name,
+		 FORMAT(j.job_pay,0) job_pay,
 		 DATE_FORMAT(c.target_date,'%Y-%m-%d') as target_date,
 		 c.seeker_sign
 from
@@ -46,6 +47,10 @@ where
 		<property name="com.jaspersoft.studio.field.label" value="seeker_birth"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="seeker"/>
 	</field>
+		<field name="offer_sign" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="offer_sign"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="offer"/>
+	</field>
 	<field name="seeker_sex" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="seeker_sex"/>
 	</field>
@@ -68,7 +73,7 @@ where
 		<property name="com.jaspersoft.studio.field.label" value="job_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="job"/>
 	</field>
-	<field name="job_pay" class="java.lang.Integer">
+	<field name="job_pay" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="job_pay"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="job"/>
 	</field>
@@ -247,12 +252,16 @@ where
 				</textField>
 				<textField>
 					<reportElement x="234" y="71" width="265" height="21" uuid="cc394cc8-7e7b-4992-819f-53dd6e887e38"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="NanumBarunGothic"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{offer_address}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="233" y="114" width="266" height="20" uuid="4c78d3e2-19ed-41c4-94e4-13ddb1318815"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="NanumBarunGothic"/>
+					</textElement>
 					<textFieldExpression><![CDATA[$F{seeker_address}]]></textFieldExpression>
 				</textField>
 				<textField>
@@ -281,11 +290,11 @@ where
 				<reportElement x="-20" y="182" width="595" height="558" uuid="6556230f-0206-414f-ad6c-616fb18b260c"/>
 				<image>
 					<reportElement x="465" y="400" width="70" height="70" uuid="770a83ea-0881-4cba-9e2c-bca8c9d8a0d1"/>
-					<imageExpression><![CDATA["http://192.168.40.20/odw/"+$F{seeker_sign}]]></imageExpression>
+					<imageExpression><![CDATA["http://1.250.62.149/odw/"+$F{offer_sign}]]></imageExpression>
 				</image>
 				<image>
 					<reportElement x="465" y="480" width="70" height="70" uuid="4741fcab-1145-4289-aad4-ea9493c925b8"/>
-					<imageExpression><![CDATA["http://192.168.40.20/odw/"+$F{seeker_sign}]]></imageExpression>
+					<imageExpression><![CDATA["http://1.250.62.149/odw/"+$F{seeker_sign}]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement x="100" y="10" width="58" height="19" uuid="eeb479cc-4a78-4428-b2a0-badceaf1acd4"/>

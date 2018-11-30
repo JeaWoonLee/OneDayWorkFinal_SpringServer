@@ -9,10 +9,11 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41450346a0e0a698000d753728111084"></script>
 <!-- 제이쿼리 날짜 선택기 -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <style>
 
-th{text-align: center;}
+.head{text-align: center;}
 
 #projectComment{height: 250px}
 </style>
@@ -25,17 +26,17 @@ th{text-align: center;}
 		<form action="registration.do" method="get">
 			<table class="table table-striped" id="registrationTable">
 				<tr class="row">
-					<th class="col-sm-2">
+					<td class="col-sm-2 head">
 						<label>사업명</label> 
-					</th>
+					</td>
 					<td class="col-sm-8">
 						<input class="form-control" type="text" placeholder=" 사업명" id="projectName" name="projectName" required>
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-2">
+					<td class="col-sm-2 head">
 						<label>업종 분류</label>
-					</th>
+					</td>
 					<td class="col-sm-8">
 						<select name="projectSubject" id="projectSubject" required>
 							<option value="">사업분류</option>
@@ -52,36 +53,36 @@ th{text-align: center;}
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-2">
+					<td class="col-sm-2 head">
 						<label for="dateLabel">일감 시작~마감일</label><br>
-					</th>
+					</td>
 					<td class="col-sm-8">
 						<input type="text" name="projectStartDate" id="projectStartDate" required>
 						<input type="text" name="projectEndDate" id="projectEndDate" required>
 					</td>	
 				</tr>
 				<tr class="row">
-					<th class="col-sm-2">
+					<td class="col-sm-2 head">
 						<label for="TimeLabel">업무 시작~마감시간</label><br>
-					</th>
+					</td>
 					<td class="col-sm-8">
 						<input type="time" name="workStartTime" id="workStartTime" required>
 						<input type="time" name="workEndTime" id="workEndTime" required>
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-2">
+					<td class="col-sm-2 head">
 						<label for="demandLabel">신청 제약 사항</label> <br> 
-					</th>
+					</td>
 					<td class="col-sm-2">
 						<input type="checkbox" name="constCertificate" value="필요">건설안전교육이수증&nbsp; 
 						<input type="checkbox" id="requestPicture" name="requestPicture" value="필요">사진
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-2">
+					<td class="col-sm-2 head">
 						<label for="demandLabel">제공 사항</label> <br> 
-					</th>
+					</td>
 					<td class="col-sm-8">
 						<input type="checkbox" id="morning" name="morning" value="제공">아침 제공&nbsp;
 						<input type="checkbox" id="launch" name="launch" value="제공">점심 제공&nbsp;
@@ -94,20 +95,20 @@ th{text-align: center;}
 				<tr class="row">
 					<td colspan="10" style="text-align: center;">
 						<label for="showJobModalButton">업무&nbsp &nbsp;</label>
-						<input class="btn btn-sm btn-info" type="button" id="showJobModalButton" value="업무 추가" data-toggle="modal" data-target="#addJobModal" data-backdrop="static">
+						<input class="btn btn-lg btn-warning" type="button" id="showJobModalButton" value="업무 추가" data-toggle="modal" data-target="#addJobModal" data-backdrop="static">
 						<hr>
 						<table class="table table-hover">
-							<thead>
+							<tdead>
 								<tr class="row">
-									<th class="col-sm-1">#</th>
-									<th class="col-sm-2">직군</th>
-									<th class="col-sm-2">임금</th>
-									<th class="col-sm-1">정원</th>
-									<th class="col-sm-2">모집날짜</th>
-									<th class="col-sm-2">요구 자격</th>
-									<th class="col-sm-2">필요 임금</th>
+									<td class="col-sm-1">#</td>
+									<td class="col-sm-2">직군</td>
+									<td class="col-sm-2">임금</td>
+									<td class="col-sm-1">정원</td>
+									<td class="col-sm-2">모집날짜</td>
+									<td class="col-sm-2">요구 자격</td>
+									<td class="col-sm-2">필요 임금</td>
 								</tr>
-							</thead>
+							</tdead>
 							<!-- 모달창을 통해 추가된 직군이 보여지는 곳 -->
 							<tbody id="jobListOutput">
 								<tr>
@@ -121,17 +122,17 @@ th{text-align: center;}
 				</tr>
 				<!-- //end 일감 추가 영역 -->
 				<tr class="row">
-					<th class="col-sm-4">
+					<td class="col-sm-4  head">
 						<label for="locationLabel">업무 상세 내용</label> 
-					</th>
+					</td>
 					<td class="col-sm-8">
 						<textarea class="form-control" id="projectComment" name="projectComment" placeholder=" 업무 상세 내용" required></textarea>
 					</td>
 				</tr>
 				<tr class="row">
-					<th class="col-sm-4">
+					<td class="col-sm-4 head">
 						<label for="locationLabel">근무 장소</label>
-					</th>
+					</td>
 					<td class="col-sm-8">
 						<div id="map" style="height: 350px;"></div>
 						<p><em>근무 위치를 클릭해주세요!</em></p>
@@ -142,8 +143,8 @@ th{text-align: center;}
 				</tr>
 				<tr class="row">
 				<td align="center"></td>
-				<td align="center"><input type="submit"
-					class="btn btn-block btn-info" value="일감 등록" id="insertProject" name="insertProject">
+				<td align="center"><input type="button"
+					class="btn btn-block btn-warning" value="일감 등록" id="insertProject" name="insertProject">
 				</td>
 				</tr>
 			</table>
@@ -163,43 +164,43 @@ th{text-align: center;}
         		<div class="modal-body">
           			<table class="table table-bordered">
           				<tr class="row">
-          					<th class="col-sm-4">
+          					<td class="col-sm-4">
           						업무
-          					</th>
+          					</td>
           					<td class="col-sm-8" id="jobSubject">
           						<select name="jobName" id="jobName" required>
 								</select>
           					</td>
           				</tr>
           				<tr class="row">
-          					<th class="col-sm-4">
+          					<td class="col-sm-4">
           						임금 (원)
-          					</th>
+          					</td>
           					<td class="col-sm-8">
           						<input class="form-control" type="number" id="jobPay" name="jobPay">
           					</td>
           				</tr>
           				<tr class="row">
-          					<th class="col-sm-4">
+          					<td class="col-sm-4">
           						정원 (명/일)
-          					</th>
+          					</td>
           					<td class="col-sm-8">
           						<input class="form-control" type="number" id="jobLimitCount" name="jobLimitCount"> 
           					</td>
           				</tr>
           				<tr class="row">
-          					<th class="col-sm-4">
+          					<td class="col-sm-4">
           						모집 날짜
-          					</th>
+          					</td>
           					<td class="col-sm-8">
           						<input type="text" name="jobStartDate" id="jobStartDate" required>
 								<input type="text" name="jobEndDate" id="jobEndDate" required>
           					</td>
           				</tr>
           				<tr class="row">
-          					<th class="col-sm-4">
+          					<td class="col-sm-4">
           						요구 자격
-          					</th>
+          					</td>
           					<td class="col-sm-8">
           						<select name="jobRequirement" id="jobRequirement" required>
 									<option value="">자격증 분류</option>
@@ -210,7 +211,7 @@ th{text-align: center;}
           			</table>
         		</div>
         		<div class="modal-footer">
-        			<button type="button" class="btn btn-primary" id="addJobButton" data-dismiss="modal">추가</button>
+        			<button type="button" class="btn btn-warning" id="addJobButton" data-dismiss="modal">추가</button>
           			<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
         		</div>
       		</div>
@@ -219,7 +220,6 @@ th{text-align: center;}
 <!-- //end 일감 추가 모달창 -->
 <!-- 해당 파일 스크립트 -->
 <script type="text/javascript" src="resources/js/registration.js"></script>
-
 <jsp:include page="footer.jsp"></jsp:include>
 
 </body>

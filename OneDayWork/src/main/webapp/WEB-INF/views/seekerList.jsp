@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.sql.Date"%>
 <%@page import="com.lx.odw.vo.JobCandidateVO"%>
@@ -19,6 +20,8 @@
 <style>
 #map-container{text-align: center;}
 #map{display: inline-block;}
+th{color:black; font-size : 20px; font-style: inherit; text-align: center;}
+span{color:black; font-size : 20px; font-style: inherit; text-align: center;}
 </style>
 <title>하루일감: 신청 관리</title>
 
@@ -29,21 +32,21 @@ CandidateMapResponseModel candidateModel = (CandidateMapResponseModel) request.g
 HashMap<String,List<JobCandidateVO>> map = candidateModel.getResult();
 List<JobCandidateVO> headerList = candidateModel.getTargetDateList();
 String targetDate = "";
-for (JobCandidateVO header : headerList) {
-    List<JobCandidateVO> list = map.get(header.getTargetDate());
-    if (list.get(0) != null) {
-        header.setJobLimitCount(list.get(0).getJobLimitCount());
-        header.setRecruit(list.get(0).getRecruit());
-        header.setTargetDate(list.get(0).getTargetDate());
+ArrayList<JobCandidateVO> sortedHeaderList = new ArrayList<JobCandidateVO>();
+ArrayList<String> targetDateList = new ArrayList<String>();
+for (JobCandidateVO item : headerList) {
+    if (!targetDateList.contains(item.getTargetDate())) {
+        targetDateList.add(item.getTargetDate());
+        sortedHeaderList.add(item);
     }
-
 }
+
 %><!-- 요청해서 받은 empList를 list에 담는다. -->
 			
 	<div class="container">
 	<h3 style="text-align: center;">신청관리</h3>
 			<table class="table table-striped">
-			<%for(JobCandidateVO header : headerList) {
+			<%for(JobCandidateVO header : sortedHeaderList) {
 				if(targetDate == header.getTargetDate()){
 					break;
 				}else {
@@ -53,12 +56,20 @@ for (JobCandidateVO header : headerList) {
 				<tr class="row">
 					<th class="col-sm-2">
 						<%=header.getTargetDate()%><br>
-						<%="구인현황 ( " + header.getRecruit() + " / " + header.getJobLimitCount() + " )" %>
+						<%="구인현황<br> ( " + header.getRecruit() + " / " + header.getJobLimitCount() + " )" %>
 					</th>
 					<td class="col-sm-10">
 						<table class="table table-hover">
 						<%List<JobCandidateVO> list = map.get(header.getTargetDate());
-						for(JobCandidateVO item : list) {%>
+						List<JobCandidateVO> sortedItemList = new ArrayList<JobCandidateVO>();
+						List<String> seekerNameList = new ArrayList<String>();
+						for(JobCandidateVO item : list) {
+							if(!seekerNameList.contains(item.getSeekerId())){
+								seekerNameList.add(item.getSeekerId());
+								sortedItemList.add(item);
+							}
+						}
+						for(JobCandidateVO item : sortedItemList) {%>
 							<tr class="row">
 								<td class="col-sm-1"><%=item.getSeekerId()%></td>
 								<td class="col-sm-1"><%=item.getSeekerSex()%></td>
@@ -73,7 +84,7 @@ for (JobCandidateVO header : headerList) {
 									out.print(old);%></td>
 								<td class="col-sm-3"><%="신뢰도 "+(int)(((double)item.getOffWork()/(double)item.getTotal())*100)+"% ("+item.getOffWork()+"/"+item.getTotal()+")"%></td>
 								<td class="col-sm-1"><a href="#" id="showCandidateDetail" class="btn btn-primary btn-sm" onclick='showCandidateDetail("<%=item.getSeekerId()%>")' data-toggle="modal" data-target="#seekerDetailModal">상세정보</a></td>
-								<td class="col-sm-1"><a href="#" onClick='refuseCandidate"<%=item.getCandidateNumber()%>")' class="btn btn-danger btn-sm">신청 거절</a></td>
+								<td class="col-sm-1"><a href="#" onClick='refuseCandidate("<%=item.getCandidateNumber()%>")' class="btn btn-danger btn-sm">신청 거절</a></td>
 								<td class="col-sm-1"><a href="#" onClick='acceptCandidate("<%=item.getCandidateNumber()%>")' class="btn btn-success btn-sm">신청 수락</a></td>
 							</tr>
 						<% }%>
@@ -94,42 +105,42 @@ for (JobCandidateVO header : headerList) {
           	 		<h4 class="modal-title">구직자 상세정보</h4>
         		</div>
         		<div class="modal-body">
-        			<p><strong>기본정보</strong></p>
+        			<span><strong>기본정보</strong></span>
           			<table class="table table-boder">
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">아이디</th>
-          					<td class="col-sm-8" id="seekerIdOutput"></td>
+          					<th class="col-sm-3">아이디</th>
+          					<td class="col-sm-7" id="seekerIdOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">이름</th>
-          					<td class="col-sm-8" id="seekerNameOutput"></td>
+          					<th class="col-sm-3">이름</th>
+          					<td class="col-sm-7" id="seekerNameOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">성별</th>
-          					<td class="col-sm-8" id="seekerSexOutput"></td>
+          					<th class="col-sm-3">성별</th>
+          					<td class="col-sm-7" id="seekerSexOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">생년월일</th>
-          					<td class="col-sm-8" id="seekerBirthOutput"></td>
+          					<th class="col-sm-3">생년월일</th>
+          					<td class="col-sm-7" id="seekerBirthOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">이메일</th>
-          					<td class="col-sm-8" id="seekerEmailOutput"></td>
+          					<th class="col-sm-3">이메일</th>
+          					<td class="col-sm-7" id="seekerEmailOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           				<tr class="row">
           					<td class="col-sm-1"></td>
-          					<th class="col-sm-2">소개글</th>
-          					<td class="col-sm-8" id="seekerInfoOutput"></td>
+          					<th class="col-sm-3">소개글</th>
+          					<td class="col-sm-7" id="seekerInfoOutput"></td>
           					<td class="col-sm-1"></td>
           				</tr>
           			</table>
@@ -137,7 +148,7 @@ for (JobCandidateVO header : headerList) {
           			<table class="table table-hover">
           				<tbody id="recordOutput"></tbody>
           			</table>
-          			<p><strong>자격 및 경력 정보</strong></p>
+          			<span><strong>자격 및 경력 정보</strong></span>
           			<table class="table table-hover">
           				<tbody id="certificateOutput"></tbody>
           			</table>
@@ -150,7 +161,7 @@ for (JobCandidateVO header : headerList) {
           				</tr>
           			</table>
           			
-          			<p><strong>사진 정보</strong></p>
+          			<span><strong>사진 정보</strong></span>
           			<div id="seekerPictureOutput"></div>
           			
         		</div>
@@ -182,6 +193,7 @@ function acceptCandidate (candidateNumber){
 	});
 }
 function refuseCandidate(candidateNumber){
+	console.log('refuseCandidate : ' + candidateNumber);
 	$.ajax({
 		url : "requestRefuseCandidateByCandidateNumber.do",
 		method : "post",
@@ -227,20 +239,20 @@ function  setSeekerDetailInfo (seekerVO){
 	if (seekerVO.seekerLatitude == 0 && seekerVO.seekerLongitude == 0) {
 		$('#openButton').hide();
 		shrinkLayout();
-		$('#map').html(`<p>위치정보를 등록하지 않았습니다.</p>`);
+		$('#map').html(`<span>위치정보를 등록하지 않았습니다.</span>`);
 	} else if(seekerVO.openLocationInfo != '공개') {
 		$('#openButton').hide();
 		shrinkLayout();
-		$('#map').html(`<p>위치정보를 공개하지 않았습니다.</p>`);
+		$('#map').html(`<span>위치정보를 공개하지 않았습니다.</span>`);
 	} else {
 		$('#openButton').show();
 		showDaumMap(seekerVO.seekerLatitude,seekerVO.seekerLongitude);
 	}
 	//사진 정보 처리
 	if (seekerVO.seekerPicture == null) {
-		$('#seekerPictureOutput').html(`<p>사진정보를 등록하지 않았습니다.</p>`);
+		$('#seekerPictureOutput').html(`<span>사진정보를 등록하지 않았습니다.</span>`);
 	} else if(seekerVO.openPictureInfo != '공개') {
-		$('#seekerPictureOutput').html(`<p>사진정보를 공개하지 않았습니다.</p>`);
+		$('#seekerPictureOutput').html(`<span>사진정보를 공개하지 않았습니다.</span>`);
 	} else {
 		$('#seekerPictureOutput').html(`<img src=`+seekerVO.seekerPicture+` width=300 height=300 style="transform:rotate(90deg);">`);
 	}

@@ -245,4 +245,8 @@ public class OfferController {
 		return service.updateOfferSign(offerSign,offer,request);
 	}
 	
+	@RequestMapping(value="requestAllCancel.do",method=RequestMethod.POST)
+	public @ResponseBody int requestAllCancel(JobCandidateVO vo) {
+		return service.requestAllCancel(vo);
+	}
 }
